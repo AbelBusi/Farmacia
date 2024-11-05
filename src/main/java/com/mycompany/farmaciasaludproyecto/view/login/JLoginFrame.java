@@ -4,11 +4,15 @@
  */
 package com.mycompany.farmaciasaludproyecto.view.login;
 
+import com.mycompany.farmaciasaludproyecto.view.image.redirectImage;
+
 /**
  *
  * @author cesar
  */
 public class JLoginFrame extends javax.swing.JFrame {
+    
+    redirectImage image1 = new redirectImage();
 
     /**
      * Creates new form JLoginFrame
@@ -17,6 +21,9 @@ public class JLoginFrame extends javax.swing.JFrame {
                 
         initComponents();
         this.setSize(1200, 700);
+        
+        //redirect images
+        
 
         
     }
@@ -44,6 +51,9 @@ public class JLoginFrame extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         jPasswordField1 = new javax.swing.JPasswordField();
+        logoLogin = new javax.swing.JLabel();
+        logoLogin2 = new javax.swing.JLabel();
+        logoLogin3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,52 +80,63 @@ public class JLoginFrame extends javax.swing.JFrame {
         jTextField1.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(0, 0, 0));
         jTextField1.setBorder(null);
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 370, 330, 40));
+        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 370, 330, 40));
 
         jButton1.setBackground(new java.awt.Color(34, 194, 186));
         jButton1.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 0, 0));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/importar.png"))); // NOI18N
         jButton1.setText("INGRESAR");
         jButton1.setToolTipText("");
         jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(34, 194, 186)));
         jButton1.setContentAreaFilled(false);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 540, 420, 70));
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 540, 420, 70));
 
         jLabel2.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("CONTRASEÑA");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, 130, 40));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, 130, 40));
 
         jSeparator1.setForeground(new java.awt.Color(34, 194, 186));
-        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 500, 470, 30));
+        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 470, 30));
 
         jLabel4.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("INICIAR SESION");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 130, 50));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 130, 50));
 
         jSeparator2.setForeground(new java.awt.Color(34, 194, 186));
-        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 470, 30));
+        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 470, 30));
 
         jLabel5.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("CORREO");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 90, 40));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 90, 40));
 
         jSeparator3.setForeground(new java.awt.Color(34, 194, 186));
-        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, 470, 30));
+        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 470, 30));
 
         jPasswordField1.setBackground(new java.awt.Color(255, 255, 255));
         jPasswordField1.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         jPasswordField1.setForeground(new java.awt.Color(0, 0, 0));
         jPasswordField1.setText("jPasswordField1");
         jPasswordField1.setBorder(null);
-        jPanel2.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 450, 330, 40));
+        jPanel2.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 450, 330, 40));
+
+        logoLogin.setIcon(new javax.swing.ImageIcon("C:\\MIs_proyectos\\FarmaciaSaludProyecto\\src\\main\\resources\\cerrar-con-llave.png")); // NOI18N
+        jPanel2.add(logoLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 450, 60, 70));
+
+        logoLogin2.setIcon(new javax.swing.ImageIcon("C:\\MIs_proyectos\\FarmaciaSaludProyecto\\src\\main\\resources\\farmaciaHome.png")); // NOI18N
+        jPanel2.add(logoLogin2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 260, 60, 70));
+
+        logoLogin3.setIcon(new javax.swing.ImageIcon("C:\\MIs_proyectos\\FarmaciaSaludProyecto\\src\\main\\resources\\direccion-de-correo-electronico (1).png")); // NOI18N
+        jPanel2.add(logoLogin3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 370, 60, 70));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 0, 600, 700));
 
@@ -187,5 +208,8 @@ public class JLoginFrame extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel logoLogin;
+    private javax.swing.JLabel logoLogin2;
+    private javax.swing.JLabel logoLogin3;
     // End of variables declaration//GEN-END:variables
 }
