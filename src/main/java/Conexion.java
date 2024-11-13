@@ -5,7 +5,7 @@ import java.sql.SQLException;
 public class Conexion {
     private static final String URL = "jdbc:mysql://localhost:3306/farmacia";
     private static final String USER = "root"; 
-    private static final String PASSWORD = ""; 
+    private static final String PASSWORD = "abelbustamante24"; 
 
     public static Connection conectar() {
         Connection conexion = null;
@@ -29,5 +29,12 @@ public class Conexion {
             }
         }
     }
+    
+    public static void main(String[] args) {
+        
+        conectar();
+        
+    }
+    
 }
 
