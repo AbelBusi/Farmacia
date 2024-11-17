@@ -364,7 +364,7 @@ public class FRM_MENU extends javax.swing.JFrame {
 
     private void nuevo_productoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_productoActionPerformed
         // TODO add your handling code here:
-        InterProducto entrarProducto = new InterProducto();
+        InterMedicamento entrarProducto = new InterMedicamento();
         jDesktopPane_menu.add(entrarProducto);
         entrarProducto.setVisible(true);
         

@@ -30,19 +30,35 @@ public class FRM_Register extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
+        jTextField2 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        logoLogin = new javax.swing.JLabel();
-        logoLogin2 = new javax.swing.JLabel();
-        logoLogin3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
+        jSeparator4 = new javax.swing.JSeparator();
+        jLabel7 = new javax.swing.JLabel();
+        jTextField5 = new javax.swing.JTextField();
+        jSeparator5 = new javax.swing.JSeparator();
+        jLabel8 = new javax.swing.JLabel();
+        jTextField6 = new javax.swing.JTextField();
+        jSeparator6 = new javax.swing.JSeparator();
+        jLabel9 = new javax.swing.JLabel();
+        jSeparator7 = new javax.swing.JSeparator();
+        jPasswordField1 = new javax.swing.JPasswordField();
+        jLabel10 = new javax.swing.JLabel();
+        jPasswordField2 = new javax.swing.JPasswordField();
+        jSeparator8 = new javax.swing.JSeparator();
+        jButton1 = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,9 +68,9 @@ public class FRM_Register extends javax.swing.JFrame {
         JPLogo.setBackground(new java.awt.Color(255, 255, 255));
         JPLogo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/por-que-estudiar-farmacia_1.jpg"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/farmacia2.jpg"))); // NOI18N
         jLabel3.setText("jLabel3");
-        JPLogo.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 810, 700));
+        JPLogo.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-210, 10, 810, 700));
 
         jPanel1.add(JPLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 600, 720));
 
@@ -63,19 +79,106 @@ public class FRM_Register extends javax.swing.JFrame {
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/2135.jpg"))); // NOI18N
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 290, 250));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 290, 170));
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField1.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField1.setBorder(null);
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 370, 330, 40));
+        jLabel4.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("Apellidos");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 240, 90, 30));
+
+        jSeparator2.setForeground(new java.awt.Color(34, 194, 186));
+        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 270, 150, 30));
+
+        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField2.setForeground(new java.awt.Color(0, 0, 0));
+        jTextField2.setBorder(null);
+        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 240, 150, 30));
+
+        jLabel5.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("Nombre");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 90, 30));
+
+        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField3.setForeground(new java.awt.Color(0, 0, 0));
+        jTextField3.setBorder(null);
+        jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, 150, 30));
+
+        jSeparator3.setForeground(new java.awt.Color(34, 194, 186));
+        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 150, 30));
+
+        jLabel6.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setText("Telefono");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 320, 80, 30));
+
+        jTextField4.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField4.setForeground(new java.awt.Color(0, 0, 0));
+        jTextField4.setBorder(null);
+        jPanel2.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 320, 150, 30));
+
+        jSeparator4.setForeground(new java.awt.Color(34, 194, 186));
+        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 350, 150, 30));
+
+        jLabel7.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setText("Validar ");
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 470, 70, 30));
+
+        jTextField5.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField5.setForeground(new java.awt.Color(0, 0, 0));
+        jTextField5.setBorder(null);
+        jPanel2.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 400, 220, 30));
+
+        jSeparator5.setForeground(new java.awt.Color(34, 194, 186));
+        jPanel2.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 500, 150, 30));
+
+        jLabel8.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setText("Dni");
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 90, 30));
+
+        jTextField6.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField6.setForeground(new java.awt.Color(0, 0, 0));
+        jTextField6.setBorder(null);
+        jPanel2.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 320, 150, 30));
+
+        jSeparator6.setForeground(new java.awt.Color(34, 194, 186));
+        jPanel2.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, 150, 30));
+
+        jLabel9.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setText("Correo");
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, 90, 30));
+
+        jSeparator7.setForeground(new java.awt.Color(34, 194, 186));
+        jPanel2.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 430, 220, 30));
+
+        jPasswordField1.setBackground(new java.awt.Color(255, 255, 255));
+        jPasswordField1.setForeground(new java.awt.Color(0, 0, 0));
+        jPasswordField1.setText("jPasswordField1");
+        jPasswordField1.setBorder(null);
+        jPanel2.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 470, 150, 30));
+
+        jLabel10.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel10.setText("Password");
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 90, 30));
+
+        jPasswordField2.setBackground(new java.awt.Color(255, 255, 255));
+        jPasswordField2.setForeground(new java.awt.Color(0, 0, 0));
+        jPasswordField2.setText("jPasswordField1");
+        jPasswordField2.setBorder(null);
+        jPanel2.add(jPasswordField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 470, 150, 30));
+
+        jSeparator8.setForeground(new java.awt.Color(34, 194, 186));
+        jPanel2.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 500, 150, 30));
 
         jButton1.setBackground(new java.awt.Color(34, 194, 186));
         jButton1.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/importar.png"))); // NOI18N
-        jButton1.setText("INGRESAR");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/verificar.png"))); // NOI18N
+        jButton1.setText("REGISTRARSE");
         jButton1.setToolTipText("");
         jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(34, 194, 186)));
         jButton1.setContentAreaFilled(false);
@@ -85,53 +188,28 @@ public class FRM_Register extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 560, 330, 70));
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 550, 390, 70));
 
-        jLabel2.setFont(new java.awt.Font("Roboto", 1, 17)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("CONTRASEÑA");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, 130, 40));
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/signo-de-exclamacion (1).png"))); // NOI18N
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 290, -1, -1));
 
-        jSeparator1.setForeground(new java.awt.Color(34, 194, 186));
-        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 470, 10));
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/signo-de-exclamacion (1).png"))); // NOI18N
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Roboto", 1, 17)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("INICIAR SESION");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 130, 50));
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/signo-de-exclamacion (1).png"))); // NOI18N
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 210, -1, -1));
 
-        jSeparator2.setForeground(new java.awt.Color(34, 194, 186));
-        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 470, 30));
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/signo-de-exclamacion (1).png"))); // NOI18N
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 440, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Roboto", 1, 17)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setText("CORREO");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 90, 40));
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/signo-de-exclamacion (1).png"))); // NOI18N
+        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 290, -1, -1));
 
-        jSeparator3.setForeground(new java.awt.Color(34, 194, 186));
-        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 470, 30));
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/signo-de-exclamacion (1).png"))); // NOI18N
+        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 370, -1, -1));
 
-        jPasswordField1.setBackground(new java.awt.Color(255, 255, 255));
-        jPasswordField1.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        jPasswordField1.setForeground(new java.awt.Color(0, 0, 0));
-        jPasswordField1.setText("jPasswordField1");
-        jPasswordField1.setBorder(null);
-        jPanel2.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 450, 330, 40));
-
-        logoLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cerrar-con-llave.png"))); // NOI18N
-        jPanel2.add(logoLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 450, 60, 70));
-
-        logoLogin2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/farmaciaHome.png"))); // NOI18N
-        jPanel2.add(logoLogin2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 260, 60, 70));
-
-        logoLogin3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/direccion-de-correo-electronico (1).png"))); // NOI18N
-        jPanel2.add(logoLogin3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 370, 60, 70));
-
-        jLabel6.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(60, 63, 65));
-        jLabel6.setText("¿No tienes cuenta ?");
-        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 510, -1, -1));
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/signo-de-exclamacion (1).png"))); // NOI18N
+        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 440, -1, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 0, 600, 700));
 
@@ -196,20 +274,36 @@ public class FRM_Register extends javax.swing.JFrame {
     private javax.swing.JPanel JPLogo;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JLabel logoLogin;
-    private javax.swing.JLabel logoLogin2;
-    private javax.swing.JLabel logoLogin3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator8;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
 }
