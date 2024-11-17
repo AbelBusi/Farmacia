@@ -129,8 +129,6 @@ public class InterRegistrarProveedor extends javax.swing.JInternalFrame {
         txt_nombre.setText("");
         txt_apellido.setText("");
         txt_cedula.setText("");
-        txt_telefono.setText("");
-        txt_direccion.setText("");
     }
 
 }
