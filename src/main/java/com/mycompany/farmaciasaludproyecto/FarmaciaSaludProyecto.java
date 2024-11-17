@@ -4,7 +4,7 @@
 
 package com.mycompany.farmaciasaludproyecto;
 
-import com.mycompany.farmaciasaludproyecto.view.login.JLoginFrame;
+import com.mycompany.farmaciasaludproyecto.view.menu.FRM_Login;
 
 /**
  *
@@ -15,7 +15,7 @@ public class FarmaciaSaludProyecto {
     public static void main(String[] args) {
         System.out.println("Hello World!");
         
-        JLoginFrame inicio = new JLoginFrame();
+        FRM_Login inicio = new FRM_Login();
         inicio.setVisible(true);
         
     }
