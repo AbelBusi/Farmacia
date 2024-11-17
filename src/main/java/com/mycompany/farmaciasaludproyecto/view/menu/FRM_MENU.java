@@ -323,7 +323,7 @@ public class FRM_MENU extends javax.swing.JFrame {
     private void MENU_nuevoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_nuevoClienteActionPerformed
         // TODO add your handling code here:
         
-        InterCliente interCliente = new InterCliente();
+        InterRegistrarCliente interCliente = new InterRegistrarCliente();
         jDesktopPane_menu.add(interCliente);
         interCliente.setVisible(true);
     }//GEN-LAST:event_MENU_nuevoClienteActionPerformed
