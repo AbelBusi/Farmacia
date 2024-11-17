@@ -6,9 +6,9 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 
-public class InterFacturacion extends javax.swing.JInternalFrame {
+public class InterRegistrarVenta extends javax.swing.JInternalFrame {
 
-    public InterFacturacion() {
+    public InterRegistrarVenta() {
         initComponents();
         this.setSize(new Dimension(800, 600));
         this.setTitle("Facturacion");
@@ -40,10 +40,15 @@ public class InterFacturacion extends javax.swing.JInternalFrame {
         txt_cliente_buscar = new javax.swing.JTextField();
         txt_cantidad = new javax.swing.JTextField();
         jButton_busca_cliente = new javax.swing.JButton();
-        jButton_añadir_producto = new javax.swing.JButton();
+        txt_cantidad1 = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jComboBox_producto1 = new javax.swing.JComboBox<>();
+        jButton_AgregarMedicamento = new javax.swing.JButton();
+        jButton_RegistrarVenta1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_productos = new javax.swing.JTable();
+        jButton_añadir_producto = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -58,7 +63,6 @@ public class InterFacturacion extends javax.swing.JInternalFrame {
         txt_efectivo = new javax.swing.JTextField();
         txt_cambio = new javax.swing.JTextField();
         jButton_calcular_cambio = new javax.swing.JButton();
-        jButton_RegistrarVenta = new javax.swing.JButton();
         jLabel_wallpaper = new javax.swing.JLabel();
 
         setClosable(true);
@@ -67,58 +71,90 @@ public class InterFacturacion extends javax.swing.JInternalFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Facturación");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, -1, -1));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ventas.png"))); // NOI18N
+        jLabel1.setText("VENTA");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Cliente:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 80, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 80, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel3.setText("Producto:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 80, -1));
+        jLabel3.setText("MEDICAMENTO:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 120, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel4.setText("Cantidad:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, 80, -1));
+        jLabel4.setText("Descuento:");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 80, -1));
 
         jComboBox_cliente.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jComboBox_cliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione cliente:", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, 170, -1));
+        getContentPane().add(jComboBox_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 40, 170, -1));
 
         jComboBox_producto.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jComboBox_producto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione producto:", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox_producto, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 170, -1));
+        jComboBox_producto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar descuento:", "Item 2", "Item 3", "Item 4" }));
+        getContentPane().add(jComboBox_producto, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 170, -1));
 
         txt_cliente_buscar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        getContentPane().add(txt_cliente_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, 150, -1));
+        getContentPane().add(txt_cliente_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 40, 200, -1));
 
         txt_cantidad.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        getContentPane().add(txt_cantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 60, -1));
+        getContentPane().add(txt_cantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, 170, -1));
 
         jButton_busca_cliente.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton_busca_cliente.setText("Buscar");
+        jButton_busca_cliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/audiencia.png"))); // NOI18N
+        jButton_busca_cliente.setText("Buscar Cliente");
         jButton_busca_cliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_busca_clienteActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton_busca_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, 80, -1));
+        getContentPane().add(jButton_busca_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 40, 170, -1));
 
-        jButton_añadir_producto.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton_añadir_producto.setText("Añadir Productos");
-        jButton_añadir_producto.addActionListener(new java.awt.event.ActionListener() {
+        txt_cantidad1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        getContentPane().add(txt_cantidad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 80, 200, -1));
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel11.setText("Cantidad:");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 80, -1));
+
+        jComboBox_producto1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jComboBox_producto1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione medicamento:", "Item 2", "Item 3", "Item 4" }));
+        getContentPane().add(jComboBox_producto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, 170, -1));
+
+        jButton_AgregarMedicamento.setBackground(new java.awt.Color(51, 255, 255));
+        jButton_AgregarMedicamento.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton_AgregarMedicamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medicamento (1).png"))); // NOI18N
+        jButton_AgregarMedicamento.setText("AGREGAR MEDICAMENTO");
+        jButton_AgregarMedicamento.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton_AgregarMedicamento.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton_AgregarMedicamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_añadir_productoActionPerformed(evt);
+                jButton_AgregarMedicamentoActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton_añadir_producto, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 80, 150, -1));
+        getContentPane().add(jButton_AgregarMedicamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, 390, 70));
+
+        jButton_RegistrarVenta1.setBackground(new java.awt.Color(51, 255, 255));
+        jButton_RegistrarVenta1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton_RegistrarVenta1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/verificar (1).png"))); // NOI18N
+        jButton_RegistrarVenta1.setText("Registrar Venta");
+        jButton_RegistrarVenta1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton_RegistrarVenta1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton_RegistrarVenta1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_RegistrarVenta1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton_RegistrarVenta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 530, 170, 100));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -141,9 +177,19 @@ public class InterFacturacion extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jTable_productos);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 740, 190));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 750, 190));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 760, 210));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 770, 210));
+
+        jButton_añadir_producto.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton_añadir_producto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/investigar.png"))); // NOI18N
+        jButton_añadir_producto.setText("Buscar Medicamento");
+        jButton_añadir_producto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_añadir_productoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton_añadir_producto, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 80, 170, -1));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -199,29 +245,17 @@ public class InterFacturacion extends javax.swing.JInternalFrame {
 
         jButton_calcular_cambio.setBackground(new java.awt.Color(51, 255, 255));
         jButton_calcular_cambio.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton_calcular_cambio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cambio-de-divisas.png"))); // NOI18N
         jButton_calcular_cambio.setText("Calcular Cambio");
         jButton_calcular_cambio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_calcular_cambioActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton_calcular_cambio, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, 130, 50));
+        jPanel2.add(jButton_calcular_cambio, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 150, 50));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 330, 380, 210));
-
-        jButton_RegistrarVenta.setBackground(new java.awt.Color(51, 255, 255));
-        jButton_RegistrarVenta.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton_RegistrarVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/impresora.png"))); // NOI18N
-        jButton_RegistrarVenta.setText("Registrar Venta");
-        jButton_RegistrarVenta.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton_RegistrarVenta.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton_RegistrarVenta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_RegistrarVentaActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton_RegistrarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 350, 170, 100));
-        getContentPane().add(jLabel_wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 570));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 470, 450, 210));
+        getContentPane().add(jLabel_wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, 880, 700));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -245,27 +279,34 @@ public class InterFacturacion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton_calcular_cambioActionPerformed
 
 
-    private void jButton_RegistrarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_RegistrarVentaActionPerformed
+    private void jButton_AgregarMedicamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AgregarMedicamentoActionPerformed
         // TODO add your handling code here:
 
 
-    }//GEN-LAST:event_jButton_RegistrarVentaActionPerformed
+    }//GEN-LAST:event_jButton_AgregarMedicamentoActionPerformed
 
     private void jTable_productosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_productosMouseClicked
         // TODO add your handling code here:
         
     }//GEN-LAST:event_jTable_productosMouseClicked
 
+    private void jButton_RegistrarVenta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_RegistrarVenta1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_RegistrarVenta1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton_RegistrarVenta;
+    private javax.swing.JButton jButton_AgregarMedicamento;
+    private javax.swing.JButton jButton_RegistrarVenta1;
     private javax.swing.JButton jButton_añadir_producto;
     private javax.swing.JButton jButton_busca_cliente;
     private javax.swing.JButton jButton_calcular_cambio;
     private javax.swing.JComboBox<String> jComboBox_cliente;
     private javax.swing.JComboBox<String> jComboBox_producto;
+    private javax.swing.JComboBox<String> jComboBox_producto1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -281,6 +322,7 @@ public class InterFacturacion extends javax.swing.JInternalFrame {
     public static javax.swing.JTable jTable_productos;
     private javax.swing.JTextField txt_cambio;
     private javax.swing.JTextField txt_cantidad;
+    private javax.swing.JTextField txt_cantidad1;
     private javax.swing.JTextField txt_cliente_buscar;
     private javax.swing.JTextField txt_descuento;
     private javax.swing.JTextField txt_efectivo;

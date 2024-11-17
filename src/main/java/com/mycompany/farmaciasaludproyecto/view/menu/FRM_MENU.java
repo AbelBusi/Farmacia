@@ -403,7 +403,7 @@ public class FRM_MENU extends javax.swing.JFrame {
 
     private void MENU_nuevaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_nuevaVentaActionPerformed
         // TODO add your handling code here:
-        InterFacturacion interFacturacion = new InterFacturacion();
+        InterRegistrarVenta interFacturacion = new InterRegistrarVenta();
         jDesktopPane_menu.add(interFacturacion);
         interFacturacion.setVisible(true);
         
