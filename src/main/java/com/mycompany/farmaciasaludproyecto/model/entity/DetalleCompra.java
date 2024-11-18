@@ -5,12 +5,13 @@
 package com.mycompany.farmaciasaludproyecto.model.entity;
 
 import java.math.BigDecimal;
+import java.util.Comparator;
 
 /**
  *
  * @author Daniela
  */
-public class DetalleCompra {
+public class DetalleCompra implements Comparable<DetalleCompra>{
       private int id_detalleCompra;
     private int id_compra;
     private int id_medicamento; 
@@ -63,6 +64,19 @@ public class DetalleCompra {
 
     public void setPrecioUnitario(BigDecimal precioUnitario) {
         this.precioUnitario = precioUnitario;
+    }
+
+    @Override
+    public int compareTo(DetalleCompra o) {
+        return Comparator.comparing(DetalleCompra::getId_compra).
+                thenComparing(DetalleCompra::getId_compra).compare(this, o); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    public Object[] convertir (){
+    
+        Object[] fila = {id_detalleCompra,id_compra,id_medicamento,stock,precioUnitario};
+        return fila;
+        
     }
 
     

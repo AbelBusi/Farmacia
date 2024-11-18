@@ -4,11 +4,13 @@
  */
 package com.mycompany.farmaciasaludproyecto.model.entity;
 
+import java.util.Comparator;
+
 /**
  *
  * @author Daniela
  */
-public class DetalleVenta {
+public class DetalleVenta implements Comparable<DetalleVenta>{
      private int id_detalleVenta;
     private int id_venta; 
     private int id_medicamento; 
@@ -71,6 +73,20 @@ public class DetalleVenta {
 
     public void setTotalVendido(double totalVendido) {
         this.totalVendido = totalVendido;
+    }
+
+    @Override
+    public int compareTo(DetalleVenta o) {
+        return Comparator.comparing(DetalleVenta::getId_venta).
+                thenComparing(DetalleVenta::getId_venta).compare(this, o); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    public Object[] convertir (){
+    
+        Object[] fila ={id_detalleVenta,id_venta,id_medicamento,cantidadVendida,precioMedicamento,totalVendido};
+        
+        return fila;
+        
     }
     
     

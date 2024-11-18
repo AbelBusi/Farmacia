@@ -4,11 +4,13 @@
  */
 package com.mycompany.farmaciasaludproyecto.model.entity;
 
+import java.util.Comparator;
+
 /**
  *
  * @author Daniela
  */
-public class Venta {
+public class Venta implements Comparable<Venta>{
      private int id_venta;
     private int id_cliente; 
     private int id_vendedor; 
@@ -81,6 +83,19 @@ public class Venta {
 
     public void setVigente(boolean vigente) {
         this.vigente = vigente;
+    }
+
+    @Override
+    public int compareTo(Venta o) {
+        return Comparator.comparing(Venta::getFechaVenta).
+                thenComparing(Venta::getFechaVenta).compare(this, o); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    public Object[] convertir (){
+    
+        Object[] fila = {id_venta,id_cliente,id_vendedor,id_descuento,total,fechaVenta,vigente};
+        return fila;
+        
     }
     
 }

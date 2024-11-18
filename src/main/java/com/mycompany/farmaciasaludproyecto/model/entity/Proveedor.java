@@ -4,11 +4,13 @@
  */
 package com.mycompany.farmaciasaludproyecto.model.entity;
 
+import java.util.Comparator;
+
 /**
  *
  * @author Daniela
  */
-public class Proveedor {
+public class Proveedor implements Comparable<Proveedor>{
     private int id_proveedor;
     private String nombre;
     private String contacto;
@@ -51,6 +53,19 @@ public class Proveedor {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+
+    @Override
+    public int compareTo(Proveedor o) {
+        return Comparator.comparing(Proveedor::getNombre).
+                thenComparing(Proveedor::getNombre).compare(this, o); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    public Object[] convertir (){
+    
+        Object[] fila = {id_proveedor,nombre,contacto,telefono};
+        return fila;
+        
     }
     
     

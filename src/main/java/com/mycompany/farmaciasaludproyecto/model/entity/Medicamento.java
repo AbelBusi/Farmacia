@@ -6,13 +6,14 @@ package com.mycompany.farmaciasaludproyecto.model.entity;
 
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.util.Comparator;
 
 /**
  *
  * @author Daniela
  */
-public class Medicamento {
-      private int id_medicamento;
+public class Medicamento implements Comparable<Medicamento>{
+    private int id_medicamento;
     private String nombre;
     private String descripcion;
     private BigDecimal precio;
@@ -84,6 +85,19 @@ public class Medicamento {
 
     public void setId_tipo(int id_tipo) {
         this.id_tipo = id_tipo;
+    }
+
+    @Override
+    public int compareTo(Medicamento o) {
+        return Comparator.comparing(Medicamento::getNombre).
+                thenComparing(Medicamento::getNombre).compare(this, o); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    public Object[] convertir (){
+    
+        Object[] fila = {id_medicamento,nombre,descripcion,precio,stock,fechaVencimiento,id_tipo};
+        return fila;
+        
     }
 
     

@@ -4,11 +4,13 @@
  */
 package com.mycompany.farmaciasaludproyecto.model.entity;
 
+import java.util.Comparator;
+
 /**
  *
  * @author Daniela
  */
-public class Devolucion {
+public class Devolucion implements Comparable<Devolucion>{
      private int id_devolucion;
     private int id_venta; 
     private String motivo;
@@ -61,6 +63,19 @@ public class Devolucion {
 
     public void setVigente(boolean vigente) {
         this.vigente = vigente;
+    }
+
+    @Override
+    public int compareTo(Devolucion o) {
+        return Comparator.comparing(Devolucion::getFechaRechazo).
+                thenComparing(Devolucion::getFechaRechazo).compare(this, o); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    public Object[] convertir (){
+    
+        Object[] fila = {id_devolucion,id_venta,motivo,fechaRechazo,vigente};
+        return  fila;
+        
     }
     
 

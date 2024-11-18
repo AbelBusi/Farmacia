@@ -6,12 +6,13 @@ package com.mycompany.farmaciasaludproyecto.model.entity;
 
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.util.Comparator;
 
 /**
  *
  * @author Daniela
  */
-public class Compra {
+public class Compra implements Comparable<Compra>{
      private int id_compra;
     private int id_proveedor; 
     private BigDecimal total;
@@ -64,6 +65,20 @@ public class Compra {
 
     public void setVigente(boolean vigente) {
         this.vigente = vigente;
+    }
+
+    @Override
+    public int compareTo(Compra o) {
+        return Comparator.comparing(Compra::getFechaCompra).
+                thenComparing(Compra::getFechaCompra).compare(this, o); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    public Object[] convertir (){
+        
+        Object[] fila = {total,fechaCompra,vigente};
+        
+        return fila;
+        
     }
 
   
