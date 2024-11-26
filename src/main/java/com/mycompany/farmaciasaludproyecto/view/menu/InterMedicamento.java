@@ -25,6 +25,13 @@ public class InterMedicamento extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jButton_Guardar1 = new javax.swing.JButton();
+        jButton_Guardar2 = new javax.swing.JButton();
+        txt_cliente_buscar = new javax.swing.JTextField();
+        jButton_busca_cliente = new javax.swing.JButton();
         jCalendar1 = new com.toedter.calendar.JCalendar();
         txt_nombre = new javax.swing.JTextField();
         txt_precio = new javax.swing.JTextField();
@@ -79,6 +86,61 @@ public class InterMedicamento extends javax.swing.JInternalFrame {
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel8.setText("Stock:");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, 90, -1));
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable1);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 540, 370));
+
+        jButton_Guardar1.setBackground(new java.awt.Color(0, 204, 204));
+        jButton_Guardar1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton_Guardar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/delete.png"))); // NOI18N
+        jButton_Guardar1.setText("Eliminar medicamento");
+        jButton_Guardar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Guardar1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton_Guardar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 420, 200, 60));
+
+        jButton_Guardar2.setBackground(new java.awt.Color(0, 204, 204));
+        jButton_Guardar2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton_Guardar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ventas.png"))); // NOI18N
+        jButton_Guardar2.setText("Generar venta");
+        jButton_Guardar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Guardar2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton_Guardar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 420, 200, 60));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 20, 560, 510));
+
+        txt_cliente_buscar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        getContentPane().add(txt_cliente_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 483, 200, 30));
+
+        jButton_busca_cliente.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton_busca_cliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/audiencia.png"))); // NOI18N
+        jButton_busca_cliente.setText("Buscar proveedor");
+        jButton_busca_cliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_busca_clienteActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton_busca_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, 150, -1));
         getContentPane().add(jCalendar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, 450, 140));
 
         txt_nombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -96,13 +158,14 @@ public class InterMedicamento extends javax.swing.JInternalFrame {
 
         jButton_Guardar.setBackground(new java.awt.Color(0, 204, 204));
         jButton_Guardar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton_Guardar.setText("Guardar");
+        jButton_Guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medicamento (1).png"))); // NOI18N
+        jButton_Guardar.setText("Agregar");
         jButton_Guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_GuardarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton_Guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 470, 160, 30));
+        getContentPane().add(jButton_Guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 430, 200, 90));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -111,7 +174,7 @@ public class InterMedicamento extends javax.swing.JInternalFrame {
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 390, -1));
 
         jLabel_wallpaper.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo3.jpg"))); // NOI18N
-        getContentPane().add(jLabel_wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, 660, 540));
+        getContentPane().add(jLabel_wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 1290, 580));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -120,9 +183,25 @@ public class InterMedicamento extends javax.swing.JInternalFrame {
    
     }//GEN-LAST:event_jButton_GuardarActionPerformed
 
+    private void jButton_busca_clienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_busca_clienteActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jButton_busca_clienteActionPerformed
+
+    private void jButton_Guardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Guardar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_Guardar1ActionPerformed
+
+    private void jButton_Guardar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Guardar2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_Guardar2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_Guardar;
+    private javax.swing.JButton jButton_Guardar1;
+    private javax.swing.JButton jButton_Guardar2;
+    private javax.swing.JButton jButton_busca_cliente;
     private com.toedter.calendar.JCalendar jCalendar1;
     private javax.swing.JComboBox<String> jComboBox_categoria;
     private javax.swing.JLabel jLabel1;
@@ -133,8 +212,12 @@ public class InterMedicamento extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel_wallpaper;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextField txt_cliente_buscar;
     private javax.swing.JTextField txt_descripcion;
     private javax.swing.JTextField txt_nombre;
     private javax.swing.JTextField txt_precio;
