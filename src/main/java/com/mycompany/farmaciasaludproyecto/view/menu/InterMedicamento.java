@@ -119,7 +119,7 @@ public class InterMedicamento extends javax.swing.JInternalFrame {
         jButton_Guardar2.setBackground(new java.awt.Color(0, 204, 204));
         jButton_Guardar2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton_Guardar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ventas.png"))); // NOI18N
-        jButton_Guardar2.setText("Generar venta");
+        jButton_Guardar2.setText("Generar compra");
         jButton_Guardar2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_Guardar2ActionPerformed(evt);

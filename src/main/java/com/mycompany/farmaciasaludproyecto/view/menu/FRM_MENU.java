@@ -19,7 +19,7 @@ public class FRM_MENU extends javax.swing.JFrame {
     public FRM_MENU() {
         initComponents();
         this.setSize(new Dimension(1200,700));
-        this.setExtendedState(this.MAXIMIZED_BOTH);
+        this.setExtendedState(FRM_MENU.MAXIMIZED_BOTH);
         this.setLocationRelativeTo(null);
         this.setTitle("Sistema de ventas MegaMarket");
         
@@ -27,7 +27,7 @@ public class FRM_MENU extends javax.swing.JFrame {
         
         int ancho =java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
         int alto =java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
-        this.jDesktopPane_menu.setBounds(0,0,ancho,(alto-100));
+        FRM_MENU.jDesktopPane_menu.setBounds(0,0,ancho,(alto-100));
         this.add(jDesktopPane_menu);
        
     }
@@ -290,17 +290,13 @@ public class FRM_MENU extends javax.swing.JFrame {
 
     private void menu_nuevoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_nuevoUsuarioActionPerformed
         // TODO add your handling code here:
-        InterUsuario interUsuario = new InterUsuario();
-        jDesktopPane_menu.add(interUsuario);
-        interUsuario.setVisible(true);
+
     }//GEN-LAST:event_menu_nuevoUsuarioActionPerformed
 
     private void MENU_nuevoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_nuevoClienteActionPerformed
         // TODO add your handling code here:
         
-        InterRegistrarCliente interCliente = new InterRegistrarCliente();
-        jDesktopPane_menu.add(interCliente);
-        interCliente.setVisible(true);
+
     }//GEN-LAST:event_MENU_nuevoClienteActionPerformed
 
     private void MENU_ReporteVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_ReporteVentasActionPerformed
@@ -320,18 +316,14 @@ public class FRM_MENU extends javax.swing.JFrame {
 
     private void MENU_NuevoCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_NuevoCategoriaActionPerformed
         // TODO add your handling code here:
-        InternalJframeCategoria nueva_categoria = new InternalJframeCategoria();
-        jDesktopPane_menu.add(nueva_categoria);
-        nueva_categoria.setVisible(true);
+
         
         
     }//GEN-LAST:event_MENU_NuevoCategoriaActionPerformed
 
     private void MENU_gestionarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_gestionarCategoriaActionPerformed
         // TODO add your handling code here:
-        InternalFrameGestionarCategorias gestionarCategoria = new InternalFrameGestionarCategorias();
-        jDesktopPane_menu.add(gestionarCategoria);
-        gestionarCategoria.setVisible(true);
+
         
         
         
@@ -347,41 +339,27 @@ public class FRM_MENU extends javax.swing.JFrame {
     }//GEN-LAST:event_nuevo_productoActionPerformed
 
     private void MENU_GestionarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_GestionarProductoActionPerformed
-        // TODO add your handling code here:
-        InterGestionarProducto interGestionarProducto = new InterGestionarProducto();
-        jDesktopPane_menu.add(interGestionarProducto);
-        interGestionarProducto.setVisible(true);
+ 
     }//GEN-LAST:event_MENU_GestionarProductoActionPerformed
 
     private void gestionarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionarUsuariosActionPerformed
-        // TODO add your handling code here:
-        InterGestionarUsuario interGestionarUsuario = new InterGestionarUsuario();
-        jDesktopPane_menu.add(interGestionarUsuario);
-        interGestionarUsuario.setVisible(true);
-        
+
     }//GEN-LAST:event_gestionarUsuariosActionPerformed
 
     private void MENU_Actualizar_stockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_Actualizar_stockActionPerformed
         // TODO add your handling code here:
-        InterActualizarStock interActualizarStock = new InterActualizarStock();
-        jDesktopPane_menu.add(interActualizarStock);
-        interActualizarStock.setVisible(true);
+    
     }//GEN-LAST:event_MENU_Actualizar_stockActionPerformed
 
     private void MENU_GestionarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_GestionarClientesActionPerformed
         // TODO add your handling code here:
-        InterGestionarCliente interGestionarCliente = new InterGestionarCliente();
-        jDesktopPane_menu.add(interGestionarCliente);
-        interGestionarCliente.setVisible(true);
+
         
     }//GEN-LAST:event_MENU_GestionarClientesActionPerformed
 
     private void MENU_nuevaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_nuevaVentaActionPerformed
         // TODO add your handling code here:
-        InterRegistrarVenta interFacturacion = new InterRegistrarVenta();
-        jDesktopPane_menu.add(interFacturacion);
-        interFacturacion.setVisible(true);
-        
+
     }//GEN-LAST:event_MENU_nuevaVentaActionPerformed
 
     private void MENU_cerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_cerrarSesionActionPerformed
@@ -391,11 +369,7 @@ public class FRM_MENU extends javax.swing.JFrame {
     }//GEN-LAST:event_MENU_cerrarSesionActionPerformed
 
     private void MENU_GestionarVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_GestionarVentasActionPerformed
-        // TODO add your handling code here:
-        InterGestionarVentas interGestionarVentas = new InterGestionarVentas();
-        jDesktopPane_menu.add(interGestionarVentas);
-        interGestionarVentas.setVisible(true);
-        
+       
     }//GEN-LAST:event_MENU_GestionarVentasActionPerformed
 
     private void MENU_ReporteProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_ReporteProductosActionPerformed
