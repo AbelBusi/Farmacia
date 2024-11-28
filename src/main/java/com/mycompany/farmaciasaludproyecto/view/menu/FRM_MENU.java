@@ -1,8 +1,10 @@
 package com.mycompany.farmaciasaludproyecto.view.menu;
 
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JDesktopPane;
-
 
 /**
  *
@@ -13,25 +15,38 @@ public class FRM_MENU extends javax.swing.JFrame {
     /**
      * Creates new form FRM_MENU
      */
-    
     public static JDesktopPane jDesktopPane_menu;
-    
+
     public FRM_MENU() {
         initComponents();
-        this.setSize(new Dimension(1200,700));
-        this.setExtendedState(FRM_MENU.MAXIMIZED_BOTH);
+        this.setSize(new Dimension(1400, 800));
+        this.setExtendedState(this.MAXIMIZED_BOTH);
         this.setLocationRelativeTo(null);
         this.setTitle("Sistema de ventas MegaMarket");
-        
-        jDesktopPane_menu = new JDesktopPane();
-        
-        int ancho =java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
-        int alto =java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
-        FRM_MENU.jDesktopPane_menu.setBounds(0,0,ancho,(alto-100));
+
+        jDesktopPane_menu = new JDesktopPane() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                // Cargar la imagen desde resources
+                ImageIcon icon = new ImageIcon(getClass().getResource("/almaFarmacia.jpeg"));
+                Image img = icon.getImage();
+
+                // Dibujar la imagen si se cargó correctamente
+                if (img != null) {
+                    g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
+                } else {
+                    System.out.println("Error: Imagen no encontrada en resources");
+                }
+            }
+        };
+
+        int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
+        int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+        this.jDesktopPane_menu.setBounds(0, 0, ancho, (alto - 100));
         this.add(jDesktopPane_menu);
-       
+
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -105,6 +120,7 @@ public class FRM_MENU extends javax.swing.JFrame {
         menu_producto.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         menu_producto.setPreferredSize(new java.awt.Dimension(160, 50));
 
+        nuevo_producto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ventas.png"))); // NOI18N
         nuevo_producto.setText("Nuevo Medicamento");
         nuevo_producto.setPreferredSize(new java.awt.Dimension(250, 30));
         nuevo_producto.addActionListener(new java.awt.event.ActionListener() {
@@ -114,6 +130,7 @@ public class FRM_MENU extends javax.swing.JFrame {
         });
         menu_producto.add(nuevo_producto);
 
+        MENU_GestionarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/actual.png"))); // NOI18N
         MENU_GestionarProducto.setText("Gestionar Productos");
         MENU_GestionarProducto.setPreferredSize(new java.awt.Dimension(250, 30));
         MENU_GestionarProducto.addActionListener(new java.awt.event.ActionListener() {
@@ -123,6 +140,7 @@ public class FRM_MENU extends javax.swing.JFrame {
         });
         menu_producto.add(MENU_GestionarProducto);
 
+        MENU_Actualizar_stock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/audiencia.png"))); // NOI18N
         MENU_Actualizar_stock.setText("Actualizar Stock");
         MENU_Actualizar_stock.setPreferredSize(new java.awt.Dimension(250, 30));
         MENU_Actualizar_stock.addActionListener(new java.awt.event.ActionListener() {
@@ -295,7 +313,7 @@ public class FRM_MENU extends javax.swing.JFrame {
 
     private void MENU_nuevoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_nuevoClienteActionPerformed
         // TODO add your handling code here:
-        
+
 
     }//GEN-LAST:event_MENU_nuevoClienteActionPerformed
 
@@ -311,35 +329,36 @@ public class FRM_MENU extends javax.swing.JFrame {
     private void Menu_reporteCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Menu_reporteCategoriaActionPerformed
         // TODO add your handling code here:
 
-        
+
     }//GEN-LAST:event_Menu_reporteCategoriaActionPerformed
 
     private void MENU_NuevoCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_NuevoCategoriaActionPerformed
         // TODO add your handling code here:
+        InternalJframeCategoria categoria = new InternalJframeCategoria();
+        jDesktopPane_menu.add(categoria);
+        categoria.setVisible(true);
 
-        
-        
     }//GEN-LAST:event_MENU_NuevoCategoriaActionPerformed
 
     private void MENU_gestionarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_gestionarCategoriaActionPerformed
         // TODO add your handling code here:
 
-        
-        
-        
+
     }//GEN-LAST:event_MENU_gestionarCategoriaActionPerformed
 
     private void nuevo_productoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_productoActionPerformed
         // TODO add your handling code here:
         InterMedicamento entrarProducto = new InterMedicamento();
+        System.out.println("entrado a agregarProducto");
+
         jDesktopPane_menu.add(entrarProducto);
         entrarProducto.setVisible(true);
-        
-        
+
+
     }//GEN-LAST:event_nuevo_productoActionPerformed
 
     private void MENU_GestionarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_GestionarProductoActionPerformed
- 
+
     }//GEN-LAST:event_MENU_GestionarProductoActionPerformed
 
     private void gestionarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionarUsuariosActionPerformed
@@ -348,13 +367,13 @@ public class FRM_MENU extends javax.swing.JFrame {
 
     private void MENU_Actualizar_stockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_Actualizar_stockActionPerformed
         // TODO add your handling code here:
-    
+
     }//GEN-LAST:event_MENU_Actualizar_stockActionPerformed
 
     private void MENU_GestionarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_GestionarClientesActionPerformed
         // TODO add your handling code here:
 
-        
+
     }//GEN-LAST:event_MENU_GestionarClientesActionPerformed
 
     private void MENU_nuevaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_nuevaVentaActionPerformed
@@ -365,11 +384,11 @@ public class FRM_MENU extends javax.swing.JFrame {
     private void MENU_cerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_cerrarSesionActionPerformed
         // TODO add your handling code here:
         System.exit(0);
-        
+
     }//GEN-LAST:event_MENU_cerrarSesionActionPerformed
 
     private void MENU_GestionarVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_GestionarVentasActionPerformed
-       
+
     }//GEN-LAST:event_MENU_GestionarVentasActionPerformed
 
     private void MENU_ReporteProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_ReporteProductosActionPerformed
