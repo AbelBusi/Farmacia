@@ -64,16 +64,18 @@ public class FRM_MENU extends javax.swing.JFrame {
         menu_producto = new javax.swing.JMenu();
         nuevo_producto = new javax.swing.JMenuItem();
         MENU_GestionarProducto = new javax.swing.JMenuItem();
-        MENU_Actualizar_stock = new javax.swing.JMenuItem();
         menu_cliente = new javax.swing.JMenu();
         MENU_nuevoCliente = new javax.swing.JMenuItem();
         MENU_GestionarClientes = new javax.swing.JMenuItem();
-        menu_categoria = new javax.swing.JMenu();
-        MENU_NuevoCategoria = new javax.swing.JMenuItem();
-        MENU_gestionarCategoria = new javax.swing.JMenuItem();
         menu_facturar = new javax.swing.JMenu();
         MENU_nuevaVenta = new javax.swing.JMenuItem();
         MENU_GestionarVentas = new javax.swing.JMenuItem();
+        menu_categoria = new javax.swing.JMenu();
+        MENU_NuevoCategoria = new javax.swing.JMenuItem();
+        MENU_gestionarCategoria = new javax.swing.JMenuItem();
+        menu_categoria1 = new javax.swing.JMenu();
+        MENU_NuevoCategoria1 = new javax.swing.JMenuItem();
+        MENU_gestionarCategoria1 = new javax.swing.JMenuItem();
         menu_reportes = new javax.swing.JMenu();
         MENU_ReporteClientes = new javax.swing.JMenuItem();
         Menu_reporteCategoria = new javax.swing.JMenuItem();
@@ -140,16 +142,6 @@ public class FRM_MENU extends javax.swing.JFrame {
         });
         menu_producto.add(MENU_GestionarProducto);
 
-        MENU_Actualizar_stock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/audiencia.png"))); // NOI18N
-        MENU_Actualizar_stock.setText("Actualizar Stock");
-        MENU_Actualizar_stock.setPreferredSize(new java.awt.Dimension(255, 30));
-        MENU_Actualizar_stock.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MENU_Actualizar_stockActionPerformed(evt);
-            }
-        });
-        menu_producto.add(MENU_Actualizar_stock);
-
         jMenuBar1.add(menu_producto);
 
         menu_cliente.setForeground(new java.awt.Color(0, 0, 0));
@@ -158,8 +150,9 @@ public class FRM_MENU extends javax.swing.JFrame {
         menu_cliente.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         menu_cliente.setPreferredSize(new java.awt.Dimension(150, 50));
 
+        MENU_nuevoCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cliente-satisfecho (1).png"))); // NOI18N
         MENU_nuevoCliente.setText("Nuevo Cliente");
-        MENU_nuevoCliente.setPreferredSize(new java.awt.Dimension(150, 50));
+        MENU_nuevoCliente.setPreferredSize(new java.awt.Dimension(235, 50));
         MENU_nuevoCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MENU_nuevoClienteActionPerformed(evt);
@@ -167,8 +160,9 @@ public class FRM_MENU extends javax.swing.JFrame {
         });
         menu_cliente.add(MENU_nuevoCliente);
 
+        MENU_GestionarClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/la-satisfaccion-del-cliente.png"))); // NOI18N
         MENU_GestionarClientes.setText("Gestionar Clientes");
-        MENU_GestionarClientes.setPreferredSize(new java.awt.Dimension(150, 50));
+        MENU_GestionarClientes.setPreferredSize(new java.awt.Dimension(235, 50));
         MENU_GestionarClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MENU_GestionarClientesActionPerformed(evt);
@@ -177,32 +171,6 @@ public class FRM_MENU extends javax.swing.JFrame {
         menu_cliente.add(MENU_GestionarClientes);
 
         jMenuBar1.add(menu_cliente);
-
-        menu_categoria.setForeground(new java.awt.Color(0, 0, 0));
-        menu_categoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/opciones.png"))); // NOI18N
-        menu_categoria.setText("Categoria");
-        menu_categoria.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        menu_categoria.setPreferredSize(new java.awt.Dimension(150, 50));
-
-        MENU_NuevoCategoria.setText("Nueva Categoria");
-        MENU_NuevoCategoria.setPreferredSize(new java.awt.Dimension(150, 50));
-        MENU_NuevoCategoria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MENU_NuevoCategoriaActionPerformed(evt);
-            }
-        });
-        menu_categoria.add(MENU_NuevoCategoria);
-
-        MENU_gestionarCategoria.setText("Gestionar Categoria");
-        MENU_gestionarCategoria.setPreferredSize(new java.awt.Dimension(150, 50));
-        MENU_gestionarCategoria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MENU_gestionarCategoriaActionPerformed(evt);
-            }
-        });
-        menu_categoria.add(MENU_gestionarCategoria);
-
-        jMenuBar1.add(menu_categoria);
 
         menu_facturar.setForeground(new java.awt.Color(0, 0, 0));
         menu_facturar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ventas.png"))); // NOI18N
@@ -229,6 +197,58 @@ public class FRM_MENU extends javax.swing.JFrame {
         menu_facturar.add(MENU_GestionarVentas);
 
         jMenuBar1.add(menu_facturar);
+
+        menu_categoria.setForeground(new java.awt.Color(0, 0, 0));
+        menu_categoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/opciones.png"))); // NOI18N
+        menu_categoria.setText("Reclamos");
+        menu_categoria.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        menu_categoria.setPreferredSize(new java.awt.Dimension(150, 50));
+
+        MENU_NuevoCategoria.setText("Nueva Categoria");
+        MENU_NuevoCategoria.setPreferredSize(new java.awt.Dimension(150, 50));
+        MENU_NuevoCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MENU_NuevoCategoriaActionPerformed(evt);
+            }
+        });
+        menu_categoria.add(MENU_NuevoCategoria);
+
+        MENU_gestionarCategoria.setText("Gestionar Categoria");
+        MENU_gestionarCategoria.setPreferredSize(new java.awt.Dimension(150, 50));
+        MENU_gestionarCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MENU_gestionarCategoriaActionPerformed(evt);
+            }
+        });
+        menu_categoria.add(MENU_gestionarCategoria);
+
+        jMenuBar1.add(menu_categoria);
+
+        menu_categoria1.setForeground(new java.awt.Color(0, 0, 0));
+        menu_categoria1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/opciones.png"))); // NOI18N
+        menu_categoria1.setText("Bonificaciones");
+        menu_categoria1.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        menu_categoria1.setPreferredSize(new java.awt.Dimension(170, 50));
+
+        MENU_NuevoCategoria1.setText("Nueva Categoria");
+        MENU_NuevoCategoria1.setPreferredSize(new java.awt.Dimension(150, 50));
+        MENU_NuevoCategoria1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MENU_NuevoCategoria1ActionPerformed(evt);
+            }
+        });
+        menu_categoria1.add(MENU_NuevoCategoria1);
+
+        MENU_gestionarCategoria1.setText("Gestionar Categoria");
+        MENU_gestionarCategoria1.setPreferredSize(new java.awt.Dimension(150, 50));
+        MENU_gestionarCategoria1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MENU_gestionarCategoria1ActionPerformed(evt);
+            }
+        });
+        menu_categoria1.add(MENU_gestionarCategoria1);
+
+        jMenuBar1.add(menu_categoria1);
 
         menu_reportes.setForeground(new java.awt.Color(0, 0, 0));
         menu_reportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/reporte-de-negocios.png"))); // NOI18N
@@ -313,6 +333,9 @@ public class FRM_MENU extends javax.swing.JFrame {
 
     private void MENU_nuevoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_nuevoClienteActionPerformed
         // TODO add your handling code here:
+        InterRegistrarCliente cliente = new InterRegistrarCliente();
+        jDesktopPane_menu.add(cliente);
+        cliente.setVisible(true);
 
 
     }//GEN-LAST:event_MENU_nuevoClienteActionPerformed
@@ -369,11 +392,6 @@ public class FRM_MENU extends javax.swing.JFrame {
 
     }//GEN-LAST:event_gestionarUsuariosActionPerformed
 
-    private void MENU_Actualizar_stockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_Actualizar_stockActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_MENU_Actualizar_stockActionPerformed
-
     private void MENU_GestionarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_GestionarClientesActionPerformed
         // TODO add your handling code here:
 
@@ -398,6 +416,14 @@ public class FRM_MENU extends javax.swing.JFrame {
     private void MENU_ReporteProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_ReporteProductosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_MENU_ReporteProductosActionPerformed
+
+    private void MENU_NuevoCategoria1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_NuevoCategoria1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MENU_NuevoCategoria1ActionPerformed
+
+    private void MENU_gestionarCategoria1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_gestionarCategoria1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MENU_gestionarCategoria1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -435,22 +461,24 @@ public class FRM_MENU extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem MENU_Actualizar_stock;
     private javax.swing.JMenuItem MENU_GestionarClientes;
     private javax.swing.JMenuItem MENU_GestionarProducto;
     private javax.swing.JMenuItem MENU_GestionarVentas;
     private javax.swing.JMenuItem MENU_NuevoCategoria;
+    private javax.swing.JMenuItem MENU_NuevoCategoria1;
     private javax.swing.JMenuItem MENU_ReporteClientes;
     private javax.swing.JMenuItem MENU_ReporteProductos;
     private javax.swing.JMenuItem MENU_ReporteVentas;
     private javax.swing.JMenuItem MENU_cerrarSesion;
     private javax.swing.JMenuItem MENU_gestionarCategoria;
+    private javax.swing.JMenuItem MENU_gestionarCategoria1;
     private javax.swing.JMenuItem MENU_nuevaVenta;
     private javax.swing.JMenuItem MENU_nuevoCliente;
     private javax.swing.JMenuItem Menu_reporteCategoria;
     private javax.swing.JMenuItem gestionarUsuarios;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu menu_categoria;
+    private javax.swing.JMenu menu_categoria1;
     private javax.swing.JMenu menu_cerrarSesion;
     private javax.swing.JMenu menu_cliente;
     private javax.swing.JMenu menu_facturar;
