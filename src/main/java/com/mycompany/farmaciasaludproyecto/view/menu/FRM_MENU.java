@@ -90,14 +90,15 @@ public class FRM_MENU extends javax.swing.JFrame {
         setIconImages(getIconImages());
 
         menu_usuario.setForeground(new java.awt.Color(0, 0, 0));
-        menu_usuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/operador.png"))); // NOI18N
-        menu_usuario.setText("Usuario");
+        menu_usuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cajero.png"))); // NOI18N
+        menu_usuario.setText("Vendedor");
         menu_usuario.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         menu_usuario.setPreferredSize(new java.awt.Dimension(150, 50));
 
         menu_nuevoUsuario.setForeground(new java.awt.Color(0, 0, 0));
-        menu_nuevoUsuario.setText("Nuevo Usuario");
-        menu_nuevoUsuario.setPreferredSize(new java.awt.Dimension(150, 30));
+        menu_nuevoUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cajero (1).png"))); // NOI18N
+        menu_nuevoUsuario.setText("Nuevo Vendedor");
+        menu_nuevoUsuario.setPreferredSize(new java.awt.Dimension(250, 30));
         menu_nuevoUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menu_nuevoUsuarioActionPerformed(evt);
@@ -105,8 +106,9 @@ public class FRM_MENU extends javax.swing.JFrame {
         });
         menu_usuario.add(menu_nuevoUsuario);
 
-        gestionarUsuarios.setText("Gestionar Usuarios");
-        gestionarUsuarios.setPreferredSize(new java.awt.Dimension(150, 30));
+        gestionarUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/equipo.png"))); // NOI18N
+        gestionarUsuarios.setText("Gestionar Vendedores");
+        gestionarUsuarios.setPreferredSize(new java.awt.Dimension(250, 30));
         gestionarUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 gestionarUsuariosActionPerformed(evt);
@@ -330,6 +332,9 @@ public class FRM_MENU extends javax.swing.JFrame {
 
     private void menu_nuevoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_nuevoUsuarioActionPerformed
         // TODO add your handling code here:
+        InterRegistrarVendedor vendedor = new InterRegistrarVendedor();
+        jDesktopPane_menu.add(vendedor);
+        vendedor.setVisible(true);
 
     }//GEN-LAST:event_menu_nuevoUsuarioActionPerformed
 
