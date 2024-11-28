@@ -203,7 +203,7 @@ public class FRM_MENU extends javax.swing.JFrame {
         jMenuBar1.add(menu_facturar);
 
         menu_categoria.setForeground(new java.awt.Color(0, 0, 0));
-        menu_categoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/opciones.png"))); // NOI18N
+        menu_categoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/queja.png"))); // NOI18N
         menu_categoria.setText("Reclamos");
         menu_categoria.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         menu_categoria.setPreferredSize(new java.awt.Dimension(150, 50));
@@ -229,7 +229,7 @@ public class FRM_MENU extends javax.swing.JFrame {
         jMenuBar1.add(menu_categoria);
 
         menu_categoria1.setForeground(new java.awt.Color(0, 0, 0));
-        menu_categoria1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/opciones.png"))); // NOI18N
+        menu_categoria1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/factura.png"))); // NOI18N
         menu_categoria1.setText("Bonificaciones");
         menu_categoria1.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         menu_categoria1.setPreferredSize(new java.awt.Dimension(170, 50));
