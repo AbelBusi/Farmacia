@@ -174,12 +174,13 @@ public class FRM_MENU extends javax.swing.JFrame {
 
         menu_facturar.setForeground(new java.awt.Color(0, 0, 0));
         menu_facturar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ventas.png"))); // NOI18N
-        menu_facturar.setText("Vender");
+        menu_facturar.setText("Venta");
         menu_facturar.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         menu_facturar.setPreferredSize(new java.awt.Dimension(150, 50));
 
+        MENU_nuevaVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ventas (1).png"))); // NOI18N
         MENU_nuevaVenta.setText("Nueva Venta");
-        MENU_nuevaVenta.setPreferredSize(new java.awt.Dimension(150, 50));
+        MENU_nuevaVenta.setPreferredSize(new java.awt.Dimension(225, 50));
         MENU_nuevaVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MENU_nuevaVentaActionPerformed(evt);
@@ -187,8 +188,9 @@ public class FRM_MENU extends javax.swing.JFrame {
         });
         menu_facturar.add(MENU_nuevaVenta);
 
+        MENU_GestionarVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/punto-de-venta.png"))); // NOI18N
         MENU_GestionarVentas.setText("Gestionar Ventas");
-        MENU_GestionarVentas.setPreferredSize(new java.awt.Dimension(150, 50));
+        MENU_GestionarVentas.setPreferredSize(new java.awt.Dimension(225, 50));
         MENU_GestionarVentas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MENU_GestionarVentasActionPerformed(evt);
@@ -402,7 +404,9 @@ public class FRM_MENU extends javax.swing.JFrame {
 
     private void MENU_nuevaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_nuevaVentaActionPerformed
         // TODO add your handling code here:
-
+        InterRegistrarVenta venta = new InterRegistrarVenta();
+        jDesktopPane_menu.add(venta);
+        venta.setVisible(true);
     }//GEN-LAST:event_MENU_nuevaVentaActionPerformed
 
     private void MENU_cerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_cerrarSesionActionPerformed
@@ -413,6 +417,10 @@ public class FRM_MENU extends javax.swing.JFrame {
 
     private void MENU_GestionarVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_GestionarVentasActionPerformed
 
+        InterGestionarVentas ventasGestion = new InterGestionarVentas();
+        jDesktopPane_menu.add(ventasGestion);
+        ventasGestion.setVisible(true);
+        
     }//GEN-LAST:event_MENU_GestionarVentasActionPerformed
 
     private void MENU_ReporteProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_ReporteProductosActionPerformed

@@ -1,23 +1,15 @@
 package com.mycompany.farmaciasaludproyecto.view.menu;
 
 import java.awt.Dimension;
-import static java.awt.image.ImageObserver.WIDTH;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 
 
 public class InterRegistrarVenta extends javax.swing.JInternalFrame {
 
     public InterRegistrarVenta() {
         initComponents();
-        this.setSize(new Dimension(800, 600));
+        this.setSize(new Dimension(924, 749));
         this.setTitle("Facturacion");
 
-        //insertar imagen en nuestro JLabel
-        ImageIcon wallpaper = new ImageIcon("src/img/fondo3.jpg");
-        Icon icono = new ImageIcon(wallpaper.getImage().getScaledInstance(800, 600, WIDTH));
-        jLabel_wallpaper.setIcon(icono);
-        this.repaint();
 
     }
 
@@ -70,41 +62,50 @@ public class InterRegistrarVenta extends javax.swing.JInternalFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ventas.png"))); // NOI18N
         jLabel1.setText("VENTA");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Cliente:");
+        jLabel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 80, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("MEDICAMENTO:");
+        jLabel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 120, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("Descuento:");
+        jLabel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 80, -1));
 
         jComboBox_cliente.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jComboBox_cliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione cliente:", "Item 2", "Item 3", "Item 4" }));
+        jComboBox_cliente.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(jComboBox_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 40, 170, -1));
 
         jComboBox_producto.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jComboBox_producto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar descuento:", "Item 2", "Item 3", "Item 4" }));
+        jComboBox_producto.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(jComboBox_producto, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 170, -1));
 
         txt_cliente_buscar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txt_cliente_buscar.setForeground(new java.awt.Color(0, 0, 0));
+        txt_cliente_buscar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(txt_cliente_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 40, 200, -1));
 
         txt_cantidad.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txt_cantidad.setForeground(new java.awt.Color(0, 0, 0));
+        txt_cantidad.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(txt_cantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, 170, -1));
 
         jButton_busca_cliente.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -118,16 +119,20 @@ public class InterRegistrarVenta extends javax.swing.JInternalFrame {
         getContentPane().add(jButton_busca_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 40, 170, -1));
 
         txt_cantidad1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txt_cantidad1.setForeground(new java.awt.Color(0, 0, 0));
+        txt_cantidad1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(txt_cantidad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 80, 200, -1));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel11.setText("Cantidad:");
+        jLabel11.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 80, -1));
 
         jComboBox_producto1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jComboBox_producto1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione medicamento:", "Item 2", "Item 3", "Item 4" }));
+        jComboBox_producto1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(jComboBox_producto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, 170, -1));
 
         jButton_AgregarMedicamento.setBackground(new java.awt.Color(51, 255, 255));
@@ -197,26 +202,32 @@ public class InterRegistrarVenta extends javax.swing.JInternalFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Subtotal:");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Descuento:");
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Iva:");
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Total a pagar:");
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Efectivo:");
         jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Cambio:");
         jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
 
@@ -255,7 +266,9 @@ public class InterRegistrarVenta extends javax.swing.JInternalFrame {
         jPanel2.add(jButton_calcular_cambio, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 150, 50));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 470, 450, 210));
-        getContentPane().add(jLabel_wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, 880, 700));
+
+        jLabel_wallpaper.setIcon(new javax.swing.ImageIcon(getClass().getResource("/download (6).jpeg"))); // NOI18N
+        getContentPane().add(jLabel_wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 730));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
