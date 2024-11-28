@@ -122,7 +122,7 @@ public class FRM_MENU extends javax.swing.JFrame {
 
         nuevo_producto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ventas.png"))); // NOI18N
         nuevo_producto.setText("Nuevo Medicamento");
-        nuevo_producto.setPreferredSize(new java.awt.Dimension(250, 30));
+        nuevo_producto.setPreferredSize(new java.awt.Dimension(255, 30));
         nuevo_producto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nuevo_productoActionPerformed(evt);
@@ -131,8 +131,8 @@ public class FRM_MENU extends javax.swing.JFrame {
         menu_producto.add(nuevo_producto);
 
         MENU_GestionarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/actual.png"))); // NOI18N
-        MENU_GestionarProducto.setText("Gestionar Productos");
-        MENU_GestionarProducto.setPreferredSize(new java.awt.Dimension(250, 30));
+        MENU_GestionarProducto.setText("Gestionar Medicamento");
+        MENU_GestionarProducto.setPreferredSize(new java.awt.Dimension(255, 30));
         MENU_GestionarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MENU_GestionarProductoActionPerformed(evt);
@@ -142,7 +142,7 @@ public class FRM_MENU extends javax.swing.JFrame {
 
         MENU_Actualizar_stock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/audiencia.png"))); // NOI18N
         MENU_Actualizar_stock.setText("Actualizar Stock");
-        MENU_Actualizar_stock.setPreferredSize(new java.awt.Dimension(250, 30));
+        MENU_Actualizar_stock.setPreferredSize(new java.awt.Dimension(255, 30));
         MENU_Actualizar_stock.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MENU_Actualizar_stockActionPerformed(evt);
@@ -359,6 +359,10 @@ public class FRM_MENU extends javax.swing.JFrame {
 
     private void MENU_GestionarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_GestionarProductoActionPerformed
 
+        InterGestionarMedicamento medicamento= new InterGestionarMedicamento();
+        jDesktopPane_menu.add(medicamento);
+        medicamento.setVisible(true);
+        
     }//GEN-LAST:event_MENU_GestionarProductoActionPerformed
 
     private void gestionarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionarUsuariosActionPerformed
