@@ -64,6 +64,9 @@ public class FRM_MENU extends javax.swing.JFrame {
         menu_producto = new javax.swing.JMenu();
         nuevo_producto = new javax.swing.JMenuItem();
         MENU_GestionarProducto = new javax.swing.JMenuItem();
+        menu_producto1 = new javax.swing.JMenu();
+        nuevo_producto1 = new javax.swing.JMenuItem();
+        MENU_GestionarProducto1 = new javax.swing.JMenuItem();
         menu_cliente = new javax.swing.JMenu();
         MENU_nuevoCliente = new javax.swing.JMenuItem();
         MENU_GestionarClientes = new javax.swing.JMenuItem();
@@ -119,14 +122,14 @@ public class FRM_MENU extends javax.swing.JFrame {
         jMenuBar1.add(menu_usuario);
 
         menu_producto.setForeground(new java.awt.Color(0, 0, 0));
-        menu_producto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medicamento (1).png"))); // NOI18N
-        menu_producto.setText("Medicamento");
+        menu_producto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mensajero.png"))); // NOI18N
+        menu_producto.setText("Proveedor");
         menu_producto.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         menu_producto.setPreferredSize(new java.awt.Dimension(160, 50));
 
-        nuevo_producto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ventas.png"))); // NOI18N
-        nuevo_producto.setText("Nuevo Medicamento");
-        nuevo_producto.setPreferredSize(new java.awt.Dimension(255, 30));
+        nuevo_producto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/operador.png"))); // NOI18N
+        nuevo_producto.setText("Nuevo proveedor");
+        nuevo_producto.setPreferredSize(new java.awt.Dimension(255, 45));
         nuevo_producto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nuevo_productoActionPerformed(evt);
@@ -134,9 +137,9 @@ public class FRM_MENU extends javax.swing.JFrame {
         });
         menu_producto.add(nuevo_producto);
 
-        MENU_GestionarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/actual.png"))); // NOI18N
-        MENU_GestionarProducto.setText("Gestionar Medicamento");
-        MENU_GestionarProducto.setPreferredSize(new java.awt.Dimension(255, 30));
+        MENU_GestionarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proveedor.png"))); // NOI18N
+        MENU_GestionarProducto.setText("Gestionar Proveedores");
+        MENU_GestionarProducto.setPreferredSize(new java.awt.Dimension(255, 45));
         MENU_GestionarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MENU_GestionarProductoActionPerformed(evt);
@@ -145,6 +148,34 @@ public class FRM_MENU extends javax.swing.JFrame {
         menu_producto.add(MENU_GestionarProducto);
 
         jMenuBar1.add(menu_producto);
+
+        menu_producto1.setForeground(new java.awt.Color(0, 0, 0));
+        menu_producto1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medicamento (1).png"))); // NOI18N
+        menu_producto1.setText("Medicamento");
+        menu_producto1.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        menu_producto1.setPreferredSize(new java.awt.Dimension(160, 50));
+
+        nuevo_producto1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ventas.png"))); // NOI18N
+        nuevo_producto1.setText("Nuevo Medicamento");
+        nuevo_producto1.setPreferredSize(new java.awt.Dimension(255, 30));
+        nuevo_producto1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nuevo_producto1ActionPerformed(evt);
+            }
+        });
+        menu_producto1.add(nuevo_producto1);
+
+        MENU_GestionarProducto1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/actual.png"))); // NOI18N
+        MENU_GestionarProducto1.setText("Gestionar Medicamento");
+        MENU_GestionarProducto1.setPreferredSize(new java.awt.Dimension(255, 30));
+        MENU_GestionarProducto1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MENU_GestionarProducto1ActionPerformed(evt);
+            }
+        });
+        menu_producto1.add(MENU_GestionarProducto1);
+
+        jMenuBar1.add(menu_producto1);
 
         menu_cliente.setForeground(new java.awt.Color(0, 0, 0));
         menu_cliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/audiencia.png"))); // NOI18N
@@ -448,7 +479,18 @@ public class FRM_MENU extends javax.swing.JFrame {
 
     private void MENU_gestionarDescuentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_gestionarDescuentosActionPerformed
         // TODO add your handling code here:
+        InterGestionarDescuentos gestionarDescuentos = new InterGestionarDescuentos();
+        jDesktopPane_menu.add(gestionarDescuentos);
+        gestionarDescuentos.setVisible(true);
     }//GEN-LAST:event_MENU_gestionarDescuentosActionPerformed
+
+    private void nuevo_producto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_producto1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nuevo_producto1ActionPerformed
+
+    private void MENU_GestionarProducto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_GestionarProducto1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MENU_GestionarProducto1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -488,6 +530,7 @@ public class FRM_MENU extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MENU_GestionarClientes;
     private javax.swing.JMenuItem MENU_GestionarProducto;
+    private javax.swing.JMenuItem MENU_GestionarProducto1;
     private javax.swing.JMenuItem MENU_GestionarVentas;
     private javax.swing.JMenuItem MENU_NuevoCategoria;
     private javax.swing.JMenuItem MENU_NuevoDescuento;
@@ -509,8 +552,10 @@ public class FRM_MENU extends javax.swing.JFrame {
     private javax.swing.JMenu menu_facturar;
     private javax.swing.JMenuItem menu_nuevoUsuario;
     private javax.swing.JMenu menu_producto;
+    private javax.swing.JMenu menu_producto1;
     private javax.swing.JMenu menu_reportes;
     private javax.swing.JMenu menu_usuario;
     private javax.swing.JMenuItem nuevo_producto;
+    private javax.swing.JMenuItem nuevo_producto1;
     // End of variables declaration//GEN-END:variables
 }
