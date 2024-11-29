@@ -6,11 +6,11 @@ import java.awt.Dimension;
  *
  * @author ediso
  */
-public class InterGestionarDescuentos extends javax.swing.JInternalFrame {
+public class InterGestionarProveedores extends javax.swing.JInternalFrame {
 
 
 
-    public InterGestionarDescuentos(){
+    public InterGestionarProveedores(){
     initComponents();
     this.setSize(new Dimension(788, 533));
     }
@@ -36,6 +36,8 @@ public class InterGestionarDescuentos extends javax.swing.JInternalFrame {
         txt_nombre = new javax.swing.JTextField();
         txt_precio = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+        txt_nombre1 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
         jLabel_wallpaper = new javax.swing.JLabel();
 
         setClosable(true);
@@ -45,8 +47,8 @@ public class InterGestionarDescuentos extends javax.swing.JInternalFrame {
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/etiqueta.png"))); // NOI18N
-        jLabel1.setText("Descuento");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mensajero.png"))); // NOI18N
+        jLabel1.setText("Proveedores");
         jLabel1.setOpaque(true);
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, 150, 40));
 
@@ -161,12 +163,12 @@ public class InterGestionarDescuentos extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText("Nombre:");
-        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 90, -1));
+        jLabel2.setText("Telefono:");
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 90, -1));
 
         txt_nombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txt_nombre.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel3.add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 90, -1));
+        jPanel3.add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 90, -1));
 
         txt_precio.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txt_precio.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -175,12 +177,22 @@ public class InterGestionarDescuentos extends javax.swing.JInternalFrame {
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel8.setText("Total");
+        jLabel8.setText("Contacto:");
         jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 90, -1));
+
+        txt_nombre1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txt_nombre1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel3.add(txt_nombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 90, -1));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel3.setText("Nombre:");
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 90, -1));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 550, 100));
 
-        jLabel_wallpaper.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen-41-1024x512 (1).png"))); // NOI18N
+        jLabel_wallpaper.setIcon(new javax.swing.ImageIcon(getClass().getResource("/salud-viajes-1.jpg"))); // NOI18N
         getContentPane().add(jLabel_wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 530));
 
         pack();
@@ -226,6 +238,7 @@ public class InterGestionarDescuentos extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton_ordenarAZ4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel_wallpaper;
@@ -236,6 +249,7 @@ public class InterGestionarDescuentos extends javax.swing.JInternalFrame {
     public static javax.swing.JTable jTable_productos;
     private javax.swing.JTextField txt_buscar;
     private javax.swing.JTextField txt_nombre;
+    private javax.swing.JTextField txt_nombre1;
     private javax.swing.JTextField txt_precio;
     // End of variables declaration//GEN-END:variables
 

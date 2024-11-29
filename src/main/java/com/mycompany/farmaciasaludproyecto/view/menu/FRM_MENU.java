@@ -61,12 +61,12 @@ public class FRM_MENU extends javax.swing.JFrame {
         menu_usuario = new javax.swing.JMenu();
         menu_nuevoUsuario = new javax.swing.JMenuItem();
         gestionarUsuarios = new javax.swing.JMenuItem();
-        menu_producto = new javax.swing.JMenu();
-        nuevo_producto = new javax.swing.JMenuItem();
-        MENU_GestionarProducto = new javax.swing.JMenuItem();
-        menu_producto1 = new javax.swing.JMenu();
-        nuevo_producto1 = new javax.swing.JMenuItem();
-        MENU_GestionarProducto1 = new javax.swing.JMenuItem();
+        menu_proveedor = new javax.swing.JMenu();
+        nuevo_proveedor = new javax.swing.JMenuItem();
+        MENU_GestionarProveedores = new javax.swing.JMenuItem();
+        menu_medicamento = new javax.swing.JMenu();
+        nuevo_medicamento = new javax.swing.JMenuItem();
+        MENU_GestionarMedicamento = new javax.swing.JMenuItem();
         menu_cliente = new javax.swing.JMenu();
         MENU_nuevoCliente = new javax.swing.JMenuItem();
         MENU_GestionarClientes = new javax.swing.JMenuItem();
@@ -121,61 +121,61 @@ public class FRM_MENU extends javax.swing.JFrame {
 
         jMenuBar1.add(menu_usuario);
 
-        menu_producto.setForeground(new java.awt.Color(0, 0, 0));
-        menu_producto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mensajero.png"))); // NOI18N
-        menu_producto.setText("Proveedor");
-        menu_producto.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        menu_producto.setPreferredSize(new java.awt.Dimension(160, 50));
+        menu_proveedor.setForeground(new java.awt.Color(0, 0, 0));
+        menu_proveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mensajero.png"))); // NOI18N
+        menu_proveedor.setText("Proveedor");
+        menu_proveedor.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        menu_proveedor.setPreferredSize(new java.awt.Dimension(160, 50));
 
-        nuevo_producto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/operador.png"))); // NOI18N
-        nuevo_producto.setText("Nuevo proveedor");
-        nuevo_producto.setPreferredSize(new java.awt.Dimension(255, 45));
-        nuevo_producto.addActionListener(new java.awt.event.ActionListener() {
+        nuevo_proveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/operador.png"))); // NOI18N
+        nuevo_proveedor.setText("Nuevo proveedor");
+        nuevo_proveedor.setPreferredSize(new java.awt.Dimension(255, 45));
+        nuevo_proveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nuevo_productoActionPerformed(evt);
+                nuevo_proveedorActionPerformed(evt);
             }
         });
-        menu_producto.add(nuevo_producto);
+        menu_proveedor.add(nuevo_proveedor);
 
-        MENU_GestionarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proveedor.png"))); // NOI18N
-        MENU_GestionarProducto.setText("Gestionar Proveedores");
-        MENU_GestionarProducto.setPreferredSize(new java.awt.Dimension(255, 45));
-        MENU_GestionarProducto.addActionListener(new java.awt.event.ActionListener() {
+        MENU_GestionarProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proveedor.png"))); // NOI18N
+        MENU_GestionarProveedores.setText("Gestionar Proveedores");
+        MENU_GestionarProveedores.setPreferredSize(new java.awt.Dimension(255, 45));
+        MENU_GestionarProveedores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MENU_GestionarProductoActionPerformed(evt);
+                MENU_GestionarProveedoresActionPerformed(evt);
             }
         });
-        menu_producto.add(MENU_GestionarProducto);
+        menu_proveedor.add(MENU_GestionarProveedores);
 
-        jMenuBar1.add(menu_producto);
+        jMenuBar1.add(menu_proveedor);
 
-        menu_producto1.setForeground(new java.awt.Color(0, 0, 0));
-        menu_producto1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medicamento (1).png"))); // NOI18N
-        menu_producto1.setText("Medicamento");
-        menu_producto1.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        menu_producto1.setPreferredSize(new java.awt.Dimension(160, 50));
+        menu_medicamento.setForeground(new java.awt.Color(0, 0, 0));
+        menu_medicamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medicamento (1).png"))); // NOI18N
+        menu_medicamento.setText("Medicamento");
+        menu_medicamento.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        menu_medicamento.setPreferredSize(new java.awt.Dimension(160, 50));
 
-        nuevo_producto1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ventas.png"))); // NOI18N
-        nuevo_producto1.setText("Nuevo Medicamento");
-        nuevo_producto1.setPreferredSize(new java.awt.Dimension(255, 30));
-        nuevo_producto1.addActionListener(new java.awt.event.ActionListener() {
+        nuevo_medicamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ventas.png"))); // NOI18N
+        nuevo_medicamento.setText("Nuevo Medicamento");
+        nuevo_medicamento.setPreferredSize(new java.awt.Dimension(255, 30));
+        nuevo_medicamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nuevo_producto1ActionPerformed(evt);
+                nuevo_medicamentoActionPerformed(evt);
             }
         });
-        menu_producto1.add(nuevo_producto1);
+        menu_medicamento.add(nuevo_medicamento);
 
-        MENU_GestionarProducto1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/actual.png"))); // NOI18N
-        MENU_GestionarProducto1.setText("Gestionar Medicamento");
-        MENU_GestionarProducto1.setPreferredSize(new java.awt.Dimension(255, 30));
-        MENU_GestionarProducto1.addActionListener(new java.awt.event.ActionListener() {
+        MENU_GestionarMedicamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/actual.png"))); // NOI18N
+        MENU_GestionarMedicamento.setText("Gestionar Medicamento");
+        MENU_GestionarMedicamento.setPreferredSize(new java.awt.Dimension(255, 30));
+        MENU_GestionarMedicamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MENU_GestionarProducto1ActionPerformed(evt);
+                MENU_GestionarMedicamentoActionPerformed(evt);
             }
         });
-        menu_producto1.add(MENU_GestionarProducto1);
+        menu_medicamento.add(MENU_GestionarMedicamento);
 
-        jMenuBar1.add(menu_producto1);
+        jMenuBar1.add(menu_medicamento);
 
         menu_cliente.setForeground(new java.awt.Color(0, 0, 0));
         menu_cliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/audiencia.png"))); // NOI18N
@@ -409,24 +409,22 @@ public class FRM_MENU extends javax.swing.JFrame {
 
     }//GEN-LAST:event_MENU_gestionarCategoriaActionPerformed
 
-    private void nuevo_productoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_productoActionPerformed
+    private void nuevo_proveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_proveedorActionPerformed
         // TODO add your handling code here:
-        InterMedicamento entrarProducto = new InterMedicamento();
-        System.out.println("entrado a agregarProducto");
-
-        jDesktopPane_menu.add(entrarProducto);
-        entrarProducto.setVisible(true);
+        InterRegistrarProveedor proveedor = new InterRegistrarProveedor();
+        jDesktopPane_menu.add(proveedor);
+        proveedor.setVisible(true);
 
 
-    }//GEN-LAST:event_nuevo_productoActionPerformed
+    }//GEN-LAST:event_nuevo_proveedorActionPerformed
 
-    private void MENU_GestionarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_GestionarProductoActionPerformed
+    private void MENU_GestionarProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_GestionarProveedoresActionPerformed
 
-        InterGestionarMedicamento medicamento= new InterGestionarMedicamento();
-        jDesktopPane_menu.add(medicamento);
-        medicamento.setVisible(true);
+        InterGestionarProveedores gestionarProveedores = new InterGestionarProveedores();
+        jDesktopPane_menu.add(gestionarProveedores);
+        gestionarProveedores.setVisible(true);
         
-    }//GEN-LAST:event_MENU_GestionarProductoActionPerformed
+    }//GEN-LAST:event_MENU_GestionarProveedoresActionPerformed
 
     private void gestionarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionarUsuariosActionPerformed
 
@@ -484,13 +482,19 @@ public class FRM_MENU extends javax.swing.JFrame {
         gestionarDescuentos.setVisible(true);
     }//GEN-LAST:event_MENU_gestionarDescuentosActionPerformed
 
-    private void nuevo_producto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_producto1ActionPerformed
+    private void nuevo_medicamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_medicamentoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nuevo_producto1ActionPerformed
+        InterMedicamento medicamento = new InterMedicamento();
+        jDesktopPane_menu.add(medicamento);
+        medicamento.setVisible(true);
+    }//GEN-LAST:event_nuevo_medicamentoActionPerformed
 
-    private void MENU_GestionarProducto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_GestionarProducto1ActionPerformed
+    private void MENU_GestionarMedicamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_GestionarMedicamentoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_MENU_GestionarProducto1ActionPerformed
+        InterGestionarMedicamento gestionarMedicamentos = new InterGestionarMedicamento();
+        jDesktopPane_menu.add(gestionarMedicamentos);
+        gestionarMedicamentos.setVisible(true);
+    }//GEN-LAST:event_MENU_GestionarMedicamentoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -529,8 +533,8 @@ public class FRM_MENU extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MENU_GestionarClientes;
-    private javax.swing.JMenuItem MENU_GestionarProducto;
-    private javax.swing.JMenuItem MENU_GestionarProducto1;
+    private javax.swing.JMenuItem MENU_GestionarMedicamento;
+    private javax.swing.JMenuItem MENU_GestionarProveedores;
     private javax.swing.JMenuItem MENU_GestionarVentas;
     private javax.swing.JMenuItem MENU_NuevoCategoria;
     private javax.swing.JMenuItem MENU_NuevoDescuento;
@@ -550,12 +554,12 @@ public class FRM_MENU extends javax.swing.JFrame {
     private javax.swing.JMenu menu_cliente;
     private javax.swing.JMenu menu_descuento;
     private javax.swing.JMenu menu_facturar;
+    private javax.swing.JMenu menu_medicamento;
     private javax.swing.JMenuItem menu_nuevoUsuario;
-    private javax.swing.JMenu menu_producto;
-    private javax.swing.JMenu menu_producto1;
+    private javax.swing.JMenu menu_proveedor;
     private javax.swing.JMenu menu_reportes;
     private javax.swing.JMenu menu_usuario;
-    private javax.swing.JMenuItem nuevo_producto;
-    private javax.swing.JMenuItem nuevo_producto1;
+    private javax.swing.JMenuItem nuevo_medicamento;
+    private javax.swing.JMenuItem nuevo_proveedor;
     // End of variables declaration//GEN-END:variables
 }

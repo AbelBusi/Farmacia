@@ -54,7 +54,7 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="menu_producto">
+        <Menu class="javax.swing.JMenu" name="menu_proveedor">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
@@ -71,7 +71,7 @@
             </Property>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="nuevo_producto">
+            <MenuItem class="javax.swing.JMenuItem" name="nuevo_proveedor">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/operador.png"/>
@@ -82,10 +82,10 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nuevo_productoActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nuevo_proveedorActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="MENU_GestionarProducto">
+            <MenuItem class="javax.swing.JMenuItem" name="MENU_GestionarProveedores">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/proveedor.png"/>
@@ -96,12 +96,12 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MENU_GestionarProductoActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MENU_GestionarProveedoresActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="menu_producto1">
+        <Menu class="javax.swing.JMenu" name="menu_medicamento">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
@@ -118,7 +118,7 @@
             </Property>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="nuevo_producto1">
+            <MenuItem class="javax.swing.JMenuItem" name="nuevo_medicamento">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/ventas.png"/>
@@ -129,10 +129,10 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nuevo_producto1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nuevo_medicamentoActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="MENU_GestionarProducto1">
+            <MenuItem class="javax.swing.JMenuItem" name="MENU_GestionarMedicamento">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/actual.png"/>
@@ -143,7 +143,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MENU_GestionarProducto1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MENU_GestionarMedicamentoActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

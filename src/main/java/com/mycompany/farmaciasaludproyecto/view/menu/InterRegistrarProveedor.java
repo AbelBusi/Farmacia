@@ -10,7 +10,7 @@ public class InterRegistrarProveedor extends javax.swing.JInternalFrame {
 
     public InterRegistrarProveedor() {
         initComponents();
-        this.setSize(new Dimension(400, 300));
+        this.setSize(new Dimension(506, 346));
         this.setTitle("Nuevo Cliente");
 
     }
@@ -41,29 +41,37 @@ public class InterRegistrarProveedor extends javax.swing.JInternalFrame {
         setIconifiable(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proveedor.png"))); // NOI18N
         jLabel1.setText("Nuevo Proveedor");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, -1, 40));
+        jLabel1.setOpaque(true);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 210, 40));
 
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Nombre:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 90, -1));
+        jLabel2.setOpaque(true);
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 100, -1));
 
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel3.setText("Contacto");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 90, -1));
+        jLabel3.setText("Contacto:");
+        jLabel3.setOpaque(true);
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 100, -1));
 
+        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("Teléfono:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 90, -1));
+        jLabel5.setOpaque(true);
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 100, -1));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/llamada-telefonica.png"))); // NOI18N
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 170, 40, 50));
@@ -94,8 +102,8 @@ public class InterRegistrarProveedor extends javax.swing.JInternalFrame {
         });
         getContentPane().add(jButton_Guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, 130, 40));
 
-        jLabel_wallpaper.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo3.jpg"))); // NOI18N
-        getContentPane().add(jLabel_wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 480, 310));
+        jLabel_wallpaper.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proveedor-de-salud-mental-para-una-empresa (1).png"))); // NOI18N
+        getContentPane().add(jLabel_wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 520, 330));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
