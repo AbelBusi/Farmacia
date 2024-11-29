@@ -67,6 +67,8 @@ public class FRM_MENU extends javax.swing.JFrame {
         menu_medicamento = new javax.swing.JMenu();
         nuevo_medicamento = new javax.swing.JMenuItem();
         MENU_GestionarMedicamento = new javax.swing.JMenuItem();
+        nuevo_tipoMedicamento = new javax.swing.JMenuItem();
+        Menu_gestionarTipoMedicamentos = new javax.swing.JMenuItem();
         menu_cliente = new javax.swing.JMenu();
         MENU_nuevoCliente = new javax.swing.JMenuItem();
         MENU_GestionarClientes = new javax.swing.JMenuItem();
@@ -174,6 +176,26 @@ public class FRM_MENU extends javax.swing.JFrame {
             }
         });
         menu_medicamento.add(MENU_GestionarMedicamento);
+
+        nuevo_tipoMedicamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medico.png"))); // NOI18N
+        nuevo_tipoMedicamento.setText("Tipo de medicamento");
+        nuevo_tipoMedicamento.setPreferredSize(new java.awt.Dimension(255, 30));
+        nuevo_tipoMedicamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nuevo_tipoMedicamentoActionPerformed(evt);
+            }
+        });
+        menu_medicamento.add(nuevo_tipoMedicamento);
+
+        Menu_gestionarTipoMedicamentos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tipo-de-sangre.png"))); // NOI18N
+        Menu_gestionarTipoMedicamentos.setText("Gestionar tipos");
+        Menu_gestionarTipoMedicamentos.setPreferredSize(new java.awt.Dimension(255, 30));
+        Menu_gestionarTipoMedicamentos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Menu_gestionarTipoMedicamentosActionPerformed(evt);
+            }
+        });
+        menu_medicamento.add(Menu_gestionarTipoMedicamentos);
 
         jMenuBar1.add(menu_medicamento);
 
@@ -397,7 +419,7 @@ public class FRM_MENU extends javax.swing.JFrame {
 
     private void MENU_NuevoCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_NuevoCategoriaActionPerformed
         // TODO add your handling code here:
-        InternalJframeCategoria categoria = new InternalJframeCategoria();
+        InternalTipoMedicamento categoria = new InternalTipoMedicamento();
         jDesktopPane_menu.add(categoria);
         categoria.setVisible(true);
 
@@ -496,6 +518,18 @@ public class FRM_MENU extends javax.swing.JFrame {
         gestionarMedicamentos.setVisible(true);
     }//GEN-LAST:event_MENU_GestionarMedicamentoActionPerformed
 
+    private void nuevo_tipoMedicamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_tipoMedicamentoActionPerformed
+        // TODO add your handling code here:
+        InternalTipoMedicamento tipoMedicamento = new InternalTipoMedicamento();
+        jDesktopPane_menu.add(tipoMedicamento);
+        tipoMedicamento.setVisible(true);
+        
+    }//GEN-LAST:event_nuevo_tipoMedicamentoActionPerformed
+
+    private void Menu_gestionarTipoMedicamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Menu_gestionarTipoMedicamentosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Menu_gestionarTipoMedicamentosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -546,6 +580,7 @@ public class FRM_MENU extends javax.swing.JFrame {
     private javax.swing.JMenuItem MENU_gestionarDescuentos;
     private javax.swing.JMenuItem MENU_nuevaVenta;
     private javax.swing.JMenuItem MENU_nuevoCliente;
+    private javax.swing.JMenuItem Menu_gestionarTipoMedicamentos;
     private javax.swing.JMenuItem Menu_reporteCategoria;
     private javax.swing.JMenuItem gestionarUsuarios;
     private javax.swing.JMenuBar jMenuBar1;
@@ -561,5 +596,6 @@ public class FRM_MENU extends javax.swing.JFrame {
     private javax.swing.JMenu menu_usuario;
     private javax.swing.JMenuItem nuevo_medicamento;
     private javax.swing.JMenuItem nuevo_proveedor;
+    private javax.swing.JMenuItem nuevo_tipoMedicamento;
     // End of variables declaration//GEN-END:variables
 }
