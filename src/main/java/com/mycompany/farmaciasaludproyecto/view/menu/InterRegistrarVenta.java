@@ -1,10 +1,17 @@
 package com.mycompany.farmaciasaludproyecto.view.menu;
-
+import com.mycompany.farmaciasaludproyecto.model.entity.Venta;
 import java.awt.Dimension;
-
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class InterRegistrarVenta extends javax.swing.JInternalFrame {
-
+    private static List<Venta> listaVentas = new ArrayList<>();
+    private static int contadorIdVenta = 1;
+     private DefaultTableModel modeloTabla;
     public InterRegistrarVenta() {
         initComponents();
         this.setSize(new Dimension(924, 749));
@@ -275,36 +282,136 @@ public class InterRegistrarVenta extends javax.swing.JInternalFrame {
 
 
     private void jButton_busca_clienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_busca_clienteActionPerformed
-        // TODO add your handling code here:
+        String cliente = txt_cliente_buscar.getText().trim();
+    if (cliente.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Ingrese el nombre del cliente para buscar.", "Error", JOptionPane.ERROR_MESSAGE);
+    } else {
+        jComboBox_cliente.setSelectedItem(cliente);
+        JOptionPane.showMessageDialog(this, "Cliente encontrado: " + cliente, "Información", JOptionPane.INFORMATION_MESSAGE);
+    }
 
 
     }//GEN-LAST:event_jButton_busca_clienteActionPerformed
 
     private void jButton_añadir_productoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_añadir_productoActionPerformed
-
+        String producto = (String) jComboBox_producto1.getSelectedItem();
+    if (producto.equals("Seleccione medicamento:")) {
+        JOptionPane.showMessageDialog(this, "Seleccione un medicamento para añadir.", "Error", JOptionPane.ERROR_MESSAGE);
+    } else {
+        int cantidad;
+        try {
+            cantidad = Integer.parseInt(txt_cantidad.getText().trim());
+            if (cantidad <= 0) {
+                throw new NumberFormatException();
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Ingrese una cantidad válida.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        String precioStr = JOptionPane.showInputDialog(this, "Ingrese el precio unitario del producto:");
+        double precioUnitario;
+        try {
+            precioUnitario = Double.parseDouble(precioStr);
+            if (precioUnitario <= 0) {
+                throw new NumberFormatException();
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Ingrese un precio válido.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        double total = cantidad * precioUnitario;
+        modeloTabla.addRow(new Object[]{producto, cantidad, precioUnitario, total});
+    }
 
     }//GEN-LAST:event_jButton_añadir_productoActionPerformed
 
     private void jButton_calcular_cambioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_calcular_cambioActionPerformed
-        // TODO add your handling code here:
-
-
+      try {
+        double totalPagar = Double.parseDouble(txt_total_pagar.getText().trim());
+        double efectivo = Double.parseDouble(txt_efectivo.getText().trim());
+        if (efectivo < totalPagar) {
+            JOptionPane.showMessageDialog(this, "El efectivo no es suficiente para cubrir el total a pagar.", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            double cambio = efectivo - totalPagar;
+            txt_cambio.setText(String.format("%.2f", cambio));
+        }
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Ingrese valores válidos para el total a pagar y el efectivo.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_jButton_calcular_cambioActionPerformed
 
 
     private void jButton_AgregarMedicamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AgregarMedicamentoActionPerformed
-        // TODO add your handling code here:
-
-
+      String medicamento = (String) jComboBox_producto1.getSelectedItem();
+    if (medicamento.equals("Seleccione medicamento:")) {
+        JOptionPane.showMessageDialog(this, "Seleccione un medicamento para agregar.", "Error", JOptionPane.ERROR_MESSAGE);
+    } else {
+        int cantidad;
+        try {
+            cantidad = Integer.parseInt(txt_cantidad1.getText().trim());
+            if (cantidad <= 0) {
+                throw new NumberFormatException();
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Ingrese una cantidad válida.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        String precioStr = JOptionPane.showInputDialog(this, "Ingrese el precio unitario del medicamento:");
+        double precioUnitario;
+        try {
+            precioUnitario = Double.parseDouble(precioStr);
+            if (precioUnitario <= 0) {
+                throw new NumberFormatException();
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Ingrese un precio válido.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        double total = cantidad * precioUnitario;
+        modeloTabla.addRow(new Object[]{medicamento, cantidad, precioUnitario, total});
+    }
     }//GEN-LAST:event_jButton_AgregarMedicamentoActionPerformed
 
     private void jTable_productosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_productosMouseClicked
-        // TODO add your handling code here:
-        
+       int selectedRow = jTable_productos.getSelectedRow();
+        if (selectedRow != -1) {
+        String producto = (String) modeloTabla.getValueAt(selectedRow, 0);
+        int cantidad = (int) modeloTabla.getValueAt(selectedRow, 1);
+        JOptionPane.showMessageDialog(this, "Producto seleccionado: " + producto + "\nCantidad: " + cantidad, "Información", JOptionPane.INFORMATION_MESSAGE);
+    }   
     }//GEN-LAST:event_jTable_productosMouseClicked
 
     private void jButton_RegistrarVenta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_RegistrarVenta1ActionPerformed
-        // TODO add your handling code here:
+       try {
+        int idCliente = jComboBox_cliente.getSelectedIndex();
+        if (idCliente == 0) {
+            JOptionPane.showMessageDialog(this, "Seleccione un cliente válido.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        double totalPagar = Double.parseDouble(txt_total_pagar.getText().trim());
+        String fechaVenta = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        Venta nuevaVenta = new Venta(contadorIdVenta++, idCliente, 1, 0, totalPagar, fechaVenta, true);
+        listaVentas.add(nuevaVenta);
+        modeloTabla.addRow(nuevaVenta.convertir());
+        JOptionPane.showMessageDialog(this, "Venta registrada exitosamente.", "Información", JOptionPane.INFORMATION_MESSAGE);
+        limpiarCampos();
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Ingrese valores válidos para registrar la venta.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+}
+    private void limpiarCampos() {
+    txt_cliente_buscar.setText("");
+    jComboBox_cliente.setSelectedIndex(0);
+    txt_cantidad.setText("");
+    txt_cantidad1.setText("");
+    txt_subtotal.setText("");
+    txt_descuento.setText("");
+    txt_iva.setText("");
+    txt_total_pagar.setText("");
+    txt_efectivo.setText("");
+    txt_cambio.setText("");
+    modeloTabla.setRowCount(0);
+    }               
     }//GEN-LAST:event_jButton_RegistrarVenta1ActionPerformed
 
 
