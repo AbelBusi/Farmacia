@@ -1,14 +1,16 @@
 package com.mycompany.farmaciasaludproyecto.view.menu;
-
+import com.mycompany.farmaciasaludproyecto.model.entity.TipoMedicamento;
 import java.awt.Dimension;
-
-
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 /**
  *
  * @author cesar
  */
 public class InternalTipoMedicamento extends javax.swing.JInternalFrame {
-
+    private static List<TipoMedicamento> tiposMedicamentos = new ArrayList<>();
+    private static int contadorId = 1;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -92,7 +94,18 @@ public class InternalTipoMedicamento extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
-        // TODO add your handling code here:
+        String nombre = txtDescripcion1.getText().trim();
+        String descripcion = txtDescripcion.getText().trim();
+        
+          if (nombre.isEmpty() || descripcion.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Todos los campos deben ser llenados", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+         TipoMedicamento nuevoTipo = new TipoMedicamento(contadorId++, nombre, descripcion);
+            tiposMedicamentos.add(nuevoTipo);
+            JOptionPane.showMessageDialog(this, "Tipo de medicamento guardado exitosamente", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+             txtDescripcion1.setText("");
+            txtDescripcion.setText("");
+        }
     
 
     }//GEN-LAST:event_botonGuardarActionPerformed
