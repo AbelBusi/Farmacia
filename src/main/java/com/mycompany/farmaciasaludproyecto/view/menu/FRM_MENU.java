@@ -78,9 +78,9 @@ public class FRM_MENU extends javax.swing.JFrame {
         menu_descuento = new javax.swing.JMenu();
         MENU_NuevoDescuento = new javax.swing.JMenuItem();
         MENU_gestionarDescuentos = new javax.swing.JMenuItem();
-        menu_categoria = new javax.swing.JMenu();
-        MENU_NuevoCategoria = new javax.swing.JMenuItem();
-        MENU_gestionarCategoria = new javax.swing.JMenuItem();
+        menu_devolucion = new javax.swing.JMenu();
+        MENU_CrearDevolucion = new javax.swing.JMenuItem();
+        MENU_historialDevoluciones = new javax.swing.JMenuItem();
         menu_reportes = new javax.swing.JMenu();
         MENU_ReporteClientes = new javax.swing.JMenuItem();
         Menu_reporteCategoria = new javax.swing.JMenuItem();
@@ -283,31 +283,33 @@ public class FRM_MENU extends javax.swing.JFrame {
 
         jMenuBar1.add(menu_descuento);
 
-        menu_categoria.setForeground(new java.awt.Color(0, 0, 0));
-        menu_categoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/queja.png"))); // NOI18N
-        menu_categoria.setText("Devolucion");
-        menu_categoria.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        menu_categoria.setPreferredSize(new java.awt.Dimension(150, 50));
+        menu_devolucion.setForeground(new java.awt.Color(0, 0, 0));
+        menu_devolucion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/queja.png"))); // NOI18N
+        menu_devolucion.setText("Devolucion");
+        menu_devolucion.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        menu_devolucion.setPreferredSize(new java.awt.Dimension(150, 50));
 
-        MENU_NuevoCategoria.setText("Nueva Categoria");
-        MENU_NuevoCategoria.setPreferredSize(new java.awt.Dimension(150, 50));
-        MENU_NuevoCategoria.addActionListener(new java.awt.event.ActionListener() {
+        MENU_CrearDevolucion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devolucion-de-dinero.png"))); // NOI18N
+        MENU_CrearDevolucion.setText("Crear devolucion");
+        MENU_CrearDevolucion.setPreferredSize(new java.awt.Dimension(250, 50));
+        MENU_CrearDevolucion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MENU_NuevoCategoriaActionPerformed(evt);
+                MENU_CrearDevolucionActionPerformed(evt);
             }
         });
-        menu_categoria.add(MENU_NuevoCategoria);
+        menu_devolucion.add(MENU_CrearDevolucion);
 
-        MENU_gestionarCategoria.setText("Gestionar Categoria");
-        MENU_gestionarCategoria.setPreferredSize(new java.awt.Dimension(150, 50));
-        MENU_gestionarCategoria.addActionListener(new java.awt.event.ActionListener() {
+        MENU_historialDevoluciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/historial-de-transacciones.png"))); // NOI18N
+        MENU_historialDevoluciones.setText("Historial");
+        MENU_historialDevoluciones.setPreferredSize(new java.awt.Dimension(250, 50));
+        MENU_historialDevoluciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MENU_gestionarCategoriaActionPerformed(evt);
+                MENU_historialDevolucionesActionPerformed(evt);
             }
         });
-        menu_categoria.add(MENU_gestionarCategoria);
+        menu_devolucion.add(MENU_historialDevoluciones);
 
-        jMenuBar1.add(menu_categoria);
+        jMenuBar1.add(menu_devolucion);
 
         menu_reportes.setForeground(new java.awt.Color(0, 0, 0));
         menu_reportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/reporte-de-negocios.png"))); // NOI18N
@@ -417,19 +419,19 @@ public class FRM_MENU extends javax.swing.JFrame {
 
     }//GEN-LAST:event_Menu_reporteCategoriaActionPerformed
 
-    private void MENU_NuevoCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_NuevoCategoriaActionPerformed
+    private void MENU_CrearDevolucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_CrearDevolucionActionPerformed
         // TODO add your handling code here:
         InternalTipoMedicamento categoria = new InternalTipoMedicamento();
         jDesktopPane_menu.add(categoria);
         categoria.setVisible(true);
 
-    }//GEN-LAST:event_MENU_NuevoCategoriaActionPerformed
+    }//GEN-LAST:event_MENU_CrearDevolucionActionPerformed
 
-    private void MENU_gestionarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_gestionarCategoriaActionPerformed
+    private void MENU_historialDevolucionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_historialDevolucionesActionPerformed
         // TODO add your handling code here:
 
 
-    }//GEN-LAST:event_MENU_gestionarCategoriaActionPerformed
+    }//GEN-LAST:event_MENU_historialDevolucionesActionPerformed
 
     private void nuevo_proveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_proveedorActionPerformed
         // TODO add your handling code here:
@@ -528,6 +530,9 @@ public class FRM_MENU extends javax.swing.JFrame {
 
     private void Menu_gestionarTipoMedicamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Menu_gestionarTipoMedicamentosActionPerformed
         // TODO add your handling code here:
+        InterGestionarTipoMedicamentos gestionarTipoMedicamentos = new InterGestionarTipoMedicamentos();
+        jDesktopPane_menu.add(gestionarTipoMedicamentos);
+        gestionarTipoMedicamentos.setVisible(true);
     }//GEN-LAST:event_Menu_gestionarTipoMedicamentosActionPerformed
 
     /**
@@ -566,28 +571,28 @@ public class FRM_MENU extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem MENU_CrearDevolucion;
     private javax.swing.JMenuItem MENU_GestionarClientes;
     private javax.swing.JMenuItem MENU_GestionarMedicamento;
     private javax.swing.JMenuItem MENU_GestionarProveedores;
     private javax.swing.JMenuItem MENU_GestionarVentas;
-    private javax.swing.JMenuItem MENU_NuevoCategoria;
     private javax.swing.JMenuItem MENU_NuevoDescuento;
     private javax.swing.JMenuItem MENU_ReporteClientes;
     private javax.swing.JMenuItem MENU_ReporteProductos;
     private javax.swing.JMenuItem MENU_ReporteVentas;
     private javax.swing.JMenuItem MENU_cerrarSesion;
-    private javax.swing.JMenuItem MENU_gestionarCategoria;
     private javax.swing.JMenuItem MENU_gestionarDescuentos;
+    private javax.swing.JMenuItem MENU_historialDevoluciones;
     private javax.swing.JMenuItem MENU_nuevaVenta;
     private javax.swing.JMenuItem MENU_nuevoCliente;
     private javax.swing.JMenuItem Menu_gestionarTipoMedicamentos;
     private javax.swing.JMenuItem Menu_reporteCategoria;
     private javax.swing.JMenuItem gestionarUsuarios;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenu menu_categoria;
     private javax.swing.JMenu menu_cerrarSesion;
     private javax.swing.JMenu menu_cliente;
     private javax.swing.JMenu menu_descuento;
+    private javax.swing.JMenu menu_devolucion;
     private javax.swing.JMenu menu_facturar;
     private javax.swing.JMenu menu_medicamento;
     private javax.swing.JMenuItem menu_nuevoUsuario;

@@ -317,7 +317,7 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="menu_categoria">
+        <Menu class="javax.swing.JMenu" name="menu_devolucion">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
@@ -334,26 +334,32 @@
             </Property>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="MENU_NuevoCategoria">
+            <MenuItem class="javax.swing.JMenuItem" name="MENU_CrearDevolucion">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Nueva Categoria"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/devolucion-de-dinero.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Crear devolucion"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[150, 50]"/>
+                  <Dimension value="[250, 50]"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MENU_NuevoCategoriaActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MENU_CrearDevolucionActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="MENU_gestionarCategoria">
+            <MenuItem class="javax.swing.JMenuItem" name="MENU_historialDevoluciones">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Gestionar Categoria"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/historial-de-transacciones.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Historial"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[150, 50]"/>
+                  <Dimension value="[250, 50]"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MENU_gestionarCategoriaActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MENU_historialDevolucionesActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
