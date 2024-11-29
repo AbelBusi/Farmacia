@@ -1,24 +1,32 @@
 package com.mycompany.farmaciasaludproyecto.view.menu;
-
+import com.mycompany.farmaciasaludproyecto.model.entity.Medicamento;
 import java.awt.Dimension;
-
-
+import java.math.BigDecimal;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author ediso
  */
 public class InterMedicamento extends javax.swing.JInternalFrame {  
-    
+     private List<Medicamento> listaMedicamentos;
+    private int contadorIdMedicamento = 1;
+    private DefaultTableModel modeloTabla;
     public InterMedicamento() {
         initComponents();
         this.setSize(new Dimension(1250, 613));
         this.setTitle("Nuevo Medicamento");
-
+        listaMedicamentos = new ArrayList<>();
+        modeloTabla = (DefaultTableModel) jTable1.getModel();
+        modeloTabla.setColumnIdentifiers(new String[]{"ID", "Nombre", "Descripcion", "Precio", "Stock", "Fecha Vencimiento", "Tipo"});
     }
     
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
@@ -31,18 +39,18 @@ public class InterMedicamento extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton_Guardar1 = new javax.swing.JButton();
-        jButton_Guardar2 = new javax.swing.JButton();
-        txt_cliente_buscar = new javax.swing.JTextField();
-        jButton_busca_cliente = new javax.swing.JButton();
+        jButton_EliminarMedicamento = new javax.swing.JButton();
+        jButton_GenerarCompra = new javax.swing.JButton();
+        txt_proveedor_buscar = new javax.swing.JTextField();
+        jButton_busca_provedores = new javax.swing.JButton();
         jCalendar1 = new com.toedter.calendar.JCalendar();
         txt_nombre = new javax.swing.JTextField();
         txt_precio = new javax.swing.JTextField();
-        txt_descripcion = new javax.swing.JTextField();
+        txt_stock = new javax.swing.JTextField();
         jComboBox_categoria = new javax.swing.JComboBox<>();
         jButton_Guardar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtdescripcion = new javax.swing.JTextArea();
         jLabel_wallpaper = new javax.swing.JLabel();
 
         setClosable(true);
@@ -129,60 +137,85 @@ public class InterMedicamento extends javax.swing.JInternalFrame {
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 540, 370));
 
-        jButton_Guardar1.setBackground(new java.awt.Color(0, 204, 204));
-        jButton_Guardar1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton_Guardar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/delete.png"))); // NOI18N
-        jButton_Guardar1.setText("Eliminar medicamento");
-        jButton_Guardar1.addActionListener(new java.awt.event.ActionListener() {
+        jButton_EliminarMedicamento.setBackground(new java.awt.Color(0, 204, 204));
+        jButton_EliminarMedicamento.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton_EliminarMedicamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/delete.png"))); // NOI18N
+        jButton_EliminarMedicamento.setText("Eliminar medicamento");
+        jButton_EliminarMedicamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_Guardar1ActionPerformed(evt);
+                jButton_EliminarMedicamentoActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton_Guardar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 420, 200, 60));
+        jPanel1.add(jButton_EliminarMedicamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 420, 200, 60));
 
-        jButton_Guardar2.setBackground(new java.awt.Color(0, 204, 204));
-        jButton_Guardar2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton_Guardar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ventas.png"))); // NOI18N
-        jButton_Guardar2.setText("Generar compra");
-        jButton_Guardar2.addActionListener(new java.awt.event.ActionListener() {
+        jButton_GenerarCompra.setBackground(new java.awt.Color(0, 204, 204));
+        jButton_GenerarCompra.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton_GenerarCompra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ventas.png"))); // NOI18N
+        jButton_GenerarCompra.setText("Generar compra");
+        jButton_GenerarCompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_Guardar2ActionPerformed(evt);
+                jButton_GenerarCompraActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton_Guardar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 420, 200, 60));
+        jPanel1.add(jButton_GenerarCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 420, 200, 60));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 20, 560, 510));
 
-        txt_cliente_buscar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txt_cliente_buscar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(txt_cliente_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 483, 200, 30));
-
-        jButton_busca_cliente.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton_busca_cliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/audiencia.png"))); // NOI18N
-        jButton_busca_cliente.setText("Buscar proveedor");
-        jButton_busca_cliente.addActionListener(new java.awt.event.ActionListener() {
+        txt_proveedor_buscar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txt_proveedor_buscar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        txt_proveedor_buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_busca_clienteActionPerformed(evt);
+                txt_proveedor_buscarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton_busca_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, 160, -1));
+        getContentPane().add(txt_proveedor_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 483, 200, 30));
+
+        jButton_busca_provedores.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton_busca_provedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/audiencia.png"))); // NOI18N
+        jButton_busca_provedores.setText("Buscar proveedor");
+        jButton_busca_provedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_busca_provedoresActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton_busca_provedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, 160, -1));
         getContentPane().add(jCalendar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, 450, 140));
 
         txt_nombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txt_nombre.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        txt_nombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_nombreActionPerformed(evt);
+            }
+        });
         getContentPane().add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 50, 170, -1));
 
         txt_precio.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txt_precio.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        txt_precio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_precioActionPerformed(evt);
+            }
+        });
         getContentPane().add(txt_precio, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 170, -1));
 
-        txt_descripcion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txt_descripcion.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(txt_descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 240, 170, -1));
+        txt_stock.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txt_stock.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        txt_stock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_stockActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txt_stock, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 240, 170, -1));
 
         jComboBox_categoria.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jComboBox_categoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione tipo:", "Item 2", "Item 3", "Item 4" }));
         jComboBox_categoria.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jComboBox_categoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox_categoriaActionPerformed(evt);
+            }
+        });
         getContentPane().add(jComboBox_categoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 430, 170, -1));
 
         jButton_Guardar.setBackground(new java.awt.Color(0, 204, 204));
@@ -196,10 +229,10 @@ public class InterMedicamento extends javax.swing.JInternalFrame {
         });
         getContentPane().add(jButton_Guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 430, 200, 90));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jScrollPane1.setViewportView(jTextArea1);
+        txtdescripcion.setColumns(20);
+        txtdescripcion.setRows(5);
+        txtdescripcion.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jScrollPane1.setViewportView(txtdescripcion);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 390, -1));
 
@@ -210,31 +243,122 @@ public class InterMedicamento extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel_wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1240, 590));
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
-    private void jButton_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_GuardarActionPerformed
-   
-    }//GEN-LAST:event_jButton_GuardarActionPerformed
+    private void jButton_GuardarActionPerformed(java.awt.event.ActionEvent evt) {                                                
+    String nombre = txt_nombre.getText().trim();
+    String descripcion = txtdescripcion.getText().trim();
+    String tipo = jComboBox_categoria.getSelectedItem().toString();
+    BigDecimal precio;
+    int stock;
 
-    private void jButton_busca_clienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_busca_clienteActionPerformed
-        // TODO add your handling code here:
+    if (nombre.isEmpty() || descripcion.isEmpty() || tipo.equals("Seleccione tipo:")) {
+        JOptionPane.showMessageDialog(this, "Por favor complete todos los campos obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
 
-    }//GEN-LAST:event_jButton_busca_clienteActionPerformed
+    try {
+        precio = new BigDecimal(txt_precio.getText().trim());
+        stock = Integer.parseInt(txt_stock.getText().trim());
+        if (precio.compareTo(BigDecimal.ZERO) <= 0 || stock < 0) {
+            throw new NumberFormatException();
+        }
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Ingrese valores válidos para el precio y el stock.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
 
-    private void jButton_Guardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Guardar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_Guardar1ActionPerformed
+    Date fechaVencimiento = new Date(jCalendar1.getDate().getTime());
+     Medicamento nuevoMedicamento = new Medicamento(contadorIdMedicamento, nombre, descripcion, precio, stock, fechaVencimiento, jComboBox_categoria.getSelectedIndex());
+     listaMedicamentos.add(nuevoMedicamento);
+     contadorIdMedicamento++;
+     modeloTabla.addRow(nuevoMedicamento.convertir());
+     JOptionPane.showMessageDialog(this, "Medicamento agregado correctamente.", "Información", JOptionPane.INFORMATION_MESSAGE);
+    txt_nombre.setText("");
+    txtdescripcion.setText("");
+    txt_precio.setText("");
+    txt_stock.setText("");
+    jComboBox_categoria.setSelectedIndex(0);
+    jCalendar1.setDate(null);
+    }                                               
 
-    private void jButton_Guardar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Guardar2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_Guardar2ActionPerformed
+    private void jButton_busca_provedoresActionPerformed(java.awt.event.ActionEvent evt) {                                                         
+       String proveedor = txt_proveedor_buscar.getText().trim();
+    if (proveedor.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Por favor ingrese el nombre del proveedor a buscar.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    // Aquí se debería implementar la lógica de búsqueda del proveedor
+    JOptionPane.showMessageDialog(this, "Proveedor '" + proveedor + "' encontrado.", "Información", JOptionPane.INFORMATION_MESSAGE);
+
+    }                                                        
+
+    private void jButton_EliminarMedicamentoActionPerformed(java.awt.event.ActionEvent evt) {                                                            
+         int selectedRow = jTable1.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Seleccione un medicamento para eliminar.", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            modeloTabla.removeRow(selectedRow);
+            listaMedicamentos.remove(selectedRow);
+            JOptionPane.showMessageDialog(this, "Medicamento eliminado correctamente.", "Información", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }                                                           
+
+    private void jButton_GenerarCompraActionPerformed(java.awt.event.ActionEvent evt) {                                                      
+      int selectedRow = jTable1.getSelectedRow();
+    if (selectedRow == -1) {
+        JOptionPane.showMessageDialog(this, "Seleccione un medicamento para generar la compra.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    // Aquí se debería implementar la lógica para generar la compra
+    JOptionPane.showMessageDialog(this, "Compra generada exitosamente.", "Información", JOptionPane.INFORMATION_MESSAGE);
+    }                                                     
+
+    private void txt_proveedor_buscarActionPerformed(java.awt.event.ActionEvent evt) {                                                     
+        jButton_busca_provedoresActionPerformed(evt);
+    }                                                    
+
+    private void jComboBox_categoriaActionPerformed(java.awt.event.ActionEvent evt) {                                                    
+       String tipoSeleccionado = jComboBox_categoria.getSelectedItem().toString();
+    if (!tipoSeleccionado.equals("Seleccione tipo:")) {
+        JOptionPane.showMessageDialog(this, "Tipo seleccionado: " + tipoSeleccionado, "Información", JOptionPane.INFORMATION_MESSAGE);
+    }
+    }                                                   
+
+    private void txt_stockActionPerformed(java.awt.event.ActionEvent evt) {                                          
+     try {
+        int stock = Integer.parseInt(txt_stock.getText().trim());
+        if (stock < 0) {
+            throw new NumberFormatException();
+        }
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Ingrese un valor válido para el stock.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    }                                         
+
+    private void txt_precioActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        try {
+        BigDecimal precio = new BigDecimal(txt_precio.getText().trim());
+        if (precio.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new NumberFormatException();
+        }
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Ingrese un valor válido para el precio.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    }                                          
+
+    private void txt_nombreActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        if (txt_nombre.getText().trim().isEmpty()) {
+        JOptionPane.showMessageDialog(this, "El campo de nombre no puede estar vacío.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    }                                          
 
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
+    private javax.swing.JButton jButton_EliminarMedicamento;
+    private javax.swing.JButton jButton_GenerarCompra;
     private javax.swing.JButton jButton_Guardar;
-    private javax.swing.JButton jButton_Guardar1;
-    private javax.swing.JButton jButton_Guardar2;
-    private javax.swing.JButton jButton_busca_cliente;
+    private javax.swing.JButton jButton_busca_provedores;
     private com.toedter.calendar.JCalendar jCalendar1;
     private javax.swing.JComboBox<String> jComboBox_categoria;
     private javax.swing.JLabel jLabel1;
@@ -249,11 +373,11 @@ public class InterMedicamento extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField txt_cliente_buscar;
-    private javax.swing.JTextField txt_descripcion;
     private javax.swing.JTextField txt_nombre;
     private javax.swing.JTextField txt_precio;
-    // End of variables declaration//GEN-END:variables
+    private javax.swing.JTextField txt_proveedor_buscar;
+    private javax.swing.JTextField txt_stock;
+    private javax.swing.JTextArea txtdescripcion;
+    // End of variables declaration                   
 
 }
