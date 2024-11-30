@@ -131,6 +131,11 @@ public class FRM_Login extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(60, 63, 65));
         jLabel6.setText("¿No tienes cuenta ?");
         jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+        });
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 510, -1, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 0, 600, 700));
@@ -152,12 +157,24 @@ public class FRM_Login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        FRM_MENU ingresarMenu = new FRM_MENU();
+        FRM_MENU_EMPLEADO ingresarMenu = new FRM_MENU_EMPLEADO();
         ingresarMenu.setVisible(true);
         this.setVisible(false);
+        /*FRM_MENU_ADMINISTRADOR adminiFrm_menu_administrador= new FRM_MENU_ADMINISTRADOR();
+        adminiFrm_menu_administrador.setVisible(true);
+        this.setVisible(false);*/
+                
+        
         
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        // TODO add your handling code here:
+        FRM_Register frmRegistrarse = new FRM_Register();
+        frmRegistrarse.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jLabel6MouseClicked
 
     /**
      * @param args the command line arguments
