@@ -68,9 +68,9 @@ CREATE TABLE Usuario (
     telefono VARCHAR(15),
     correo VARCHAR(100),
     clave VARCHAR(255),
-    vigente BOOLEAN
+    estado BOOLEAN,
+    rol VARCHAR(50)
 );
-
 -- Tabla Empresa
 CREATE TABLE Empresa (
     id_empresa INT PRIMARY KEY AUTO_INCREMENT,
@@ -88,7 +88,7 @@ CREATE TABLE Vendedor (
     dni VARCHAR(8),
     telefono VARCHAR(15),
     correo VARCHAR(100),
-    vigente BOOLEAN,
+    estado BOOLEAN default 1,
     id_empresa INT,
     id_usuario INT,
     FOREIGN KEY (id_empresa) REFERENCES Empresa(id_empresa),
@@ -163,17 +163,17 @@ INSERT INTO Cliente (nombres, apellidos, dni, direccion, telefono) VALUES
 ('Carlos', 'López', '12345678', 'Calle A 123', '5551234'),
 ('María', 'González', '87654321', 'Avenida Siempreviva 321', '5555678');
 
-INSERT INTO Usuario (nombres, apellidos, dni, telefono, correo, clave, vigente) VALUES
-('Luis', 'Martínez', '12312312', '5551122', 'luis@gmail.com', 'clave12', TRUE),
-('Ana', 'Rojas', '32132132', '5553344', 'ana@gmail.com', 'Ana4433', TRUE);
+INSERT INTO Usuario (nombres, apellidos, dni, telefono, correo, clave, estado, rol) VALUES
+('Fabricio', 'Reque', '12312312', '555112232', 'fabricio@gmail.com', 'clave12', 1, 'Administrador'),
+('Ana', 'Rojas', '32132132', '555334478', 'ana@gmail.com', 'Ana4433', 1, 'Vendedor');
 
 INSERT INTO Empresa (nombres, sucursal, ruc, direccion) VALUES
 ('Farmacia Central', 'Sucursal 1', '20123456789', 'Av. SanLuis 123'),
 ('Farmacia Central', 'Sucursal 2', '20123456789', 'Calle A');
 
-INSERT INTO Vendedor (nombres, apellidos, dni, telefono, correo, vigente, id_empresa, id_usuario) VALUES
-('Julio', 'Silva', '23232323', '5554455', 'julio@gmail.com', TRUE, 1, 1),
-('Miguel', 'Reyes', '45454545', '5556677', 'miguel@gmail.com', TRUE, 2, 2);
+INSERT INTO Vendedor (nombres, apellidos, dni, telefono, correo, estado, id_empresa, id_usuario) VALUES
+('Fabricio', 'Reque', '12312312', '555112232', 'fabricio@gmail.com', 1, 1, 1),
+('Ana', 'Rojas', '32132132', '555334478', 'ana@gmail.com', 1, 2, 2);
 
 INSERT INTO Descuento (nombre, total) VALUES
 ('Descuento 10%', 10.00),
