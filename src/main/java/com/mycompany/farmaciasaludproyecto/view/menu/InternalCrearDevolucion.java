@@ -4,6 +4,8 @@
  */
 package com.mycompany.farmaciasaludproyecto.view.menu;
 
+import java.awt.Dimension;
+
 /**
  *
  * @author cesar
@@ -15,6 +17,7 @@ public class InternalCrearDevolucion extends javax.swing.JInternalFrame {
      */
     public InternalCrearDevolucion() {
         initComponents();
+        this.setSize(new Dimension(1150, 752));
     }
 
     /**
@@ -46,10 +49,12 @@ public class InternalCrearDevolucion extends javax.swing.JInternalFrame {
 
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guardar-datos.png"))); // NOI18N
         jLabel1.setText("Detalle de la venta");
+        jLabel1.setOpaque(true);
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 60, -1, -1));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -146,11 +151,17 @@ public class InternalCrearDevolucion extends javax.swing.JInternalFrame {
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 100, 540, 340));
 
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devolucion-de-dinero.png"))); // NOI18N
         jLabel2.setText("Devolucion");
+        jLabel2.setOpaque(true);
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 0, -1, -1));
+
+        jLabel_wallpaper.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel_wallpaper.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ucsm-farmacia-y-bioquimica (1).jpg"))); // NOI18N
+        jLabel_wallpaper.setOpaque(true);
         getContentPane().add(jLabel_wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1150, 730));
 
         pack();
