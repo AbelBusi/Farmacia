@@ -63,6 +63,7 @@ public class InterRegistrarVenta extends javax.swing.JInternalFrame {
         txt_cambio = new javax.swing.JTextField();
         jButton_calcular_cambio = new javax.swing.JButton();
         jLabel_wallpaper = new javax.swing.JLabel();
+        jButton_RegistrarVenta2 = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -108,7 +109,7 @@ public class InterRegistrarVenta extends javax.swing.JInternalFrame {
         txt_cliente_buscar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txt_cliente_buscar.setForeground(new java.awt.Color(0, 0, 0));
         txt_cliente_buscar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(txt_cliente_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 40, 200, -1));
+        getContentPane().add(txt_cliente_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 50, 200, -1));
 
         txt_cantidad.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txt_cantidad.setForeground(new java.awt.Color(0, 0, 0));
@@ -277,6 +278,19 @@ public class InterRegistrarVenta extends javax.swing.JInternalFrame {
         jLabel_wallpaper.setIcon(new javax.swing.ImageIcon(getClass().getResource("/download (6).jpeg"))); // NOI18N
         getContentPane().add(jLabel_wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 730));
 
+        jButton_RegistrarVenta2.setBackground(new java.awt.Color(51, 255, 255));
+        jButton_RegistrarVenta2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton_RegistrarVenta2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/verificar (1).png"))); // NOI18N
+        jButton_RegistrarVenta2.setText("Registrar Venta");
+        jButton_RegistrarVenta2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton_RegistrarVenta2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton_RegistrarVenta2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_RegistrarVenta2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton_RegistrarVenta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 530, 170, 100));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -381,43 +395,48 @@ public class InterRegistrarVenta extends javax.swing.JInternalFrame {
     }   
     }//GEN-LAST:event_jTable_productosMouseClicked
 
+    private void jButton_RegistrarVenta2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_RegistrarVenta2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_RegistrarVenta2ActionPerformed
+
     private void jButton_RegistrarVenta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_RegistrarVenta1ActionPerformed
-       try {
-        int idCliente = jComboBox_cliente.getSelectedIndex();
-        if (idCliente == 0) {
-            JOptionPane.showMessageDialog(this, "Seleccione un cliente válido.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
+        try {
+            int idCliente = jComboBox_cliente.getSelectedIndex();
+            if (idCliente == 0) {
+                JOptionPane.showMessageDialog(this, "Seleccione un cliente válido.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            double totalPagar = Double.parseDouble(txt_total_pagar.getText().trim());
+            String fechaVenta = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            Venta nuevaVenta = new Venta(contadorIdVenta++, idCliente, 1, 0, totalPagar, fechaVenta, true);
+            listaVentas.add(nuevaVenta);
+            modeloTabla.addRow(nuevaVenta.convertir());
+            JOptionPane.showMessageDialog(this, "Venta registrada exitosamente.", "Información", JOptionPane.INFORMATION_MESSAGE);
+            limpiarCampos();
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Ingrese valores válidos para registrar la venta.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        double totalPagar = Double.parseDouble(txt_total_pagar.getText().trim());
-        String fechaVenta = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        Venta nuevaVenta = new Venta(contadorIdVenta++, idCliente, 1, 0, totalPagar, fechaVenta, true);
-        listaVentas.add(nuevaVenta);
-        modeloTabla.addRow(nuevaVenta.convertir());
-        JOptionPane.showMessageDialog(this, "Venta registrada exitosamente.", "Información", JOptionPane.INFORMATION_MESSAGE);
-        limpiarCampos();
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "Ingrese valores válidos para registrar la venta.", "Error", JOptionPane.ERROR_MESSAGE);
-    }
-}
-    private void limpiarCampos() {
-    txt_cliente_buscar.setText("");
-    jComboBox_cliente.setSelectedIndex(0);
-    txt_cantidad.setText("");
-    txt_cantidad1.setText("");
-    txt_subtotal.setText("");
-    txt_descuento.setText("");
-    txt_iva.setText("");
-    txt_total_pagar.setText("");
-    txt_efectivo.setText("");
-    txt_cambio.setText("");
-    modeloTabla.setRowCount(0);
-    }               
+        }
+        private void limpiarCampos() {
+            txt_cliente_buscar.setText("");
+            jComboBox_cliente.setSelectedIndex(0);
+            txt_cantidad.setText("");
+            txt_cantidad1.setText("");
+            txt_subtotal.setText("");
+            txt_descuento.setText("");
+            txt_iva.setText("");
+            txt_total_pagar.setText("");
+            txt_efectivo.setText("");
+            txt_cambio.setText("");
+            modeloTabla.setRowCount(0);
+        
     }//GEN-LAST:event_jButton_RegistrarVenta1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_AgregarMedicamento;
     private javax.swing.JButton jButton_RegistrarVenta1;
+    private javax.swing.JButton jButton_RegistrarVenta2;
     private javax.swing.JButton jButton_añadir_producto;
     private javax.swing.JButton jButton_busca_cliente;
     private javax.swing.JButton jButton_calcular_cambio;

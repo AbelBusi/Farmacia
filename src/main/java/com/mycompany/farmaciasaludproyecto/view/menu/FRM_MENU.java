@@ -508,7 +508,7 @@ public class FRM_MENU extends javax.swing.JFrame {
 
     private void nuevo_medicamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_medicamentoActionPerformed
         // TODO add your handling code here:
-        InterMedicamento medicamento = new InterMedicamento();
+        InterMedicamento1Bubg medicamento = new InterMedicamento1Bubg();
         jDesktopPane_menu.add(medicamento);
         medicamento.setVisible(true);
     }//GEN-LAST:event_nuevo_medicamentoActionPerformed
