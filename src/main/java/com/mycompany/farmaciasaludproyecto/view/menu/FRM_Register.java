@@ -17,7 +17,7 @@ public class FRM_Register extends javax.swing.JFrame {
     public FRM_Register() {
                 
         initComponents();
-        this.setSize(new Dimension(1200, 700));
+        this.setSize(new Dimension(1230, 700));
                 
     }
 
@@ -59,6 +59,7 @@ public class FRM_Register extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
+        B_ValidarUVendedor_existente = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,7 +85,7 @@ public class FRM_Register extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Apellidos");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 240, 90, 30));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 240, 90, 30));
 
         jSeparator2.setForeground(new java.awt.Color(34, 194, 186));
         jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 270, 150, 30));
@@ -110,15 +111,15 @@ public class FRM_Register extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Telefono");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 320, 80, 30));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 400, 80, 30));
 
         jTextField4.setBackground(new java.awt.Color(255, 255, 255));
         jTextField4.setForeground(new java.awt.Color(0, 0, 0));
         jTextField4.setBorder(null);
-        jPanel2.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 320, 150, 30));
+        jPanel2.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 390, 150, 30));
 
         jSeparator4.setForeground(new java.awt.Color(34, 194, 186));
-        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 350, 150, 30));
+        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 430, 150, 30));
 
         jLabel7.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
@@ -152,7 +153,7 @@ public class FRM_Register extends javax.swing.JFrame {
         jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, 90, 30));
 
         jSeparator7.setForeground(new java.awt.Color(34, 194, 186));
-        jPanel2.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 430, 220, 30));
+        jPanel2.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 430, 190, 30));
 
         jPasswordField1.setBackground(new java.awt.Color(255, 255, 255));
         jPasswordField1.setForeground(new java.awt.Color(0, 0, 0));
@@ -191,7 +192,7 @@ public class FRM_Register extends javax.swing.JFrame {
         jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 550, 390, 70));
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/signo-de-exclamacion (1).png"))); // NOI18N
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 290, -1, -1));
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 350, -1, -1));
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/signo-de-exclamacion (1).png"))); // NOI18N
         jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, -1, -1));
@@ -206,12 +207,17 @@ public class FRM_Register extends javax.swing.JFrame {
         jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 290, -1, -1));
 
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/signo-de-exclamacion (1).png"))); // NOI18N
-        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 370, -1, -1));
+        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 370, -1, -1));
 
         jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/signo-de-exclamacion (1).png"))); // NOI18N
         jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 440, -1, -1));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 0, 600, 700));
+        B_ValidarUVendedor_existente.setBackground(new java.awt.Color(51, 255, 102));
+        B_ValidarUVendedor_existente.setForeground(new java.awt.Color(0, 0, 0));
+        B_ValidarUVendedor_existente.setText("Validar");
+        jPanel2.add(B_ValidarUVendedor_existente, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 320, 90, 40));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 0, 630, 700));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -274,6 +280,7 @@ public class FRM_Register extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton B_ValidarUVendedor_existente;
     private javax.swing.JPanel JPLogo;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;

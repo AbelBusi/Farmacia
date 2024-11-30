@@ -59,10 +59,8 @@ public class FRM_MENU_EMPLEADO extends javax.swing.JFrame {
 
         jMenuBar1 = new javax.swing.JMenuBar();
         menu_usuario = new javax.swing.JMenu();
-        menu_nuevoUsuario = new javax.swing.JMenuItem();
         gestionarUsuarios = new javax.swing.JMenuItem();
         menu_proveedor = new javax.swing.JMenu();
-        nuevo_proveedor = new javax.swing.JMenuItem();
         MENU_GestionarProveedores = new javax.swing.JMenuItem();
         menu_medicamento = new javax.swing.JMenu();
         nuevo_medicamento = new javax.swing.JMenuItem();
@@ -95,19 +93,8 @@ public class FRM_MENU_EMPLEADO extends javax.swing.JFrame {
         menu_usuario.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         menu_usuario.setPreferredSize(new java.awt.Dimension(150, 50));
 
-        menu_nuevoUsuario.setForeground(new java.awt.Color(0, 0, 0));
-        menu_nuevoUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cajero (1).png"))); // NOI18N
-        menu_nuevoUsuario.setText("Nuevo Vendedor");
-        menu_nuevoUsuario.setPreferredSize(new java.awt.Dimension(250, 30));
-        menu_nuevoUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menu_nuevoUsuarioActionPerformed(evt);
-            }
-        });
-        menu_usuario.add(menu_nuevoUsuario);
-
         gestionarUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/equipo.png"))); // NOI18N
-        gestionarUsuarios.setText("Gestionar Vendedores");
+        gestionarUsuarios.setText("Lista de vendedores");
         gestionarUsuarios.setPreferredSize(new java.awt.Dimension(250, 30));
         gestionarUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,16 +110,6 @@ public class FRM_MENU_EMPLEADO extends javax.swing.JFrame {
         menu_proveedor.setText("Proveedor");
         menu_proveedor.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         menu_proveedor.setPreferredSize(new java.awt.Dimension(160, 50));
-
-        nuevo_proveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/operador.png"))); // NOI18N
-        nuevo_proveedor.setText("Nuevo proveedor");
-        nuevo_proveedor.setPreferredSize(new java.awt.Dimension(255, 45));
-        nuevo_proveedor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nuevo_proveedorActionPerformed(evt);
-            }
-        });
-        menu_proveedor.add(nuevo_proveedor);
 
         MENU_GestionarProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proveedor.png"))); // NOI18N
         MENU_GestionarProveedores.setText("Gestionar Proveedores");
@@ -338,14 +315,6 @@ public class FRM_MENU_EMPLEADO extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void menu_nuevoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_nuevoUsuarioActionPerformed
-        // TODO add your handling code here:
-        InterRegistrarVendedor vendedor = new InterRegistrarVendedor();
-        jDesktopPane_menu.add(vendedor);
-        vendedor.setVisible(true);
-
-    }//GEN-LAST:event_menu_nuevoUsuarioActionPerformed
-
     private void MENU_nuevoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_nuevoClienteActionPerformed
         // TODO add your handling code here:
         InterRegistrarCliente cliente = new InterRegistrarCliente();
@@ -368,15 +337,6 @@ public class FRM_MENU_EMPLEADO extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_MENU_historialDevolucionesActionPerformed
-
-    private void nuevo_proveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_proveedorActionPerformed
-        // TODO add your handling code here:
-        InterRegistrarProveedor proveedor = new InterRegistrarProveedor();
-        jDesktopPane_menu.add(proveedor);
-        proveedor.setVisible(true);
-
-
-    }//GEN-LAST:event_nuevo_proveedorActionPerformed
 
     private void MENU_GestionarProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_GestionarProveedoresActionPerformed
 
@@ -524,11 +484,9 @@ public class FRM_MENU_EMPLEADO extends javax.swing.JFrame {
     private javax.swing.JMenu menu_devolucion;
     private javax.swing.JMenu menu_facturar;
     private javax.swing.JMenu menu_medicamento;
-    private javax.swing.JMenuItem menu_nuevoUsuario;
     private javax.swing.JMenu menu_proveedor;
     private javax.swing.JMenu menu_usuario;
     private javax.swing.JMenuItem nuevo_medicamento;
-    private javax.swing.JMenuItem nuevo_proveedor;
     private javax.swing.JMenuItem nuevo_tipoMedicamento;
     // End of variables declaration//GEN-END:variables
 }
