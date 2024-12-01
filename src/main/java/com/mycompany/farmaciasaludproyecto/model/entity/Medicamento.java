@@ -93,6 +93,13 @@ public class Medicamento implements Comparable<Medicamento>{
                 thenComparing(Medicamento::getNombre).compare(this, o); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
+    public Object[] convertirObj (int n){
+    
+        Object[] fila = {id_medicamento,nombre,descripcion,precio,stock,fechaVencimiento,id_tipo};
+        return fila;
+        
+    }
+    
     public Object[] convertir (){
     
         Object[] fila = {id_medicamento,nombre,descripcion,precio,stock,fechaVencimiento,id_tipo};

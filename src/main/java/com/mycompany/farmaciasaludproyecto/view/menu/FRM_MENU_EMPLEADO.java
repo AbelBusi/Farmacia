@@ -3,6 +3,9 @@ package com.mycompany.farmaciasaludproyecto.view.menu;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JDesktopPane;
 
@@ -63,10 +66,8 @@ public class FRM_MENU_EMPLEADO extends javax.swing.JFrame {
         menu_proveedor = new javax.swing.JMenu();
         MENU_GestionarProveedores = new javax.swing.JMenuItem();
         menu_medicamento = new javax.swing.JMenu();
-        nuevo_medicamento = new javax.swing.JMenuItem();
         MENU_GestionarMedicamento = new javax.swing.JMenuItem();
         nuevo_tipoMedicamento = new javax.swing.JMenuItem();
-        Menu_gestionarTipoMedicamentos = new javax.swing.JMenuItem();
         menu_cliente = new javax.swing.JMenu();
         MENU_nuevoCliente = new javax.swing.JMenuItem();
         MENU_GestionarClientes = new javax.swing.JMenuItem();
@@ -129,18 +130,8 @@ public class FRM_MENU_EMPLEADO extends javax.swing.JFrame {
         menu_medicamento.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         menu_medicamento.setPreferredSize(new java.awt.Dimension(160, 50));
 
-        nuevo_medicamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ventas.png"))); // NOI18N
-        nuevo_medicamento.setText("Nuevo Medicamento");
-        nuevo_medicamento.setPreferredSize(new java.awt.Dimension(255, 30));
-        nuevo_medicamento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nuevo_medicamentoActionPerformed(evt);
-            }
-        });
-        menu_medicamento.add(nuevo_medicamento);
-
-        MENU_GestionarMedicamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/actual.png"))); // NOI18N
-        MENU_GestionarMedicamento.setText("Gestionar Medicamento");
+        MENU_GestionarMedicamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tipo-de-sangre.png"))); // NOI18N
+        MENU_GestionarMedicamento.setText("Lista de Medicamentos");
         MENU_GestionarMedicamento.setPreferredSize(new java.awt.Dimension(255, 30));
         MENU_GestionarMedicamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,7 +141,7 @@ public class FRM_MENU_EMPLEADO extends javax.swing.JFrame {
         menu_medicamento.add(MENU_GestionarMedicamento);
 
         nuevo_tipoMedicamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medico.png"))); // NOI18N
-        nuevo_tipoMedicamento.setText("Tipo de medicamento");
+        nuevo_tipoMedicamento.setText("Tipos de medicamento");
         nuevo_tipoMedicamento.setPreferredSize(new java.awt.Dimension(255, 30));
         nuevo_tipoMedicamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -158,16 +149,6 @@ public class FRM_MENU_EMPLEADO extends javax.swing.JFrame {
             }
         });
         menu_medicamento.add(nuevo_tipoMedicamento);
-
-        Menu_gestionarTipoMedicamentos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tipo-de-sangre.png"))); // NOI18N
-        Menu_gestionarTipoMedicamentos.setText("Gestionar tipos");
-        Menu_gestionarTipoMedicamentos.setPreferredSize(new java.awt.Dimension(255, 30));
-        Menu_gestionarTipoMedicamentos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Menu_gestionarTipoMedicamentosActionPerformed(evt);
-            }
-        });
-        menu_medicamento.add(Menu_gestionarTipoMedicamentos);
 
         jMenuBar1.add(menu_medicamento);
 
@@ -398,34 +379,26 @@ public class FRM_MENU_EMPLEADO extends javax.swing.JFrame {
         gestionarDescuentos.setVisible(true);
     }//GEN-LAST:event_MENU_gestionarDescuentosActionPerformed
 
-    private void nuevo_medicamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_medicamentoActionPerformed
-        // TODO add your handling code here:
-        InterMedicamento1Bubg medicamento = new InterMedicamento1Bubg();
-        jDesktopPane_menu.add(medicamento);
-        medicamento.setVisible(true);
-    }//GEN-LAST:event_nuevo_medicamentoActionPerformed
-
     private void MENU_GestionarMedicamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_GestionarMedicamentoActionPerformed
         // TODO add your handling code here:
-        InterGestionarMedicamento gestionarMedicamentos = new InterGestionarMedicamento();
-        jDesktopPane_menu.add(gestionarMedicamentos);
+        InterListaMedicamentos gestionarMedicamentos;
+        try {
+            gestionarMedicamentos = new InterListaMedicamentos();
+             jDesktopPane_menu.add(gestionarMedicamentos);
         gestionarMedicamentos.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(FRM_MENU_EMPLEADO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
     }//GEN-LAST:event_MENU_GestionarMedicamentoActionPerformed
 
     private void nuevo_tipoMedicamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_tipoMedicamentoActionPerformed
         // TODO add your handling code here:
-        InternalTipoMedicamento tipoMedicamento = new InternalTipoMedicamento();
+        InterListaTipoMedicamentos tipoMedicamento = new InterListaTipoMedicamentos();
         jDesktopPane_menu.add(tipoMedicamento);
         tipoMedicamento.setVisible(true);
         
     }//GEN-LAST:event_nuevo_tipoMedicamentoActionPerformed
-
-    private void Menu_gestionarTipoMedicamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Menu_gestionarTipoMedicamentosActionPerformed
-        // TODO add your handling code here:
-        InterGestionarTipoMedicamentos gestionarTipoMedicamentos = new InterGestionarTipoMedicamentos();
-        jDesktopPane_menu.add(gestionarTipoMedicamentos);
-        gestionarTipoMedicamentos.setVisible(true);
-    }//GEN-LAST:event_Menu_gestionarTipoMedicamentosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -475,7 +448,6 @@ public class FRM_MENU_EMPLEADO extends javax.swing.JFrame {
     private javax.swing.JMenuItem MENU_historialDevoluciones;
     private javax.swing.JMenuItem MENU_nuevaVenta;
     private javax.swing.JMenuItem MENU_nuevoCliente;
-    private javax.swing.JMenuItem Menu_gestionarTipoMedicamentos;
     private javax.swing.JMenuItem gestionarUsuarios;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu menu_cerrarSesion;
@@ -486,7 +458,6 @@ public class FRM_MENU_EMPLEADO extends javax.swing.JFrame {
     private javax.swing.JMenu menu_medicamento;
     private javax.swing.JMenu menu_proveedor;
     private javax.swing.JMenu menu_usuario;
-    private javax.swing.JMenuItem nuevo_medicamento;
     private javax.swing.JMenuItem nuevo_tipoMedicamento;
     // End of variables declaration//GEN-END:variables
 }

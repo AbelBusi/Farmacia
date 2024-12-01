@@ -1,9 +1,11 @@
 package com.mycompany.farmaciasaludproyecto.view.menu;
 
-import com.mycompany.farmaciasaludproyecto.model.dao.MedicamentoDAO;
-import com.mycompany.farmaciasaludproyecto.model.entity.Medicamento;
+import com.mycompany.farmaciasaludproyecto.model.dao.TipoMedicamentoDAO;
+import com.mycompany.farmaciasaludproyecto.model.dao.VendedorDao;
+import com.mycompany.farmaciasaludproyecto.model.entity.TipoMedicamento;
+import com.mycompany.farmaciasaludproyecto.model.entity.Vendedor;
 import java.awt.Dimension;
-import java.sql.SQLException;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
@@ -13,53 +15,73 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author ediso
  */
-public class InterListaMedicamentos extends javax.swing.JInternalFrame {
+public class InterListaTipoMedicamentos extends javax.swing.JInternalFrame {
 
-    String[] Cabeceras = {"#", "Nombre", "Descripción", "Precio", "Stock", "Fecha Vencimiento", "ID Tipo"};
-    DefaultTableModel DTM;
-    MedicamentoDAO medicamentoDAO = new MedicamentoDAO();
-    LinkedList<Medicamento> LI_medicamento = new LinkedList<>();
+    private String[] Cabeceras = {"ID Tipo", "Nombre", "Descripción"};
+    private DefaultTableModel DTM;
+    private TipoMedicamentoDAO tipoMedicamentoDao = new TipoMedicamentoDAO();
+    private LinkedList<TipoMedicamento> LI_tipoMedicamento = new LinkedList<>();
 
     public void MostrarJTable() {
         DTM = new DefaultTableModel(null, Cabeceras);
         int n = 0;
 
-        for (Medicamento M : LI_medicamento) {
+        for (TipoMedicamento tipo : LI_tipoMedicamento) {
             n++;
-            DTM.addRow(M.convertirObj(n));
+            DTM.addRow(tipo.convertirObj(n)); // Añade cada tipo de medicamento a la tabla
         }
-        jTable_ListaVMedicamentos.setModel(DTM);
+        jTable_ListaTipoMedicamentos.setModel(DTM);
     }
 
-public int buscarPorNombre(String nombreBuscado) {
-    int inicio = 0, fin = LI_medicamento.size() - 1;
+    private LinkedList<TipoMedicamento> buscarPorNombreParcial(String nombreParcial) {
+        // Ordenamos la LinkedList por nombre antes de realizar la búsqueda
+        LI_tipoMedicamento.sort(Comparator.comparing(TipoMedicamento::getNombre, String.CASE_INSENSITIVE_ORDER));
 
-    // Ordenamos por nombre antes de realizar la búsqueda binaria
-    LI_medicamento.sort(Comparator.comparing(Medicamento::getNombre));
+        LinkedList<TipoMedicamento> resultados = new LinkedList<>();
+        int inicio = 0;
+        int fin = LI_tipoMedicamento.size() - 1;
 
-    while (inicio <= fin) {
-        int medio = (inicio + fin) / 2;
-        Medicamento medicamento = LI_medicamento.get(medio);
-        String nombre = medicamento.getNombre().toLowerCase();
+        while (inicio <= fin) {
+            int medio = (inicio + fin) / 2;
+            TipoMedicamento tipo = LI_tipoMedicamento.get(medio);
 
-        if (nombre.startsWith(nombreBuscado.toLowerCase())) {
-            return medio; // Encontró el medicamento
+            if (tipo.getNombre().toLowerCase().startsWith(nombreParcial.toLowerCase())) {
+                // Si encuentra coincidencia, agrega este y busca elementos similares
+                resultados.add(tipo);
+
+                // Verificar hacia atrás
+                for (int i = medio - 1; i >= 0; i--) {
+                    if (LI_tipoMedicamento.get(i).getNombre().toLowerCase().startsWith(nombreParcial.toLowerCase())) {
+                        resultados.addFirst(LI_tipoMedicamento.get(i));
+                    } else {
+                        break;
+                    }
+                }
+
+                // Verificar hacia adelante
+                for (int i = medio + 1; i < LI_tipoMedicamento.size(); i++) {
+                    if (LI_tipoMedicamento.get(i).getNombre().toLowerCase().startsWith(nombreParcial.toLowerCase())) {
+                        resultados.addLast(LI_tipoMedicamento.get(i));
+                    } else {
+                        break;
+                    }
+                }
+
+                break; // Salimos del bucle porque ya encontramos todas las coincidencias
+            } else if (tipo.getNombre().compareToIgnoreCase(nombreParcial) < 0) {
+                inicio = medio + 1; // Buscar en la mitad derecha
+            } else {
+                fin = medio - 1; // Buscar en la mitad izquierda
+            }
         }
 
-        if (nombreBuscado.toLowerCase().compareTo(nombre) < 0) {
-            fin = medio - 1;
-        } else {
-            inicio = medio + 1;
-        }
+        return resultados;
     }
 
-    return -1; // No se encontró el medicamento
-}
-
-    public InterListaMedicamentos() throws SQLException {
+    public InterListaTipoMedicamentos() {
         initComponents();
         this.setSize(new Dimension(943, 533));
-        LI_medicamento = medicamentoDAO.obtenerMedicamentos();
+        LI_tipoMedicamento = tipoMedicamentoDao.obtenerLosTipos(); // Obtiene todos los tipos de medicamento
         MostrarJTable();
     }
 
@@ -70,7 +92,7 @@ public int buscarPorNombre(String nombreBuscado) {
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable_ListaVMedicamentos = new javax.swing.JTable();
+        jTable_ListaTipoMedicamentos = new javax.swing.JTable();
         txt_buscar = new javax.swing.JTextField();
         jButton_ordenarAZ = new javax.swing.JButton();
         jButton_buscar1 = new javax.swing.JButton();
@@ -87,16 +109,16 @@ public int buscarPorNombre(String nombreBuscado) {
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medicamento (2).png"))); // NOI18N
-        jLabel1.setText("Lista de Medicamentos");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/opciones.png"))); // NOI18N
+        jLabel1.setText("Lista de tipo de Medicamentos");
         jLabel1.setOpaque(true);
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 0, 270, 40));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 320, 40));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable_ListaVMedicamentos.setModel(new javax.swing.table.DefaultTableModel(
+        jTable_ListaTipoMedicamentos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -107,7 +129,7 @@ public int buscarPorNombre(String nombreBuscado) {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable_ListaVMedicamentos);
+        jScrollPane1.setViewportView(jTable_ListaTipoMedicamentos);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 880, 300));
 
@@ -142,17 +164,17 @@ public int buscarPorNombre(String nombreBuscado) {
 
         jButton_inactivo.setBackground(new java.awt.Color(204, 255, 153));
         jButton_inactivo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton_inactivo.setText("Fecha Desc");
+        jButton_inactivo.setText("ID Desc");
         jButton_inactivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_inactivoActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton_inactivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 370, 90, -1));
+        jPanel1.add(jButton_inactivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 370, 120, -1));
 
         jButton_activo.setBackground(new java.awt.Color(204, 255, 153));
         jButton_activo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton_activo.setText("Fecha Asc");
+        jButton_activo.setText("ID Asc");
         jButton_activo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_activoActionPerformed(evt);
@@ -178,14 +200,14 @@ public int buscarPorNombre(String nombreBuscado) {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 910, 450));
 
-        jLabel_wallpaper.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images (4) (1).jpeg"))); // NOI18N
+        jLabel_wallpaper.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture-tipos-de-medicamentos.ff3ac88 (2).jpg"))); // NOI18N
         getContentPane().add(jLabel_wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 940, 510));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_ordenarAZActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ordenarAZActionPerformed
-        LI_medicamento.sort(Comparator.comparing(Medicamento::getNombre));
+        Collections.sort(LI_tipoMedicamento, (t1, t2) -> t1.getNombre().compareToIgnoreCase(t2.getNombre()));
         MostrarJTable();
 
     }//GEN-LAST:event_jButton_ordenarAZActionPerformed
@@ -195,45 +217,46 @@ public int buscarPorNombre(String nombreBuscado) {
     }//GEN-LAST:event_txt_buscarActionPerformed
 
     private void jButton_buscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_buscar1ActionPerformed
-        // TODO add your handling code here:
-        // TODO add your handling code here:
         String nombreBuscado = txt_buscar.getText().trim();
 
         if (nombreBuscado.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor, ingresa un nombre para buscar.");
+            JOptionPane.showMessageDialog(this, "Por favor, ingresa un nombre o parte del nombre para buscar.");
             return;
         }
 
-        // Realizamos la búsqueda binaria por nombre
-        int indice = buscarPorNombre(nombreBuscado);
+        LinkedList<TipoMedicamento> resultados = buscarPorNombreParcial(nombreBuscado);
 
-        if (indice != -1) {
-            // Si se encuentra, mostramos el medicamento encontrado en la tabla
-            Medicamento medicamentoEncontrado = LI_medicamento.get(indice);
+        if (!resultados.isEmpty()) {
+            // Actualizamos la tabla con las coincidencias encontradas
             DTM = new DefaultTableModel(null, Cabeceras);
-            DTM.addRow(medicamentoEncontrado.convertirObj(1)); // Añade solo el medicamento encontrado
-            jTable_ListaVMedicamentos.setModel(DTM);
+            int n = 0;
+            for (TipoMedicamento tipo : resultados) {
+                n++;
+                DTM.addRow(tipo.convertirObj(n));
+            }
+            jTable_ListaTipoMedicamentos.setModel(DTM);
         } else {
-            JOptionPane.showMessageDialog(this, "No se encontró el medicamento con ese nombre.");
+            JOptionPane.showMessageDialog(this, "No se encontraron coincidencias para el nombre ingresado.");
         }
     }//GEN-LAST:event_jButton_buscar1ActionPerformed
 
     private void jButton_inactivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_inactivoActionPerformed
-        LI_medicamento.sort(Comparator.comparing(Medicamento::getFechaVencimiento).reversed());
+        Collections.sort(LI_tipoMedicamento, (t1, t2) -> Integer.compare(t2.getId_tipo(), t1.getId_tipo()));
         MostrarJTable();
 
     }//GEN-LAST:event_jButton_inactivoActionPerformed
 
     private void jButton_activoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_activoActionPerformed
-
-        LI_medicamento.sort(Comparator.comparing(Medicamento::getFechaVencimiento));
+        // TODO add your handling code here:
+        Collections.sort(LI_tipoMedicamento, (t1, t2) -> Integer.compare(t1.getId_tipo(), t2.getId_tipo()));
         MostrarJTable();
+
     }//GEN-LAST:event_jButton_activoActionPerformed
 
     private void jButton_ordenarAZ4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ordenarAZ4ActionPerformed
+        Collections.sort(LI_tipoMedicamento, (t1, t2) -> t2.getNombre().compareToIgnoreCase(t1.getNombre()));
+        MostrarJTable();        // TODO add your handling code here:
 
-        LI_medicamento.sort(Comparator.comparing(Medicamento::getNombre).reversed());
-        MostrarJTable();
     }//GEN-LAST:event_jButton_ordenarAZ4ActionPerformed
 
 
@@ -248,7 +271,7 @@ public int buscarPorNombre(String nombreBuscado) {
     private javax.swing.JLabel jLabel_wallpaper;
     private javax.swing.JPanel jPanel1;
     public static javax.swing.JScrollPane jScrollPane1;
-    public static javax.swing.JTable jTable_ListaVMedicamentos;
+    public static javax.swing.JTable jTable_ListaTipoMedicamentos;
     private javax.swing.JTextField txt_buscar;
     // End of variables declaration//GEN-END:variables
 

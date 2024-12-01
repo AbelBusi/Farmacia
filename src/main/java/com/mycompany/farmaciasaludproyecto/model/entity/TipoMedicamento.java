@@ -60,4 +60,12 @@ public class TipoMedicamento implements Comparable<TipoMedicamento> {
         
     }
     
+        public Object[] convertirObj (int n){
+        
+        Object[] fila = {id_tipo,nombre,descripcion};
+        
+        return fila;
+        
+    }
+    
 }

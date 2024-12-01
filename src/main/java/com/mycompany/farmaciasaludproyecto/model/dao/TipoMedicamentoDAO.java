@@ -2,6 +2,7 @@ package com.mycompany.farmaciasaludproyecto.model.dao;
 import com.mycompany.farmaciasaludproyecto.model.entity.TipoMedicamento;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -72,4 +73,22 @@ public class TipoMedicamentoDAO {
             stmt.executeUpdate();
         }
     }
+    
+        public LinkedList<TipoMedicamento> obtenerLosTipos() {
+        LinkedList<TipoMedicamento> tipos = new LinkedList<>();
+        String query = "SELECT * FROM TipoMedicamento";
+
+        try (Connection con = Conexion.conectar(); PreparedStatement ps = con.prepareStatement(query); ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                int idTipo = rs.getInt("id_tipo");
+                String nombre = rs.getString("nombre");
+                String descripcion = rs.getString("descripcion");
+                tipos.add(new TipoMedicamento(idTipo, nombre, descripcion));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return tipos;
+    }
+    
 }

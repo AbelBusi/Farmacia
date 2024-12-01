@@ -37,14 +37,14 @@
           <Color blue="0" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/medicamento (2).png"/>
+          <Image iconType="3" name="/opciones.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Lista de Medicamentos"/>
+        <Property name="text" type="java.lang.String" value="Lista de tipo de Medicamentos"/>
         <Property name="opaque" type="boolean" value="true"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="340" y="0" width="270" height="40"/>
+          <AbsoluteConstraints x="320" y="0" width="320" height="40"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -82,7 +82,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="jTable_ListaVMedicamentos">
+            <Component class="javax.swing.JTable" name="jTable_ListaTipoMedicamentos">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="4" rowCount="4">
@@ -163,14 +163,14 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="12" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Fecha Desc"/>
+            <Property name="text" type="java.lang.String" value="ID Desc"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_inactivoActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="540" y="370" width="90" height="-1"/>
+              <AbsoluteConstraints x="540" y="370" width="120" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -182,7 +182,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="12" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Fecha Asc"/>
+            <Property name="text" type="java.lang.String" value="ID Asc"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_activoActionPerformed"/>
@@ -234,7 +234,7 @@
     <Component class="javax.swing.JLabel" name="jLabel_wallpaper">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/images (4) (1).jpeg"/>
+          <Image iconType="3" name="/picture-tipos-de-medicamentos.ff3ac88 (2).jpg"/>
         </Property>
       </Properties>
       <Constraints>
