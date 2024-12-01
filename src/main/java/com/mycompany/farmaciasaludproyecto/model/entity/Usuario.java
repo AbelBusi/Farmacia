@@ -19,8 +19,9 @@ public class Usuario implements Comparable<Usuario>{
     private String correo;
     private String clave;
     private boolean vigente;
+    private String rol;
 
-    public Usuario(int id_usuario, String nombres, String apellidos, String dni, String telefono, String correo, String clave, boolean vigente) {
+    public Usuario(int id_usuario, String nombres, String apellidos, String dni, String telefono, String correo, String clave, boolean vigente, String rol) {
         this.id_usuario = id_usuario;
         this.nombres = nombres;
         this.apellidos = apellidos;
@@ -29,8 +30,9 @@ public class Usuario implements Comparable<Usuario>{
         this.correo = correo;
         this.clave = clave;
         this.vigente = vigente;
+        this.rol=rol;
     }
-
+    
     public int getId_usuario() {
         return id_usuario;
     }
@@ -103,9 +105,17 @@ public class Usuario implements Comparable<Usuario>{
     
     public Object[] convertir (){
     
-        Object[] fila = {id_usuario,nombres,apellidos,dni,telefono,correo,clave,vigente};
+        Object[] fila = {id_usuario,nombres,apellidos,dni,telefono,correo,clave,vigente,rol};
         return fila;
         
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
     }
     
 }
