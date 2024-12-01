@@ -4,15 +4,40 @@
  */
 package com.mycompany.farmaciasaludproyecto.model.dao;
 
+import com.mycompany.farmaciasaludproyecto.model.entity.Vendedor;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.LinkedList;
 
 /**
  *
  * @author cesar
  */
 public class VendedorDao {
+    
+public LinkedList<Vendedor> obtenerTodosLosVendedores() {
+    LinkedList<Vendedor> vendedores = new LinkedList<>();
+    String sql = "SELECT nombres, apellidos, telefono, estado FROM Usuario WHERE rol = 'vendedor'";
+
+    try (Connection conn = Conexion.conectar();
+         PreparedStatement stmt = conn.prepareStatement(sql);
+         ResultSet rs = stmt.executeQuery()) {
+
+        while (rs.next()) {
+            Vendedor vendedor = new Vendedor();
+            vendedor.setNombres(rs.getString("nombres"));
+            vendedor.setApellidos(rs.getString("apellidos"));
+            vendedor.setTelefono(rs.getString("telefono"));
+            vendedor.setVigente(rs.getBoolean("estado")); // Ahora es boolean
+            vendedores.add(vendedor);
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return vendedores;
+}
     
     
     public boolean dniExiste(String dni) {

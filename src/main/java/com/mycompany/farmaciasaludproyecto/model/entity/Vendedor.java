@@ -29,6 +29,11 @@ public class Vendedor implements Comparable<Vendedor>{
         this.vigente = vigente;
     }
 
+    public Vendedor() {
+    }
+    
+    
+
     public int getId_vendedor() {
         return id_vendedor;
     }
@@ -92,10 +97,14 @@ public class Vendedor implements Comparable<Vendedor>{
                 thenComparing(Vendedor::getNombres).compare(this, o); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
-    public Object[] convertir (){
+    public Object[] convertir (int Num){
     
-        Object[] fila = {id_vendedor,nombres,apellidos,dni,telefono,correo,vigente};
-        return fila;
+        return new Object[]{
+            nombres,
+            apellidos,
+            telefono,
+            (vigente? "Activo" : "Inactivo")
+        };
         
     }
     

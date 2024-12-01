@@ -348,9 +348,9 @@ public class FRM_MENU_EMPLEADO extends javax.swing.JFrame {
 
     private void gestionarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionarUsuariosActionPerformed
 
-        InterGestionarVendedor gestionarVendedor = new InterGestionarVendedor();
-        jDesktopPane_menu.add(gestionarVendedor);
-        gestionarVendedor.setVisible(true);
+        InterListaVendedor listaVendedor = new InterListaVendedor();
+        jDesktopPane_menu.add(listaVendedor);
+        listaVendedor.setVisible(true);
         
     }//GEN-LAST:event_gestionarUsuariosActionPerformed
 
