@@ -1,9 +1,7 @@
 package com.mycompany.farmaciasaludproyecto.view.menu;
 
 import com.mycompany.farmaciasaludproyecto.model.dao.TipoMedicamentoDAO;
-import com.mycompany.farmaciasaludproyecto.model.dao.VendedorDao;
 import com.mycompany.farmaciasaludproyecto.model.entity.TipoMedicamento;
-import com.mycompany.farmaciasaludproyecto.model.entity.Vendedor;
 import java.awt.Dimension;
 import java.util.Collections;
 import java.util.Comparator;

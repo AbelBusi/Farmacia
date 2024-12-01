@@ -7,24 +7,23 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class ClienteDAO {
 
     public void insertarCliente(Cliente cliente) throws SQLException {
         String sql = "INSERT INTO Cliente (nombres, apellidos, dni, direccion, telefono) VALUES (?, ?, ?, ?, ?)";
-        
+
         try (
-                
-            Connection conn = Conexion.conectar()   ; 
-            PreparedStatement stmt = conn.prepareStatement(sql)) {
+                Connection conn = Conexion.conectar(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, cliente.getNombres());
             stmt.setString(2, cliente.getApellidos());
             stmt.setString(3, cliente.getDni());
             stmt.setString(4, cliente.getDireccion());
             stmt.setString(5, cliente.getTelefono());
             stmt.executeUpdate();
-            
+
         }
     }
 
@@ -84,5 +83,45 @@ public class ClienteDAO {
             stmt.setInt(1, id);
             stmt.executeUpdate();
         }
+    }
+
+    public boolean guardarCliente(Cliente cliente) {
+        String sql = "INSERT INTO Cliente (nombres, apellidos, dni, direccion, telefono) VALUES (?, ?, ?, ?, ?)";
+        try (Connection con = Conexion.conectar(); PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setString(1, cliente.getNombres());
+            ps.setString(2, cliente.getApellidos());
+            ps.setString(3, cliente.getDni());
+            ps.setString(4, cliente.getDireccion());
+            ps.setString(5, cliente.getTelefono());
+
+            return ps.executeUpdate() > 0; // Devuelve true si se insertó correctamente
+        } catch (SQLException e) {
+            System.err.println("Error al guardar cliente: " + e.getMessage());
+            return false;
+        }
+    }
+    
+        public LinkedList<Cliente> obtenerLosClientes() {
+        LinkedList<Cliente> listaClientes = new LinkedList<>();
+        String sql = "SELECT * FROM Cliente";
+        try (Connection con = Conexion.conectar();
+             PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                Cliente cliente = new Cliente();
+                cliente.setId_cliente(rs.getInt("id_cliente"));
+                cliente.setNombres(rs.getString("nombres"));
+                cliente.setApellidos(rs.getString("apellidos"));
+                cliente.setDni(rs.getString("dni"));
+                cliente.setDireccion(rs.getString("direccion"));
+                cliente.setTelefono(rs.getString("telefono"));
+                listaClientes.add(cliente);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al obtener clientes: " + e.getMessage());
+        }
+        return listaClientes;
     }
 }

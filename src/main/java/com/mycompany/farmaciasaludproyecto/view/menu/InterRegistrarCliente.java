@@ -1,12 +1,19 @@
 package com.mycompany.farmaciasaludproyecto.view.menu;
 
+import com.mycompany.farmaciasaludproyecto.model.dao.ClienteDAO;
+import com.mycompany.farmaciasaludproyecto.model.entity.Cliente;
 import java.awt.Dimension;
+import java.util.LinkedList;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author ediso
  */
 public class InterRegistrarCliente extends javax.swing.JInternalFrame {
+
+    ClienteDAO clienteDAO = new ClienteDAO();
+    private LinkedList<Cliente> LI_clientes = new LinkedList<>();
 
     public InterRegistrarCliente() {
         initComponents();
@@ -35,12 +42,12 @@ public class InterRegistrarCliente extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        txt_nombre = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
         txt_apellido = new javax.swing.JTextField();
-        txt_cedula = new javax.swing.JTextField();
-        txt_telefono = new javax.swing.JTextField();
-        jButton_Guardar = new javax.swing.JButton();
+        txtTelefono = new javax.swing.JTextField();
         txt_direccion = new javax.swing.JTextField();
+        jButton_Guardar = new javax.swing.JButton();
+        txt_dni = new javax.swing.JTextField();
         jLabel_wallpaper = new javax.swing.JLabel();
 
         setClosable(true);
@@ -103,21 +110,21 @@ public class InterRegistrarCliente extends javax.swing.JInternalFrame {
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tarifa.png"))); // NOI18N
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, 40, 50));
 
-        txt_nombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txt_nombre.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 200, -1));
+        txtNombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtNombre.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 200, -1));
 
         txt_apellido.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txt_apellido.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(txt_apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 200, -1));
 
-        txt_cedula.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txt_cedula.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(txt_cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 290, 200, -1));
+        txtTelefono.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtTelefono.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        getContentPane().add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 290, 200, -1));
 
-        txt_telefono.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txt_telefono.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(txt_telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, 200, -1));
+        txt_direccion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txt_direccion.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        getContentPane().add(txt_direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, 200, -1));
 
         jButton_Guardar.setBackground(new java.awt.Color(0, 204, 204));
         jButton_Guardar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -130,9 +137,9 @@ public class InterRegistrarCliente extends javax.swing.JInternalFrame {
         });
         getContentPane().add(jButton_Guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 340, 130, 40));
 
-        txt_direccion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txt_direccion.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(txt_direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 200, -1));
+        txt_dni.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txt_dni.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        getContentPane().add(txt_dni, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 200, -1));
 
         jLabel_wallpaper.setIcon(new javax.swing.ImageIcon(getClass().getResource("/download (3).jpeg"))); // NOI18N
         getContentPane().add(jLabel_wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 430));
@@ -142,7 +149,26 @@ public class InterRegistrarCliente extends javax.swing.JInternalFrame {
 
     private void jButton_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_GuardarActionPerformed
 
-       
+        if (txtNombre.getText().isEmpty() || txt_apellido.getText().isEmpty()
+                || txt_dni.getText().isEmpty() || txt_direccion.getText().isEmpty() || txtTelefono.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No pueden quedarse casillas incompletas");
+            return;
+        }
+        Cliente nuevoCliente = new Cliente();
+        nuevoCliente.setNombres(txtNombre.getText());
+        nuevoCliente.setApellidos(txt_apellido.getText());
+        nuevoCliente.setDni(txt_dni.getText());
+        nuevoCliente.setDireccion(txt_direccion.getText());
+        nuevoCliente.setTelefono(txtTelefono.getText());
+
+        if (clienteDAO.guardarCliente(nuevoCliente)) {
+            JOptionPane.showMessageDialog(this, "Cliente guardado exitosamente.");
+            LI_clientes.add(nuevoCliente); 
+            Limpiar();
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al guardar el cliente.");
+        }
+
 
     }//GEN-LAST:event_jButton_GuardarActionPerformed
 
@@ -161,22 +187,22 @@ public class InterRegistrarCliente extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabel_wallpaper;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtTelefono;
     private javax.swing.JTextField txt_apellido;
-    private javax.swing.JTextField txt_cedula;
     private javax.swing.JTextField txt_direccion;
-    private javax.swing.JTextField txt_nombre;
-    private javax.swing.JTextField txt_telefono;
+    private javax.swing.JTextField txt_dni;
     // End of variables declaration//GEN-END:variables
      /**
      *
      * Metodo para limpiar campos
      */
     private void Limpiar() {
-        txt_nombre.setText("");
+        txtNombre.setText("");
         txt_apellido.setText("");
-        txt_cedula.setText("");
-        txt_telefono.setText("");
+        txtTelefono.setText("");
         txt_direccion.setText("");
+        txt_dni.setText("");
     }
 
 }
