@@ -59,18 +59,6 @@ CREATE TABLE Cliente (
     telefono VARCHAR(15)
 );
 
--- Tabla Usuario
-CREATE TABLE Usuario (
-    id_usuario INT PRIMARY KEY AUTO_INCREMENT,
-    nombres VARCHAR(100),
-    apellidos VARCHAR(100),
-    dni VARCHAR(8),
-    telefono VARCHAR(15),
-    correo VARCHAR(100),
-    clave VARCHAR(255),
-    estado BOOLEAN,
-    rol VARCHAR(50)
-);
 -- Tabla Empresa
 CREATE TABLE Empresa (
     id_empresa INT PRIMARY KEY AUTO_INCREMENT,
@@ -90,10 +78,24 @@ CREATE TABLE Vendedor (
     correo VARCHAR(100),
     estado BOOLEAN default 1,
     id_empresa INT,
-    id_usuario INT,
-    FOREIGN KEY (id_empresa) REFERENCES Empresa(id_empresa),
-    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario)
+    FOREIGN KEY (id_empresa) REFERENCES Empresa(id_empresa)
 );
+
+-- Tabla Usuario
+CREATE TABLE Usuario (
+    id_usuario INT PRIMARY KEY AUTO_INCREMENT,
+    nombres VARCHAR(100),
+    apellidos VARCHAR(100),
+    dni VARCHAR(8),
+    telefono VARCHAR(15),
+    correo VARCHAR(100),
+    clave VARCHAR(255),
+    estado BOOLEAN,
+    rol VARCHAR(50),
+    id_vendedor INT,
+    FOREIGN KEY (id_vendedor) REFERENCES Vendedor(id_vendedor)
+);
+
 
 -- Tabla Descuento
 CREATE TABLE Descuento (
@@ -163,17 +165,17 @@ INSERT INTO Cliente (nombres, apellidos, dni, direccion, telefono) VALUES
 ('Carlos', 'López', '12345678', 'Calle A 123', '5551234'),
 ('María', 'González', '87654321', 'Avenida Siempreviva 321', '5555678');
 
-INSERT INTO Usuario (nombres, apellidos, dni, telefono, correo, clave, estado, rol) VALUES
-('Fabricio', 'Reque', '12312312', '555112232', 'fabricio@gmail.com', 'clave12', 1, 'Administrador'),
-('Ana', 'Rojas', '32132132', '555334478', 'ana@gmail.com', 'Ana4433', 1, 'Vendedor');
-
 INSERT INTO Empresa (nombres, sucursal, ruc, direccion) VALUES
 ('Farmacia Central', 'Sucursal 1', '20123456789', 'Av. SanLuis 123'),
 ('Farmacia Central', 'Sucursal 2', '20123456789', 'Calle A');
 
-INSERT INTO Vendedor (nombres, apellidos, dni, telefono, correo, estado, id_empresa, id_usuario) VALUES
-('Fabricio', 'Reque', '12312312', '555112232', 'fabricio@gmail.com', 1, 1, 1),
-('Ana', 'Rojas', '32132132', '555334478', 'ana@gmail.com', 1, 2, 2);
+INSERT INTO Vendedor (nombres, apellidos, dni, telefono, correo, estado, id_empresa) VALUES
+('Fabricio', 'Reque', '12312312', '555112232', 'fabricio@gmail.com', 1,1),
+('Ana', 'Rojas', '32132132', '555334478', 'ana@gmail.com', 1,1);
+
+INSERT INTO Usuario (nombres, apellidos, dni, telefono, correo, clave, estado, rol,id_vendedor) VALUES
+('Fabricio', 'Reque', '12312312', '555112232', 'fabricio@gmail.com', 'clave12', 1, 'Administrador',1),
+('Ana', 'Rojas', '32132132', '555334478', 'ana@gmail.com', 'Ana4433', 1, 'Vendedor',2);
 
 INSERT INTO Descuento (nombre, total) VALUES
 ('Descuento 10%', 10.00),
@@ -189,3 +191,8 @@ INSERT INTO DetalleVenta (id_venta, id_medicamento, cantidadVendida, precioMedic
 
 INSERT INTO Devolucion (id_venta, motivo, fechaReclamo, vigente) VALUES
 (1, 'Producto en mal estado', '2024-03-22', TRUE);
+
+ALTER TABLE Vendedor ADD CONSTRAINT UNIQUE (dni);
+
+
+
