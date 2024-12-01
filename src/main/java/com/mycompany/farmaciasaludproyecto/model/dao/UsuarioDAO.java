@@ -4,7 +4,6 @@ import com.mycompany.farmaciasaludproyecto.model.entity.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import org.mindrot.jbcrypt.BCrypt;
 
 /**
@@ -14,35 +13,31 @@ import org.mindrot.jbcrypt.BCrypt;
 public class UsuarioDAO {
 
     public boolean dniExiste(String dni) {
-        
+
         String sql = "SELECT COUNT(*) FROM Vendedor WHERE dni = ?";
 
         try (
-                Connection cn = Conexion.conectar();
-                PreparedStatement stmt = cn.prepareStatement(sql)
-                
-                ) {
+                Connection cn = Conexion.conectar(); PreparedStatement stmt = cn.prepareStatement(sql)) {
 
             stmt.setString(1, dni);
 
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    return rs.getInt(1) > 0; 
+                    return rs.getInt(1) > 0;
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
-        
+
         }
 
         return false;
     }
-    
+
     public boolean verificarCredenciales(String correo, String clave) {
         String sql = "SELECT clave FROM Usuario WHERE correo = ?";
 
-        try (Connection conn = Conexion.conectar();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = Conexion.conectar(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, correo);
 
@@ -58,15 +53,14 @@ public class UsuarioDAO {
 
         return false;
     }
-    
+
     public boolean agregarUsuario(Usuario usuario) {
         String sql = """
             INSERT INTO Usuario (nombres, apellidos, dni, telefono, correo, clave, estado, rol, id_vendedor)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
         """;
 
-        try (Connection conn = Conexion.conectar();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = Conexion.conectar(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             // Encriptar la contraseña antes de almacenarla
             String hashedPassword = BCrypt.hashpw(usuario.getClave(), BCrypt.gensalt());
@@ -87,6 +81,59 @@ public class UsuarioDAO {
         }
 
         return false;
+    }
+
+    public Usuario loguear(String correo, String clave) {
+        String sql = "SELECT * FROM Usuario WHERE correo = ? AND estado = 1";
+
+        try (Connection conn = Conexion.conectar(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, correo);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    String claveEncriptada = rs.getString("clave");
+
+                    // Verificar la contraseña
+                    if (BCrypt.checkpw(clave, claveEncriptada)) {
+                        Usuario usuario = new Usuario();
+                        usuario.setId_usuario(rs.getInt("id_usuario"));
+                        usuario.setNombres(rs.getString("nombres"));
+                        usuario.setApellidos(rs.getString("apellidos"));
+                        usuario.setCorreo(rs.getString("correo"));
+                        usuario.setClave(claveEncriptada); // Guardar encriptada
+                        usuario.setRol(rs.getString("rol"));
+                        usuario.setEstado(rs.getInt("estado")); // Ahora como int
+
+                        return usuario;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null; // Si las credenciales son incorrectas o el usuario está inactivo
+    }
+
+    public String obtenerRol(int idUsuario) {
+        String sql = "SELECT rol FROM Usuario WHERE id_usuario = ?";
+
+        try (
+                Connection conn = Conexion.conectar(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, idUsuario);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getString("rol");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null; // Si no se encuentra el usuario
     }
 
 }

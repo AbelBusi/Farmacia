@@ -1,24 +1,28 @@
 package com.mycompany.farmaciasaludproyecto.view.menu;
 
+import com.mycompany.farmaciasaludproyecto.model.dao.UsuarioDAO;
+import com.mycompany.farmaciasaludproyecto.model.entity.Usuario;
 import com.mycompany.farmaciasaludproyecto.view.image.redirectImage;
 import java.awt.Dimension;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author cesar
  */
 public class FRM_Login extends javax.swing.JFrame {
-    
+
     redirectImage image1 = new redirectImage();
+    UsuarioDAO usuarioDAO = new UsuarioDAO();
 
     /**
      * Creates new form JLoginFrame
      */
     public FRM_Login() {
-                
+
         initComponents();
         this.setSize(new Dimension(1200, 700));
-                
+
     }
 
     @SuppressWarnings("unchecked")
@@ -30,7 +34,7 @@ public class FRM_Login extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtCorreo = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -38,7 +42,7 @@ public class FRM_Login extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtPassword = new javax.swing.JPasswordField();
         logoLogin = new javax.swing.JLabel();
         logoLogin2 = new javax.swing.JLabel();
         logoLogin3 = new javax.swing.JLabel();
@@ -65,11 +69,11 @@ public class FRM_Login extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/2135.jpg"))); // NOI18N
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 290, 250));
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField1.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField1.setBorder(null);
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 370, 330, 40));
+        txtCorreo.setBackground(new java.awt.Color(153, 153, 153));
+        txtCorreo.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        txtCorreo.setForeground(new java.awt.Color(0, 0, 0));
+        txtCorreo.setBorder(null);
+        jPanel2.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 370, 330, 40));
 
         jButton1.setBackground(new java.awt.Color(34, 194, 186));
         jButton1.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
@@ -111,12 +115,11 @@ public class FRM_Login extends javax.swing.JFrame {
         jSeparator3.setForeground(new java.awt.Color(34, 194, 186));
         jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 470, 30));
 
-        jPasswordField1.setBackground(new java.awt.Color(255, 255, 255));
-        jPasswordField1.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        jPasswordField1.setForeground(new java.awt.Color(0, 0, 0));
-        jPasswordField1.setText("jPasswordField1");
-        jPasswordField1.setBorder(null);
-        jPanel2.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 450, 330, 40));
+        txtPassword.setBackground(new java.awt.Color(153, 153, 153));
+        txtPassword.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        txtPassword.setForeground(new java.awt.Color(0, 0, 0));
+        txtPassword.setBorder(null);
+        jPanel2.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 450, 330, 40));
 
         logoLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cerrar-con-llave.png"))); // NOI18N
         jPanel2.add(logoLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 450, 60, 70));
@@ -157,16 +160,37 @@ public class FRM_Login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        FRM_MENU_EMPLEADO ingresarMenu = new FRM_MENU_EMPLEADO();
-        ingresarMenu.setVisible(true);
-        this.setVisible(false);
-        /*FRM_MENU_ADMINISTRADOR adminiFrm_menu_administrador= new FRM_MENU_ADMINISTRADOR();
-        adminiFrm_menu_administrador.setVisible(true);
-        this.setVisible(false);*/
-                
         
-        
-        
+        String correo = txtCorreo.getText();
+        char[] passArray = txtPassword.getPassword();
+        String clave = String.valueOf(passArray);
+
+        if (correo.isEmpty() || clave.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe completar todos los campos");
+            return;
+        }
+
+        Usuario usuario = usuarioDAO.loguear(correo, clave);
+
+        if (usuario != null) {
+            JOptionPane.showMessageDialog(null, "Bienvenido " + usuario.getNombres() + " " + usuario.getApellidos());
+
+            String rol = usuario.getRol();
+            if (rol != null) {
+                JOptionPane.showMessageDialog(null, "Tu rol es: " + rol);
+                if (rol.equals("administrador")) {
+                    FRM_MENU_ADMINISTRADOR adminiFrm_menu_administrador = new FRM_MENU_ADMINISTRADOR();
+                    adminiFrm_menu_administrador.setVisible(true);
+                    this.setVisible(false);
+                } else if (rol.equals("vendedor")) {
+                    FRM_MENU_EMPLEADO ingresarMenu = new FRM_MENU_EMPLEADO();
+                    ingresarMenu.setVisible(true);
+                    this.setVisible(false);
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Correo o contraseña incorrectos");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
@@ -223,13 +247,13 @@ public class FRM_Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel logoLogin;
     private javax.swing.JLabel logoLogin2;
     private javax.swing.JLabel logoLogin3;
+    private javax.swing.JTextField txtCorreo;
+    private javax.swing.JPasswordField txtPassword;
     // End of variables declaration//GEN-END:variables
 }

@@ -301,7 +301,7 @@ public class FRM_Register extends javax.swing.JFrame {
         usuario.setCorreo(txtCorreo.getText());
         usuario.setClave(String.valueOf(pass));
         usuario.setEstado(1);
-        usuario.setRol("empleado"); 
+        usuario.setRol("vendedor"); 
         usuario.setId_vendedor(idVendedor); 
 
         // Registro del usuario en la base de datos
