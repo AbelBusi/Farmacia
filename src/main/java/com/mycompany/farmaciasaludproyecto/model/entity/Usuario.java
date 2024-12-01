@@ -18,10 +18,11 @@ public class Usuario implements Comparable<Usuario>{
     private String telefono;
     private String correo;
     private String clave;
-    private boolean vigente;
+    private int estado;
     private String rol;
+    private int id_vendedor;
 
-    public Usuario(int id_usuario, String nombres, String apellidos, String dni, String telefono, String correo, String clave, boolean vigente, String rol) {
+    public Usuario(int id_usuario, String nombres, String apellidos, String dni, String telefono, String correo, String clave, int estado, String rol, int id_vendedor) {
         this.id_usuario = id_usuario;
         this.nombres = nombres;
         this.apellidos = apellidos;
@@ -29,9 +30,15 @@ public class Usuario implements Comparable<Usuario>{
         this.telefono = telefono;
         this.correo = correo;
         this.clave = clave;
-        this.vigente = vigente;
+        this.estado = estado;
         this.rol=rol;
+        this.id_vendedor= id_vendedor;
     }
+
+    public Usuario() {
+    }
+    
+    
     
     public int getId_usuario() {
         return id_usuario;
@@ -48,6 +55,15 @@ public class Usuario implements Comparable<Usuario>{
     public void setNombres(String nombres) {
         this.nombres = nombres;
     }
+
+    public int getId_vendedor() {
+        return id_vendedor;
+    }
+
+    public void setId_vendedor(int id_vendedor) {
+        this.id_vendedor = id_vendedor;
+    }
+    
 
     public String getApellidos() {
         return apellidos;
@@ -89,13 +105,15 @@ public class Usuario implements Comparable<Usuario>{
         this.clave = clave;
     }
 
-    public boolean isVigente() {
-        return vigente;
+    public int getEstado() {
+        return estado;
     }
 
-    public void setVigente(boolean vigente) {
-        this.vigente = vigente;
+    public void setEstado(int estado) {
+        this.estado = estado;
     }
+
+
 
     @Override
     public int compareTo(Usuario o) {
@@ -105,7 +123,7 @@ public class Usuario implements Comparable<Usuario>{
     
     public Object[] convertir (){
     
-        Object[] fila = {id_usuario,nombres,apellidos,dni,telefono,correo,clave,vigente,rol};
+        Object[] fila = {id_usuario,nombres,apellidos,dni,telefono,correo,clave,estado,rol,id_vendedor};
         return fila;
         
     }

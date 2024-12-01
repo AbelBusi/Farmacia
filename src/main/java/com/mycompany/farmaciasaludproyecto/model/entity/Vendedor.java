@@ -18,9 +18,8 @@ public class Vendedor implements Comparable<Vendedor>{
     private String telefono;
     private String correo;
     private boolean vigente;
-    private int id_usuario;
 
-    public Vendedor(int id_vendedor, String nombres, String apellidos, String dni, String telefono, String correo, boolean vigente, int id_usuario) {
+    public Vendedor(int id_vendedor, String nombres, String apellidos, String dni, String telefono, String correo, boolean vigente) {
         this.id_vendedor = id_vendedor;
         this.nombres = nombres;
         this.apellidos = apellidos;
@@ -28,7 +27,6 @@ public class Vendedor implements Comparable<Vendedor>{
         this.telefono = telefono;
         this.correo = correo;
         this.vigente = vigente;
-        this.id_usuario = id_usuario;
     }
 
     public int getId_vendedor() {
@@ -87,13 +85,6 @@ public class Vendedor implements Comparable<Vendedor>{
         this.vigente = vigente;
     }
 
-    public int getId_usuario() {
-        return id_usuario;
-    }
-
-    public void setId_usuario(int id_usuario) {
-        this.id_usuario = id_usuario;
-    }
 
     @Override
     public int compareTo(Vendedor o) {
@@ -103,7 +94,7 @@ public class Vendedor implements Comparable<Vendedor>{
     
     public Object[] convertir (){
     
-        Object[] fila = {id_vendedor,nombres,apellidos,dni,telefono,correo,vigente,id_usuario};
+        Object[] fila = {id_vendedor,nombres,apellidos,dni,telefono,correo,vigente};
         return fila;
         
     }
