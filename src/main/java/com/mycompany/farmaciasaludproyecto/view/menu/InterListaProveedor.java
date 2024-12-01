@@ -1,7 +1,7 @@
 package com.mycompany.farmaciasaludproyecto.view.menu;
 
-import com.mycompany.farmaciasaludproyecto.model.dao.VendedorDao;
-import com.mycompany.farmaciasaludproyecto.model.entity.Vendedor;
+import com.mycompany.farmaciasaludproyecto.model.dao.ProveedorDAO;
+import com.mycompany.farmaciasaludproyecto.model.entity.Proveedor;
 import java.awt.Dimension;
 import java.util.Collections;
 import java.util.Comparator;
@@ -13,54 +13,69 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author ediso
  */
-public class InterListaVendedor extends javax.swing.JInternalFrame {
+public class InterListaProveedor extends javax.swing.JInternalFrame {
 
-    String[] Cabeceras = {"Nombres", "Apellidos", "Telefono", "estado"};
-    DefaultTableModel DTM;
-    VendedorDao vendedorDao = new VendedorDao();
-    LinkedList<Vendedor> LI_vendedor = new LinkedList<>();
+    String[] cabeceras = {"Nombre", "Contacto", "Teléfono"};
+    DefaultTableModel dtm;
+    ProveedorDAO proveedorDao = new ProveedorDAO();
+    LinkedList<Proveedor> listaProveedores = new LinkedList<>();
 
-    public void MostrarJTable() {
-        DTM = new DefaultTableModel(null, Cabeceras);
-        int n = 0;
+    public void mostrarProveedoresEnJTable() {
+        dtm = new DefaultTableModel(null, cabeceras);
 
-        for (Vendedor V : LI_vendedor) {
-            n++;
-            DTM.addRow(V.convertir(n));
+        for (Proveedor p : listaProveedores) {
+            dtm.addRow(p.convertir());
         }
-        jTable_ListaVendedores.setModel(DTM);
+        jTable_ListaProveedores.setModel(dtm);
     }
 
-    public InterListaVendedor() {
+    private void buscarProveedorParcial(String criterio) {
+        // Asegúrate de que la lista esté ordenada antes de realizar la búsqueda
+        listaProveedores.sort(Comparator.comparing(Proveedor::getNombre));
+
+        // Convertir el criterio de búsqueda a minúsculas
+        criterio = criterio.toLowerCase();
+
+        // Usar LinkedList para almacenar los resultados
+        LinkedList<Proveedor> resultados = new LinkedList<>();
+
+        for (Proveedor proveedor : listaProveedores) {
+            String nombreProveedor = proveedor.getNombre().toLowerCase();
+
+            // Buscar si el nombre empieza con el criterio (palabra o primeras palabras)
+            if (nombreProveedor.startsWith(criterio)) {
+                resultados.add(proveedor);
+            }
+        }
+
+        // Mostrar los resultados
+        if (!resultados.isEmpty()) {
+            // Crear un modelo de tabla para mostrar los resultados
+            DefaultTableModel modeloBusqueda = new DefaultTableModel(null, cabeceras);
+
+            for (Proveedor proveedor : resultados) {
+                modeloBusqueda.addRow(new Object[]{
+                    proveedor.getNombre(),
+                    proveedor.getContacto(),
+                    proveedor.getTelefono()
+                });
+            }
+
+            // Establecer el modelo de la tabla
+            jTable_ListaProveedores.setModel(modeloBusqueda);
+
+            JOptionPane.showMessageDialog(null, resultados.size() + " proveedores encontrados.");
+        } else {
+            JOptionPane.showMessageDialog(null, "No se encontraron proveedores con ese nombre.");
+        }
+    }
+
+    public InterListaProveedor() {
         initComponents();
         this.setSize(new Dimension(943, 533));
-        LI_vendedor = vendedorDao.obtenerTodosLosVendedores();
-        MostrarJTable();
+        listaProveedores = proveedorDao.obtenerLosProveedores();
+        mostrarProveedoresEnJTable();
     }
-    
-    private int buscarPorNombre(String nombre) {
-    // Asegúrate de que la lista esté ordenada por nombres
-    Collections.sort(LI_vendedor, Comparator.comparing(Vendedor::getNombres));
-
-    int izquierda = 0;
-    int derecha = LI_vendedor.size() - 1;
-
-    while (izquierda <= derecha) {
-        int medio = (izquierda + derecha) / 2;
-        Vendedor vendedorMedio = LI_vendedor.get(medio);
-        int comparacion = vendedorMedio.getNombres().compareToIgnoreCase(nombre);
-
-        if (comparacion == 0) {
-            return medio; // Se encontró el nombre
-        } else if (comparacion < 0) {
-            izquierda = medio + 1; // Buscar en la parte derecha
-        } else {
-            derecha = medio - 1; // Buscar en la parte izquierda
-        }
-    }
-    return -1; // No encontrado
-}
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -69,7 +84,7 @@ public class InterListaVendedor extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable_ListaVendedores = new javax.swing.JTable();
+        jTable_ListaProveedores = new javax.swing.JTable();
         txt_buscar = new javax.swing.JTextField();
         jButton_ordenarAZ = new javax.swing.JButton();
         jButton_buscar1 = new javax.swing.JButton();
@@ -95,7 +110,7 @@ public class InterListaVendedor extends javax.swing.JInternalFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable_ListaVendedores.setModel(new javax.swing.table.DefaultTableModel(
+        jTable_ListaProveedores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -106,7 +121,7 @@ public class InterListaVendedor extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable_ListaVendedores);
+        jScrollPane1.setViewportView(jTable_ListaProveedores);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 880, 300));
 
@@ -141,17 +156,17 @@ public class InterListaVendedor extends javax.swing.JInternalFrame {
 
         jButton_inactivo.setBackground(new java.awt.Color(204, 255, 153));
         jButton_inactivo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton_inactivo.setText("Inactivo");
+        jButton_inactivo.setText("Contacto desc");
         jButton_inactivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_inactivoActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton_inactivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 370, 90, -1));
+        jPanel1.add(jButton_inactivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 370, 130, -1));
 
         jButton_activo.setBackground(new java.awt.Color(204, 255, 153));
         jButton_activo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton_activo.setText("Activo");
+        jButton_activo.setText("Contacto Asc");
         jButton_activo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_activoActionPerformed(evt);
@@ -185,9 +200,8 @@ public class InterListaVendedor extends javax.swing.JInternalFrame {
 
     private void jButton_ordenarAZActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ordenarAZActionPerformed
 
-        Collections.sort(LI_vendedor, Comparator.comparing(Vendedor::getNombres));
-
-        MostrarJTable();
+        Collections.sort(listaProveedores, Comparator.comparing(Proveedor::getNombre));
+        mostrarProveedoresEnJTable();
 
     }//GEN-LAST:event_jButton_ordenarAZActionPerformed
 
@@ -196,49 +210,30 @@ public class InterListaVendedor extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txt_buscarActionPerformed
 
     private void jButton_buscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_buscar1ActionPerformed
-        // TODO add your handling code here:
-                // TODO add your handling code here:
-            String nombreBuscado = txt_buscar.getText().trim();
+        String criterio = txt_buscar.getText().trim();
 
-    if (nombreBuscado.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Por favor, ingresa un nombre para buscar.");
-        return;
-    }
+        if (criterio.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, ingresa un nombre para buscar.");
+        } else {
+            buscarProveedorParcial(criterio);
+        }
 
-    int indice = buscarPorNombre(nombreBuscado);
-
-    if (indice != -1) {
-        // Si se encuentra, actualiza la tabla con el vendedor encontrado
-        Vendedor vendedorEncontrado = LI_vendedor.get(indice);
-        DTM = new DefaultTableModel(null, Cabeceras);
-        DTM.addRow(vendedorEncontrado.convertir(1)); // Añade solo el vendedor encontrado
-        jTable_ListaVendedores.setModel(DTM);
-    } else {
-        JOptionPane.showMessageDialog(this, "No se encontró el vendedor con ese nombre.");
-    }
     }//GEN-LAST:event_jButton_buscar1ActionPerformed
 
     private void jButton_inactivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_inactivoActionPerformed
-    
-        Collections.sort(LI_vendedor,
-                Comparator.comparing(Vendedor::isVigente).reversed()
-                        .thenComparing(Vendedor::getNombres));
+        Collections.sort(listaProveedores, Comparator.comparing(Proveedor::getContacto).reversed());
+        mostrarProveedoresEnJTable();
 
-        MostrarJTable();
     }//GEN-LAST:event_jButton_inactivoActionPerformed
 
     private void jButton_activoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_activoActionPerformed
-        // TODO add your handling code here:
-        Collections.sort(LI_vendedor, Comparator.comparing(Vendedor::isVigente).reversed());
-
-        MostrarJTable();
+        Collections.sort(listaProveedores, Comparator.comparing(Proveedor::getContacto));
+        mostrarProveedoresEnJTable();
     }//GEN-LAST:event_jButton_activoActionPerformed
 
     private void jButton_ordenarAZ4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ordenarAZ4ActionPerformed
-        // TODO add your handling code here:
-        Collections.sort(LI_vendedor, Comparator.comparing(Vendedor::getNombres).reversed());
-
-        MostrarJTable();
+        Collections.sort(listaProveedores, Comparator.comparing(Proveedor::getNombre).reversed());
+        mostrarProveedoresEnJTable();
     }//GEN-LAST:event_jButton_ordenarAZ4ActionPerformed
 
 
@@ -253,7 +248,7 @@ public class InterListaVendedor extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel_wallpaper;
     private javax.swing.JPanel jPanel1;
     public static javax.swing.JScrollPane jScrollPane1;
-    public static javax.swing.JTable jTable_ListaVendedores;
+    public static javax.swing.JTable jTable_ListaProveedores;
     private javax.swing.JTextField txt_buscar;
     // End of variables declaration//GEN-END:variables
 

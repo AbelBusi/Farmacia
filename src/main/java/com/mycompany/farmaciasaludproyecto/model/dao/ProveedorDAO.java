@@ -6,6 +6,7 @@ package com.mycompany.farmaciasaludproyecto.model.dao;
 import com.mycompany.farmaciasaludproyecto.model.entity.Proveedor;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 /**
  *
@@ -79,4 +80,27 @@ public class ProveedorDAO {
             stmt.executeUpdate();
         }
     }
+    
+    public LinkedList<Proveedor> obtenerLosProveedores() {
+        LinkedList<Proveedor> listaProveedores = new LinkedList<>();
+        String sql = "SELECT nombre, contacto, telefono FROM Proveedor";
+
+        try (Connection conn = Conexion.conectar();
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                String nombre = rs.getString("nombre");
+                String contacto = rs.getString("contacto");
+                String telefono = rs.getString("telefono");
+
+                Proveedor proveedor = new Proveedor(nombre, contacto, telefono);
+                listaProveedores.add(proveedor);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listaProveedores;
+    }
+    
 }

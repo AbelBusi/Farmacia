@@ -112,7 +112,7 @@ public class FRM_MENU_EMPLEADO extends javax.swing.JFrame {
         menu_proveedor.setPreferredSize(new java.awt.Dimension(160, 50));
 
         MENU_GestionarProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proveedor.png"))); // NOI18N
-        MENU_GestionarProveedores.setText("Gestionar Proveedores");
+        MENU_GestionarProveedores.setText("Lista de Proveedores");
         MENU_GestionarProveedores.setPreferredSize(new java.awt.Dimension(255, 45));
         MENU_GestionarProveedores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -340,7 +340,7 @@ public class FRM_MENU_EMPLEADO extends javax.swing.JFrame {
 
     private void MENU_GestionarProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_GestionarProveedoresActionPerformed
 
-        InterGestionarProveedores gestionarProveedores = new InterGestionarProveedores();
+        InterListaProveedor gestionarProveedores = new InterListaProveedor();
         jDesktopPane_menu.add(gestionarProveedores);
         gestionarProveedores.setVisible(true);
         

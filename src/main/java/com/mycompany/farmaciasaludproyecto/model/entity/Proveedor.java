@@ -23,6 +23,14 @@ public class Proveedor implements Comparable<Proveedor>{
         this.telefono = telefono;
     }
 
+    public Proveedor(String nombre, String contacto, String telefono) {
+        this.nombre = nombre;
+        this.contacto = contacto;
+        this.telefono = telefono;
+    }
+    
+    
+
     public int getId_proveedor() {
         return id_proveedor;
     }
@@ -63,7 +71,7 @@ public class Proveedor implements Comparable<Proveedor>{
     
     public Object[] convertir (){
     
-        Object[] fila = {id_proveedor,nombre,contacto,telefono};
+        Object[] fila = {nombre,contacto,telefono};
         return fila;
         
     }
