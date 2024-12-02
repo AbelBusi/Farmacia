@@ -1,41 +1,24 @@
 package com.mycompany.farmaciasaludproyecto.view.menu;
-<<<<<<< HEAD
 
-import com.mycompany.farmaciasaludproyecto.model.dao.ClienteDAO;
-import com.mycompany.farmaciasaludproyecto.model.entity.Cliente;
-import java.awt.Dimension;
 import java.util.LinkedList;
-import javax.swing.JOptionPane;
 
-=======
 import com.mycompany.farmaciasaludproyecto.model.dao.ClienteDAO;
 import com.mycompany.farmaciasaludproyecto.model.entity.Cliente;
 import javax.swing.JOptionPane;
 import java.awt.Dimension;
-import java.sql.SQLException;
-import java.util.List;
-import javax.swing.table.DefaultTableModel;
->>>>>>> d44bc5e78bae22b115b05f37082692cd852c7f57
 /**
  *
  * @author ediso
  */
 public class InterRegistrarCliente extends javax.swing.JInternalFrame {
-<<<<<<< HEAD
 
     ClienteDAO clienteDAO = new ClienteDAO();
     private LinkedList<Cliente> LI_clientes = new LinkedList<>();
 
-=======
-    ClienteDAO clienteDAO;
-    InterGestionarCliente gestionarClienteFrame;
->>>>>>> d44bc5e78bae22b115b05f37082692cd852c7f57
     public InterRegistrarCliente() {
         initComponents();
         this.setSize(new Dimension(513, 450));
         this.setTitle("Nuevo Cliente");
-        clienteDAO = new ClienteDAO();
-        this.gestionarClienteFrame = gestionarClienteFrame;
     }
 
     /**
@@ -60,11 +43,8 @@ public class InterRegistrarCliente extends javax.swing.JInternalFrame {
         jLabel11 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         txt_apellido = new javax.swing.JTextField();
-<<<<<<< HEAD
         txtTelefono = new javax.swing.JTextField();
-=======
         txt_telefono = new javax.swing.JTextField();
->>>>>>> d44bc5e78bae22b115b05f37082692cd852c7f57
         txt_direccion = new javax.swing.JTextField();
         jButton_Guardar = new javax.swing.JButton();
         txt_dni = new javax.swing.JTextField();
@@ -130,11 +110,9 @@ public class InterRegistrarCliente extends javax.swing.JInternalFrame {
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tarifa.png"))); // NOI18N
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, 40, 50));
 
-<<<<<<< HEAD
         txtNombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtNombre.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 200, -1));
-=======
         txt_nombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txt_nombre.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         txt_nombre.addActionListener(new java.awt.event.ActionListener() {
@@ -143,21 +121,17 @@ public class InterRegistrarCliente extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 200, -1));
->>>>>>> d44bc5e78bae22b115b05f37082692cd852c7f57
 
         txt_apellido.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txt_apellido.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(txt_apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 200, -1));
 
-<<<<<<< HEAD
         txtTelefono.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtTelefono.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 290, 200, -1));
-=======
         txt_telefono.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txt_telefono.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(txt_telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 290, 200, -1));
->>>>>>> d44bc5e78bae22b115b05f37082692cd852c7f57
 
         txt_direccion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txt_direccion.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -191,7 +165,6 @@ public class InterRegistrarCliente extends javax.swing.JInternalFrame {
         String direccion = txt_direccion.getText().trim();
         String telefono = txt_telefono.getText().trim();
 
-<<<<<<< HEAD
         if (txtNombre.getText().isEmpty() || txt_apellido.getText().isEmpty()
                 || txt_dni.getText().isEmpty() || txt_direccion.getText().isEmpty() || txtTelefono.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "No pueden quedarse casillas incompletas");
@@ -212,26 +185,12 @@ public class InterRegistrarCliente extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Error al guardar el cliente.");
         }
 
-=======
         if (nombre.isEmpty() || apellido.isEmpty() || dni.isEmpty() || direccion.isEmpty() || telefono.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
->>>>>>> d44bc5e78bae22b115b05f37082692cd852c7f57
 
-        // Crear el cliente
-        Cliente cliente = new Cliente(0, nombre, apellido, dni, direccion, telefono);
-        try {
-            clienteDAO.insertarCliente(cliente);
-            JOptionPane.showMessageDialog(this, "Cliente registrado correctamente.", "Información", JOptionPane.INFORMATION_MESSAGE);
-            Limpiar();
-            if (gestionarClienteFrame != null) {
-                gestionarClienteFrame.actualizarTabla(); // Actualiza la tabla de la otra interfaz.
-            }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "Error al registrar el cliente: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-
+ 
     }                                               
 
     private void txt_nombreActionPerformed(java.awt.event.ActionEvent evt) {                                           
@@ -258,13 +217,10 @@ public class InterRegistrarCliente extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txt_apellido;
     private javax.swing.JTextField txt_direccion;
     private javax.swing.JTextField txt_dni;
-<<<<<<< HEAD
-    // End of variables declaration//GEN-END:variables
-=======
+    // End of variables declaration                   
     private javax.swing.JTextField txt_nombre;
     private javax.swing.JTextField txt_telefono;
     // End of variables declaration                   
->>>>>>> d44bc5e78bae22b115b05f37082692cd852c7f57
      /**
      *
      * Metodo para limpiar campos
@@ -272,11 +228,8 @@ public class InterRegistrarCliente extends javax.swing.JInternalFrame {
     private void Limpiar() {
         txtNombre.setText("");
         txt_apellido.setText("");
-<<<<<<< HEAD
         txtTelefono.setText("");
-=======
         txt_telefono.setText("");
->>>>>>> d44bc5e78bae22b115b05f37082692cd852c7f57
         txt_direccion.setText("");
         txt_dni.setText("");
     }

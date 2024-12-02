@@ -4,7 +4,10 @@
  */
 package com.mycompany.farmaciasaludproyecto.model.entity;
 
+import com.mycompany.farmaciasaludproyecto.model.dao.Conexion;
 import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.Comparator;
 import java.util.Date;
 
@@ -12,21 +15,32 @@ import java.util.Date;
  *
  * @author Daniela
  */
-public class Venta implements Comparable<Venta>{
-     private int id_venta;
-    private int id_cliente; 
-    private int id_vendedor; 
-    private int id_descuento; 
+public class Venta implements Comparable<Venta> {
+
+    private int id_venta;
+    private int id_cliente;
+    private int id_vendedor;
+    private int id_descuento;
     private BigDecimal total;
     private Date fechaVenta;
     private boolean vigente;
 
-    public Venta( int id_cliente, int id_vendedor, int id_descuento, BigDecimal total) {
+    public Venta(int id_cliente, int id_vendedor, int id_descuento, BigDecimal total) {
         this.id_cliente = id_cliente;
         this.id_vendedor = id_vendedor;
         this.id_descuento = id_descuento;
         this.total = total;
 
+    }
+
+    public Venta(int id_venta, int id_cliente, int id_vendedor, int id_descuento, BigDecimal total, Date fechaVenta, boolean vigente) {
+        this.id_venta = id_venta;
+        this.id_cliente = id_cliente;
+        this.id_vendedor = id_vendedor;
+        this.id_descuento = id_descuento;
+        this.total = total;
+        this.fechaVenta = fechaVenta;
+        this.vigente = vigente;
     }
 
     public Venta(int id_cliente, int id_vendedor, int id_descuento, BigDecimal total, Date fechaVenta, boolean vigente) {
@@ -37,8 +51,6 @@ public class Venta implements Comparable<Venta>{
         this.fechaVenta = fechaVenta;
         this.vigente = vigente;
     }
-    
-    
 
     public int getId_venta() {
         return id_venta;
@@ -80,8 +92,6 @@ public class Venta implements Comparable<Venta>{
         this.total = total;
     }
 
-    
-
     public Date getFechaVenta() {
         return fechaVenta;
     }
@@ -89,8 +99,6 @@ public class Venta implements Comparable<Venta>{
     public void setFechaVenta(Date fechaVenta) {
         this.fechaVenta = fechaVenta;
     }
-    
-    
 
     public boolean isVigente() {
         return vigente;
@@ -105,12 +113,26 @@ public class Venta implements Comparable<Venta>{
         return Comparator.comparing(Venta::getFechaVenta).
                 thenComparing(Venta::getFechaVenta).compare(this, o); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
-    public Object[] convertir (){
-    
-        Object[] fila = {id_venta,id_cliente,id_vendedor,id_descuento,total,fechaVenta,vigente};
+
+    public Object[] convertir() {
+
+        Object[] fila = {id_venta, id_cliente, id_vendedor, id_descuento, total, fechaVenta, vigente};
         return fila;
-        
+
     }
-    
+
+    public Object[] convertirObj() {
+        return new Object[]{
+            id_venta,
+            id_cliente,
+            id_vendedor,
+            id_descuento,
+            total,
+            fechaVenta,
+            vigente ? "Sí" : "No"
+        };
+    }
+
+
+
 }

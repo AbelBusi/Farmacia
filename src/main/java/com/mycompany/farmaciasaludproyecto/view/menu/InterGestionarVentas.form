@@ -168,7 +168,6 @@
               <Image iconType="3" name="/rotacion.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Actualizar"/>
-            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_actualizarActionPerformed"/>

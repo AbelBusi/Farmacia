@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Types;
 import java.time.LocalDate;
+import java.util.LinkedList;
 
 /**
  *
@@ -61,4 +62,32 @@ public class VentaDAO {
         return idVendedor;
 
     }
+    
+        public LinkedList<Venta> obtenerVentas() {
+        LinkedList<Venta> ventas = new LinkedList<>();
+        String sql = "SELECT * FROM Venta";
+
+        try (Connection connection = Conexion.conectar();
+                Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(sql)) {
+
+            while (resultSet.next()) {
+                int idVenta = resultSet.getInt("id_venta");
+                int idCliente = resultSet.getInt("id_cliente");
+                int idVendedor = resultSet.getInt("id_vendedor");
+                int idDescuento = resultSet.getInt("id_descuento");
+                BigDecimal total = resultSet.getBigDecimal("total");
+                Date fechaVenta = resultSet.getDate("fechaVenta");
+                boolean vigente = resultSet.getBoolean("vigente");
+
+                Venta venta = new Venta(idVenta, idCliente, idVendedor, idDescuento, total, fechaVenta, vigente);
+                ventas.add(venta);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return ventas;
+    }
+    
 }
