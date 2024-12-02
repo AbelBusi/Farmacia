@@ -137,15 +137,4 @@ public class InterCrearDescuento extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txt_cantidad_actual;
     private javax.swing.JTextField txt_cantidad_nueva;
     // End of variables declaration                   
-
-    //Metodo para caragar los productos en el jComboBox
-    private void CargarComboProductos() {
-    
-
-    }
-
-    //metodo para mostrar stock del producto seleccionado
-    private void MostrarStock() {
-    }
-
 }
