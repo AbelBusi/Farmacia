@@ -1,21 +1,33 @@
 package com.mycompany.farmaciasaludproyecto.view.menu;
-
+import com.mycompany.farmaciasaludproyecto.model.dao.ClienteDAO;
+import com.mycompany.farmaciasaludproyecto.model.entity.Cliente;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import java.awt.Dimension;
-
-/**
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;/**
  *
  * @author ediso
  */
 public class InterGestionarCliente extends javax.swing.JInternalFrame {
-
-
-
+ String[] Cabeceras = {"#", "Nombre", "Apellidos", "DNI", "Dirección", "Teléfono"};
+    DefaultTableModel modeloTabla;
+    List<Cliente> listaClientes;
+    ClienteDAO clienteDAO;
+    
     public InterGestionarCliente(){
-    initComponents();
-    this.setSize(new Dimension(943, 533));
+     initComponents();
+        this.setSize(new Dimension(943, 533));
+        clienteDAO = new ClienteDAO();
+        listaClientes = new ArrayList<>();
+        modeloTabla = new DefaultTableModel(null, Cabeceras);
+        jTable_productos.setModel(modeloTabla);
+        actualizarTabla();
     }
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
@@ -24,26 +36,23 @@ public class InterGestionarCliente extends javax.swing.JInternalFrame {
         jTable_productos = new javax.swing.JTable();
         txt_buscar = new javax.swing.JTextField();
         jButton_ordenarAZ = new javax.swing.JButton();
-        jButton_buscar1 = new javax.swing.JButton();
-        jButton_ordenarAZ1 = new javax.swing.JButton();
-        jButton_ordenarAZ2 = new javax.swing.JButton();
-        jButton_ordenarAZ3 = new javax.swing.JButton();
-        jButton_ordenarAZ4 = new javax.swing.JButton();
+        jButton_buscar = new javax.swing.JButton();
+        jButton_ordenarZA = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jButton_eliminar = new javax.swing.JButton();
-        jButton_actualizar1 = new javax.swing.JButton();
+        jButton_actualizar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         txt_nombre = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txt_precio = new javax.swing.JTextField();
-        txt_descripcion = new javax.swing.JTextField();
-        txt_cantidad = new javax.swing.JTextField();
+        txt_dni = new javax.swing.JTextField();
+        txt_Telefeno = new javax.swing.JTextField();
+        txt_apellidos = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        txt_descripcion1 = new javax.swing.JTextField();
+        txt_direccion = new javax.swing.JTextField();
         jLabel_wallpaper = new javax.swing.JLabel();
 
         setClosable(true);
@@ -93,56 +102,26 @@ public class InterGestionarCliente extends javax.swing.JInternalFrame {
         });
         jPanel1.add(jButton_ordenarAZ, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, 80, -1));
 
-        jButton_buscar1.setBackground(new java.awt.Color(51, 204, 0));
-        jButton_buscar1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton_buscar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/investigar.png"))); // NOI18N
-        jButton_buscar1.setText("Buscar");
-        jButton_buscar1.addActionListener(new java.awt.event.ActionListener() {
+        jButton_buscar.setBackground(new java.awt.Color(51, 204, 0));
+        jButton_buscar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/investigar.png"))); // NOI18N
+        jButton_buscar.setText("Buscar");
+        jButton_buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_buscar1ActionPerformed(evt);
+                jButton_buscarActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton_buscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, 120, 30));
+        jPanel1.add(jButton_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, 120, 30));
 
-        jButton_ordenarAZ1.setBackground(new java.awt.Color(204, 255, 153));
-        jButton_ordenarAZ1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton_ordenarAZ1.setText("Precio Asc");
-        jButton_ordenarAZ1.addActionListener(new java.awt.event.ActionListener() {
+        jButton_ordenarZA.setBackground(new java.awt.Color(204, 255, 153));
+        jButton_ordenarZA.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton_ordenarZA.setText("Z- A");
+        jButton_ordenarZA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_ordenarAZ1ActionPerformed(evt);
+                jButton_ordenarZAActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton_ordenarAZ1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 280, 100, -1));
-
-        jButton_ordenarAZ2.setBackground(new java.awt.Color(204, 255, 153));
-        jButton_ordenarAZ2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton_ordenarAZ2.setText("Fecha Desc");
-        jButton_ordenarAZ2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_ordenarAZ2ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton_ordenarAZ2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 280, 90, -1));
-
-        jButton_ordenarAZ3.setBackground(new java.awt.Color(204, 255, 153));
-        jButton_ordenarAZ3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton_ordenarAZ3.setText("Fecha Asc");
-        jButton_ordenarAZ3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_ordenarAZ3ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton_ordenarAZ3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 280, 100, -1));
-
-        jButton_ordenarAZ4.setBackground(new java.awt.Color(204, 255, 153));
-        jButton_ordenarAZ4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton_ordenarAZ4.setText("Z- A");
-        jButton_ordenarAZ4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_ordenarAZ4ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton_ordenarAZ4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 280, 80, -1));
+        jPanel1.add(jButton_ordenarZA, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 280, 80, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
@@ -167,16 +146,16 @@ public class InterGestionarCliente extends javax.swing.JInternalFrame {
         });
         jPanel2.add(jButton_eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 130, -1));
 
-        jButton_actualizar1.setBackground(new java.awt.Color(51, 204, 0));
-        jButton_actualizar1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton_actualizar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medico.png"))); // NOI18N
-        jButton_actualizar1.setText("Actualizar");
-        jButton_actualizar1.addActionListener(new java.awt.event.ActionListener() {
+        jButton_actualizar.setBackground(new java.awt.Color(51, 204, 0));
+        jButton_actualizar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton_actualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medico.png"))); // NOI18N
+        jButton_actualizar.setText("Actualizar");
+        jButton_actualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_actualizar1ActionPerformed(evt);
+                jButton_actualizarActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton_actualizar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 130, -1));
+        jPanel2.add(jButton_actualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 130, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 40, 170, 330));
 
@@ -212,17 +191,17 @@ public class InterGestionarCliente extends javax.swing.JInternalFrame {
         jLabel7.setText("Telefono:");
         jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 10, 90, -1));
 
-        txt_precio.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txt_precio.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel3.add(txt_precio, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 170, -1));
+        txt_dni.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txt_dni.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel3.add(txt_dni, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 170, -1));
 
-        txt_descripcion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txt_descripcion.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel3.add(txt_descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 10, 170, -1));
+        txt_Telefeno.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txt_Telefeno.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel3.add(txt_Telefeno, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 10, 170, -1));
 
-        txt_cantidad.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txt_cantidad.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel3.add(txt_cantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 43, 170, 20));
+        txt_apellidos.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txt_apellidos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel3.add(txt_apellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 43, 170, 20));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
@@ -230,9 +209,9 @@ public class InterGestionarCliente extends javax.swing.JInternalFrame {
         jLabel8.setText("Dni:");
         jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 90, -1));
 
-        txt_descripcion1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txt_descripcion1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel3.add(txt_descripcion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 40, 170, -1));
+        txt_direccion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txt_direccion.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel3.add(txt_direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 40, 170, -1));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 910, 100));
 
@@ -240,56 +219,96 @@ public class InterGestionarCliente extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel_wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 940, 510));
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
-    private void jButton_ordenarAZActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ordenarAZActionPerformed
-
-
-
-    }//GEN-LAST:event_jButton_ordenarAZActionPerformed
-
-    private void jButton_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_eliminarActionPerformed
-
-    }//GEN-LAST:event_jButton_eliminarActionPerformed
-
-    private void jButton_actualizar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_actualizar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_actualizar1ActionPerformed
-
-    private void txt_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_buscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_buscarActionPerformed
-
-    private void jButton_buscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_buscar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_buscar1ActionPerformed
-
-    private void jButton_ordenarAZ1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ordenarAZ1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_ordenarAZ1ActionPerformed
-
-    private void jButton_ordenarAZ2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ordenarAZ2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_ordenarAZ2ActionPerformed
-
-    private void jButton_ordenarAZ3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ordenarAZ3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_ordenarAZ3ActionPerformed
-
-    private void jButton_ordenarAZ4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ordenarAZ4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_ordenarAZ4ActionPerformed
+    private void jButton_ordenarAZActionPerformed(java.awt.event.ActionEvent evt) {                                                  
+    listaClientes.sort(Comparator.comparing(Cliente::getNombres));
+    actualizarTabla();
 
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton_actualizar1;
-    private javax.swing.JButton jButton_buscar1;
+    }                                                 
+
+    private void jButton_eliminarActionPerformed(java.awt.event.ActionEvent evt) {                                                 
+    int selectedRow = jTable_productos.getSelectedRow();
+    if (selectedRow == -1) {
+        JOptionPane.showMessageDialog(this, "Seleccione un cliente para eliminar.", "Error", JOptionPane.ERROR_MESSAGE);
+    } else {
+        try {
+            Cliente cliente = listaClientes.get(selectedRow);
+            clienteDAO.eliminarCliente(cliente.getId_cliente());
+            listaClientes.remove(selectedRow);
+            actualizarTabla();
+            JOptionPane.showMessageDialog(this, "Cliente eliminado correctamente.", "Información", JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error al eliminar el cliente: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    }                                                
+
+    private void jButton_actualizarActionPerformed(java.awt.event.ActionEvent evt) {                                                   
+        int selectedRow = jTable_productos.getSelectedRow();
+    if (selectedRow == -1) {
+        JOptionPane.showMessageDialog(this, "Seleccione un cliente para actualizar.", "Error", JOptionPane.ERROR_MESSAGE);
+    } else {
+        Cliente cliente = listaClientes.get(selectedRow);
+        cliente.setNombres(txt_nombre.getText().trim());
+        cliente.setApellidos(txt_apellidos.getText().trim());
+        cliente.setDni(txt_dni.getText().trim());
+        cliente.setDireccion(txt_direccion.getText().trim());
+        cliente.setTelefono(txt_Telefeno.getText().trim());
+        
+        try {
+            clienteDAO.actualizarCliente(cliente);
+            actualizarTabla();
+            JOptionPane.showMessageDialog(this, "Cliente actualizado correctamente.", "Información", JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error al actualizar el cliente: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    }                                                  
+
+    private void txt_buscarActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        buscarCliente();
+        
+    }                                          
+
+    private void jButton_buscarActionPerformed(java.awt.event.ActionEvent evt) {                                               
+       buscarCliente();
+    }
+    private void buscarCliente() {
+    String nombreBuscado = txt_buscar.getText().trim().toLowerCase();
+    modeloTabla.setRowCount(0);
+
+    boolean encontrado = false;
+    for (Cliente cliente : listaClientes) {
+        if (cliente.getNombres().toLowerCase().contains(nombreBuscado) || cliente.getApellidos().toLowerCase().contains(nombreBuscado)) {
+            modeloTabla.addRow(cliente.convertir());
+            encontrado = true;
+        }
+    }
+
+    if (!encontrado) {
+        JOptionPane.showMessageDialog(this, "Cliente no encontrado.", "Información", JOptionPane.WARNING_MESSAGE);
+    }
+       
+    }                                              
+
+    private void jButton_ordenarZAActionPerformed(java.awt.event.ActionEvent evt) {                                                  
+        listaClientes.sort((c1, c2) -> c2.getNombres().compareTo(c1.getNombres()));
+    actualizarTabla();
+    }                                                 
+    private void actualizarTabla() {
+    modeloTabla.setRowCount(0);
+    for (Cliente cliente : listaClientes) {
+        modeloTabla.addRow(cliente.convertir());
+    }}
+
+    // Variables declaration - do not modify                     
+    private javax.swing.JButton jButton_actualizar;
+    private javax.swing.JButton jButton_buscar;
     private javax.swing.JButton jButton_eliminar;
     private javax.swing.JButton jButton_ordenarAZ;
-    private javax.swing.JButton jButton_ordenarAZ1;
-    private javax.swing.JButton jButton_ordenarAZ2;
-    private javax.swing.JButton jButton_ordenarAZ3;
-    private javax.swing.JButton jButton_ordenarAZ4;
+    private javax.swing.JButton jButton_ordenarZA;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -303,12 +322,12 @@ public class InterGestionarCliente extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel3;
     public static javax.swing.JScrollPane jScrollPane1;
     public static javax.swing.JTable jTable_productos;
+    private javax.swing.JTextField txt_Telefeno;
+    private javax.swing.JTextField txt_apellidos;
     private javax.swing.JTextField txt_buscar;
-    private javax.swing.JTextField txt_cantidad;
-    private javax.swing.JTextField txt_descripcion;
-    private javax.swing.JTextField txt_descripcion1;
+    private javax.swing.JTextField txt_direccion;
+    private javax.swing.JTextField txt_dni;
     private javax.swing.JTextField txt_nombre;
-    private javax.swing.JTextField txt_precio;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 
 }
