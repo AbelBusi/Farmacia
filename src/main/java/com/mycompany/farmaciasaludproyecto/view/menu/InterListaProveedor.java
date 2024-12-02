@@ -73,7 +73,7 @@ public class InterListaProveedor extends javax.swing.JInternalFrame {
     public InterListaProveedor() {
         initComponents();
         this.setSize(new Dimension(943, 533));
-        listaProveedores = proveedorDao.obtenerLosProveedores();
+        listaProveedores = proveedorDao.listarProveedor();
         mostrarProveedoresEnJTable();
     }
 

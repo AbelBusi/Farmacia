@@ -23,14 +23,11 @@ public class Proveedor implements Comparable<Proveedor>{
         this.telefono = telefono;
     }
 
-    public Proveedor(String nombre, String contacto, String telefono) {
-        this.nombre = nombre;
-        this.contacto = contacto;
-        this.telefono = telefono;
+    public Proveedor() {
     }
-    
-    
 
+    
+    
     public int getId_proveedor() {
         return id_proveedor;
     }

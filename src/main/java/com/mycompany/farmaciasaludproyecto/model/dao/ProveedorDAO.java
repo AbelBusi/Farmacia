@@ -5,102 +5,106 @@
 package com.mycompany.farmaciasaludproyecto.model.dao;
 import com.mycompany.farmaciasaludproyecto.model.entity.Proveedor;
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 /**
  *
  * @author Daniela
  */
 public class ProveedorDAO {
-      public void insertarProveedor(Proveedor proveedor) throws SQLException {
+      public int agregarProveedor(Proveedor prove) {
         String sql = "INSERT INTO Proveedor (nombre, contacto, telefono) VALUES (?, ?, ?)";
         try (Connection conn = Conexion.conectar();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, proveedor.getNombre());
-            stmt.setString(2, proveedor.getContacto());
-            stmt.setString(3, proveedor.getTelefono());
+            stmt.setString(1, prove.getNombre());
+            stmt.setString(2, prove.getContacto());
+            stmt.setString(3, prove.getTelefono());
             stmt.executeUpdate();
+            return 1;
+        }catch (Exception e) {
+            e.printStackTrace();  
+            return 0;  
         }
     }
 
-    public Proveedor obtenerProveedor(int id) throws SQLException {
+    public Proveedor leerProveedor(int id_proveedor) {
+        Proveedor prove = null;
         String sql = "SELECT * FROM Proveedor WHERE id_proveedor = ?";
         try (Connection conn = Conexion.conectar();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, id);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                return new Proveedor(
-                    rs.getInt("id_proveedor"),
-                    rs.getString("nombre"),
-                    rs.getString("contacto"),
-                    rs.getString("telefono")
-                );
-            }
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, id_proveedor);  
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                        prove = new Proveedor();
+                        prove.setId_proveedor(rs.getInt("id_proveedor"));
+                        prove.setNombre(rs.getString("nombre"));
+                        prove.setContacto(rs.getString("contacto"));
+                        prove.setTelefono(rs.getString("telefono"));
+                     }
         }
-        return null;
+    } catch (Exception e) {
+        e.printStackTrace();  
     }
+    return prove;  
+   } 
 
-    public List<Proveedor> obtenerTodosLosProveedores() throws SQLException {
-        List<Proveedor> proveedores = new ArrayList<>();
+    public LinkedList<Proveedor> listarProveedor() {
+        LinkedList<Proveedor> datosProveedor = new LinkedList<>();
         String sql = "SELECT * FROM Proveedor";
         try (Connection conn = Conexion.conectar();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
-                proveedores.add(new Proveedor(
-                    rs.getInt("id_proveedor"),
-                    rs.getString("nombre"),
-                    rs.getString("contacto"),
-                    rs.getString("telefono")
-                ));
+                Proveedor prove = new Proveedor();
+                prove.setId_proveedor(rs.getInt("id_proveedor"));
+                prove.setNombre(rs.getString("nombre"));
+                prove.setContacto(rs.getString("contacto"));
+                prove.setTelefono(rs.getString("telefono"));
+                
+                datosProveedor.add(prove);
             }
+        }catch (Exception e) {
+            e.printStackTrace(); 
         }
-        return proveedores;
+        return datosProveedor;
     }
 
-    public void actualizarProveedor(Proveedor proveedor) throws SQLException {
+    public int actualizarProveedor(Proveedor prove) {
+        int resultado = 0;
         String sql = "UPDATE Proveedor SET nombre = ?, contacto = ?, telefono = ? WHERE id_proveedor = ?";
         try (Connection conn = Conexion.conectar();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, proveedor.getNombre());
-            stmt.setString(2, proveedor.getContacto());
-            stmt.setString(3, proveedor.getTelefono());
-            stmt.setInt(4, proveedor.getId_proveedor());
-            stmt.executeUpdate();
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, prove.getNombre());
+            stmt.setString(2, prove.getContacto());
+            stmt.setString(3, prove.getTelefono());
+            stmt.setInt(4, prove.getId_proveedor());
+            resultado = stmt.executeUpdate();
+            if(resultado == 1){
+                    return 1;
+                }else{
+                    return 0;
+                }
+        } catch (Exception e) {
+            e.printStackTrace();  
         }
+
+        return resultado; 
     }
 
-    public void eliminarProveedor(int id) throws SQLException {
+    public void eliminarProveedor(int id_prove) {
         String sql = "DELETE FROM Proveedor WHERE id_proveedor = ?";
         try (Connection conn = Conexion.conectar();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, id);
-            stmt.executeUpdate();
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+        stmt.setInt(1, id_prove);
+        
+        int filasAfectadas = stmt.executeUpdate();
+        
+        if (filasAfectadas > 0) {
+            System.out.println("Proveedor eliminado correctamente.");
+        } else {
+            System.out.println("No se encontró el Proveedor.");
         }
+    } catch (Exception e) {
+        e.printStackTrace();  
     }
-    
-    public LinkedList<Proveedor> obtenerLosProveedores() {
-        LinkedList<Proveedor> listaProveedores = new LinkedList<>();
-        String sql = "SELECT nombre, contacto, telefono FROM Proveedor";
-
-        try (Connection conn = Conexion.conectar();
-             PreparedStatement ps = conn.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
-
-            while (rs.next()) {
-                String nombre = rs.getString("nombre");
-                String contacto = rs.getString("contacto");
-                String telefono = rs.getString("telefono");
-
-                Proveedor proveedor = new Proveedor(nombre, contacto, telefono);
-                listaProveedores.add(proveedor);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return listaProveedores;
     }
-    
 }

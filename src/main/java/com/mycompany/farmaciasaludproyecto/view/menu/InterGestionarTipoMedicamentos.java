@@ -1,21 +1,32 @@
 package com.mycompany.farmaciasaludproyecto.view.menu;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import java.awt.Dimension;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 /**
  *
  * @author ediso
  */
 public class InterGestionarTipoMedicamentos extends javax.swing.JInternalFrame {
-
+   String[] Cabeceras = {"#", "Nombre", "Descripción"};
+    DefaultTableModel modeloTabla;
+    List<Object[]> listaTiposMedicamentos;
 
 
     public InterGestionarTipoMedicamentos(){
-    initComponents();
-    this.setSize(new Dimension(788, 542));
+   initComponents();
+        this.setSize(new Dimension(788, 542));
+        listaTiposMedicamentos = new ArrayList<>();
+        modeloTabla = new DefaultTableModel(null, Cabeceras);
+        jTable_productos.setModel(modeloTabla);
     }
+
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
@@ -24,19 +35,19 @@ public class InterGestionarTipoMedicamentos extends javax.swing.JInternalFrame {
         jTable_productos = new javax.swing.JTable();
         txt_buscar = new javax.swing.JTextField();
         jButton_ordenarAZ = new javax.swing.JButton();
-        jButton_buscar1 = new javax.swing.JButton();
-        jButton_ordenarAZ1 = new javax.swing.JButton();
-        jButton_ordenarAZ4 = new javax.swing.JButton();
+        jButton_buscar = new javax.swing.JButton();
+        jButton_PrecioASC = new javax.swing.JButton();
+        jButton_ordenarZA = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jButton_eliminar = new javax.swing.JButton();
-        jButton_actualizar1 = new javax.swing.JButton();
+        jButton_actualizar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        txt_nombre1 = new javax.swing.JTextField();
+        txt_nombre = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtdescripcion = new javax.swing.JTextArea();
         jLabel_wallpaper = new javax.swing.JLabel();
 
         setClosable(true);
@@ -88,36 +99,36 @@ public class InterGestionarTipoMedicamentos extends javax.swing.JInternalFrame {
         });
         jPanel1.add(jButton_ordenarAZ, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, 80, -1));
 
-        jButton_buscar1.setBackground(new java.awt.Color(51, 204, 0));
-        jButton_buscar1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton_buscar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/investigar.png"))); // NOI18N
-        jButton_buscar1.setText("Buscar");
-        jButton_buscar1.addActionListener(new java.awt.event.ActionListener() {
+        jButton_buscar.setBackground(new java.awt.Color(51, 204, 0));
+        jButton_buscar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/investigar.png"))); // NOI18N
+        jButton_buscar.setText("Buscar");
+        jButton_buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_buscar1ActionPerformed(evt);
+                jButton_buscarActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton_buscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, 120, 30));
+        jPanel1.add(jButton_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, 120, 30));
 
-        jButton_ordenarAZ1.setBackground(new java.awt.Color(204, 255, 153));
-        jButton_ordenarAZ1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton_ordenarAZ1.setText("Precio Asc");
-        jButton_ordenarAZ1.addActionListener(new java.awt.event.ActionListener() {
+        jButton_PrecioASC.setBackground(new java.awt.Color(204, 255, 153));
+        jButton_PrecioASC.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton_PrecioASC.setText("Precio Asc");
+        jButton_PrecioASC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_ordenarAZ1ActionPerformed(evt);
+                jButton_PrecioASCActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton_ordenarAZ1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 280, 100, -1));
+        jPanel1.add(jButton_PrecioASC, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 280, 100, -1));
 
-        jButton_ordenarAZ4.setBackground(new java.awt.Color(204, 255, 153));
-        jButton_ordenarAZ4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton_ordenarAZ4.setText("Z- A");
-        jButton_ordenarAZ4.addActionListener(new java.awt.event.ActionListener() {
+        jButton_ordenarZA.setBackground(new java.awt.Color(204, 255, 153));
+        jButton_ordenarZA.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton_ordenarZA.setText("Z- A");
+        jButton_ordenarZA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_ordenarAZ4ActionPerformed(evt);
+                jButton_ordenarZAActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton_ordenarAZ4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 280, 80, -1));
+        jPanel1.add(jButton_ordenarZA, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 280, 80, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
@@ -142,16 +153,16 @@ public class InterGestionarTipoMedicamentos extends javax.swing.JInternalFrame {
         });
         jPanel2.add(jButton_eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 130, -1));
 
-        jButton_actualizar1.setBackground(new java.awt.Color(51, 204, 0));
-        jButton_actualizar1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton_actualizar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medico.png"))); // NOI18N
-        jButton_actualizar1.setText("Actualizar");
-        jButton_actualizar1.addActionListener(new java.awt.event.ActionListener() {
+        jButton_actualizar.setBackground(new java.awt.Color(51, 204, 0));
+        jButton_actualizar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton_actualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medico.png"))); // NOI18N
+        jButton_actualizar.setText("Actualizar");
+        jButton_actualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_actualizar1ActionPerformed(evt);
+                jButton_actualizarActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton_actualizar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 130, -1));
+        jPanel2.add(jButton_actualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 130, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, 170, 330));
 
@@ -165,9 +176,14 @@ public class InterGestionarTipoMedicamentos extends javax.swing.JInternalFrame {
         jLabel8.setText("Descripcion:");
         jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 90, -1));
 
-        txt_nombre1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txt_nombre1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel3.add(txt_nombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 90, -1));
+        txt_nombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txt_nombre.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        txt_nombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_nombreActionPerformed(evt);
+            }
+        });
+        jPanel3.add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 90, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
@@ -175,9 +191,9 @@ public class InterGestionarTipoMedicamentos extends javax.swing.JInternalFrame {
         jLabel3.setText("Nombre:");
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 90, -1));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        txtdescripcion.setColumns(20);
+        txtdescripcion.setRows(5);
+        jScrollPane2.setViewportView(txtdescripcion);
 
         jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 320, 60));
 
@@ -187,46 +203,92 @@ public class InterGestionarTipoMedicamentos extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel_wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 530));
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
-    private void jButton_ordenarAZActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ordenarAZActionPerformed
+    private void jButton_ordenarAZActionPerformed(java.awt.event.ActionEvent evt) {                                                  
+       listaTiposMedicamentos.sort(Comparator.comparing(o -> o[1].toString()));
+        actualizarTabla();
 
+    }                                                 
 
+    private void jButton_eliminarActionPerformed(java.awt.event.ActionEvent evt) {                                                 
+        int selectedRow = jTable_productos.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Seleccione un tipo de medicamento para eliminar.", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            listaTiposMedicamentos.remove(selectedRow);
+            actualizarTabla();
+            JOptionPane.showMessageDialog(this, "Tipo de medicamento eliminado correctamente.", "Información", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }                                                
 
-    }//GEN-LAST:event_jButton_ordenarAZActionPerformed
+    private void jButton_actualizarActionPerformed(java.awt.event.ActionEvent evt) {                                                   
+      actualizarTabla();
+    }                                                  
 
-    private void jButton_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_eliminarActionPerformed
+    private void txt_buscarActionPerformed(java.awt.event.ActionEvent evt) {                                           
+          jButton_buscarActionPerformed(evt);
+    }
 
-    }//GEN-LAST:event_jButton_eliminarActionPerformed
+    private void actualizarTabla() {
+       modeloTabla.setRowCount(0);
+        int n = 0;
+        for (Object[] tipo : listaTiposMedicamentos) {
+            n++;
+            tipo[0] = n; // Actualizar el índice
+            modeloTabla.addRow(tipo);
+        } 
+    }                                          
 
-    private void jButton_actualizar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_actualizar1ActionPerformed
+    private void jButton_buscarActionPerformed(java.awt.event.ActionEvent evt) {                                               
+       String nombreBuscado = txt_buscar.getText().trim().toLowerCase();
+        modeloTabla.setRowCount(0);
+
+        boolean encontrado = false;
+        for (Object[] tipo : listaTiposMedicamentos) {
+            String nombre = tipo[1].toString().toLowerCase();
+            if (nombre.contains(nombreBuscado)) {
+                modeloTabla.addRow(tipo);
+                encontrado = true;
+            }
+        }
+
+        if (!encontrado) {
+            JOptionPane.showMessageDialog(this, "Tipo de medicamento no encontrado.", "Información", JOptionPane.WARNING_MESSAGE);
+        }
+    }                                              
+
+    private void jButton_PrecioASCActionPerformed(java.awt.event.ActionEvent evt) {                                                  
+        listaTiposMedicamentos.sort(Comparator.comparing(o -> {
+         try {
+            // Convertir a Double para la comparación
+            return Double.parseDouble(o[2].toString());
+        } catch (NumberFormatException e) {
+            // En caso de que no sea un valor numérico, tratamos como 0
+            return 0.0;
+        }
+    }));
+    actualizarTabla();   
+        
+    }                                                 
+
+    private void jButton_ordenarZAActionPerformed(java.awt.event.ActionEvent evt) {                                                  
+        listaTiposMedicamentos.sort((o1, o2) -> o2[1].toString().compareTo(o1[1].toString()));
+        actualizarTabla();
+    }                                                 
+
+    private void txt_nombreActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_actualizar1ActionPerformed
-
-    private void txt_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_buscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_buscarActionPerformed
-
-    private void jButton_buscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_buscar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_buscar1ActionPerformed
-
-    private void jButton_ordenarAZ1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ordenarAZ1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_ordenarAZ1ActionPerformed
-
-    private void jButton_ordenarAZ4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ordenarAZ4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_ordenarAZ4ActionPerformed
+    }                                          
 
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton_actualizar1;
-    private javax.swing.JButton jButton_buscar1;
+    // Variables declaration - do not modify                     
+    private javax.swing.JButton jButton_PrecioASC;
+    private javax.swing.JButton jButton_actualizar;
+    private javax.swing.JButton jButton_buscar;
     private javax.swing.JButton jButton_eliminar;
     private javax.swing.JButton jButton_ordenarAZ;
-    private javax.swing.JButton jButton_ordenarAZ1;
-    private javax.swing.JButton jButton_ordenarAZ4;
+    private javax.swing.JButton jButton_ordenarZA;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -238,9 +300,10 @@ public class InterGestionarTipoMedicamentos extends javax.swing.JInternalFrame {
     public static javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     public static javax.swing.JTable jTable_productos;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField txt_buscar;
-    private javax.swing.JTextField txt_nombre1;
-    // End of variables declaration//GEN-END:variables
+    private javax.swing.JTextField txt_nombre;
+    private javax.swing.JTextArea txtdescripcion;
+    // End of variables declaration                   
 
 }
+

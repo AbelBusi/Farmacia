@@ -1,15 +1,23 @@
 package com.mycompany.farmaciasaludproyecto.view.menu;
 
+import com.mycompany.farmaciasaludproyecto.model.dao.ProveedorDAO;
+import com.mycompany.farmaciasaludproyecto.model.entity.Proveedor;
+import java.awt.Dialog;
 import java.awt.Dimension;
+import java.awt.Window;
+import javax.swing.SwingUtilities;
+import javax.swing.text.AbstractDocument;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DocumentFilter;
 
-/**
- *
- * @author ediso
- */
 public class InterRegistrarProveedor extends javax.swing.JInternalFrame {
+    Proveedor prove = new Proveedor();
+    ProveedorDAO daoProveedor = new ProveedorDAO();
 
     public InterRegistrarProveedor() {
         initComponents();
+        ValidarCampo();
         this.setSize(new Dimension(506, 346));
         this.setTitle("Nuevo Cliente");
 
@@ -32,9 +40,9 @@ public class InterRegistrarProveedor extends javax.swing.JInternalFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         txt_nombre = new javax.swing.JTextField();
-        txt_apellido = new javax.swing.JTextField();
-        txt_cedula = new javax.swing.JTextField();
-        jButton_Guardar = new javax.swing.JButton();
+        txt_contacto = new javax.swing.JTextField();
+        txt_telefono = new javax.swing.JTextField();
+        btnGuardarProveedor = new javax.swing.JButton();
         jLabel_wallpaper = new javax.swing.JLabel();
 
         setClosable(true);
@@ -43,7 +51,6 @@ public class InterRegistrarProveedor extends javax.swing.JInternalFrame {
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proveedor.png"))); // NOI18N
         jLabel1.setText("Nuevo Proveedor");
         jLabel1.setOpaque(true);
@@ -51,7 +58,6 @@ public class InterRegistrarProveedor extends javax.swing.JInternalFrame {
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Nombre:");
         jLabel2.setOpaque(true);
@@ -59,7 +65,6 @@ public class InterRegistrarProveedor extends javax.swing.JInternalFrame {
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("Contacto:");
         jLabel3.setOpaque(true);
@@ -67,7 +72,6 @@ public class InterRegistrarProveedor extends javax.swing.JInternalFrame {
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("Teléfono:");
         jLabel5.setOpaque(true);
@@ -85,22 +89,22 @@ public class InterRegistrarProveedor extends javax.swing.JInternalFrame {
         txt_nombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         getContentPane().add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 200, -1));
 
-        txt_apellido.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        getContentPane().add(txt_apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, 200, -1));
+        txt_contacto.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        getContentPane().add(txt_contacto, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, 200, -1));
 
-        txt_cedula.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        getContentPane().add(txt_cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 200, -1));
+        txt_telefono.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        getContentPane().add(txt_telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 200, -1));
 
-        jButton_Guardar.setBackground(new java.awt.Color(0, 204, 204));
-        jButton_Guardar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton_Guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/agregar-usuario (1).png"))); // NOI18N
-        jButton_Guardar.setText("Guardar");
-        jButton_Guardar.addActionListener(new java.awt.event.ActionListener() {
+        btnGuardarProveedor.setBackground(new java.awt.Color(0, 204, 204));
+        btnGuardarProveedor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnGuardarProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/agregar-usuario (1).png"))); // NOI18N
+        btnGuardarProveedor.setText("Guardar");
+        btnGuardarProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_GuardarActionPerformed(evt);
+                btnGuardarProveedorActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton_Guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, 130, 40));
+        getContentPane().add(btnGuardarProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, 130, 40));
 
         jLabel_wallpaper.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proveedor-de-salud-mental-para-una-empresa (1).png"))); // NOI18N
         getContentPane().add(jLabel_wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 520, 330));
@@ -108,15 +112,131 @@ public class InterRegistrarProveedor extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_GuardarActionPerformed
+    private void btnGuardarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarProveedorActionPerformed
+      if (validarDatos() == false) {
+            javax.swing.JOptionPane.showMessageDialog(null, "Falta ingresar datos");
+            return;
+        }
+        agregarProveedor();
+        Window window = SwingUtilities.getWindowAncestor(this);
+        if (window instanceof Dialog) {
+            Dialog dialog = (Dialog) window;
+            dialog.dispose();
+        }
+        Limpiar(); 
+    }//GEN-LAST:event_btnGuardarProveedorActionPerformed
+    
+    public void agregarProveedor() {
+        String nomprove = txt_nombre.getText();
+        String contaprove = txt_contacto.getText();
+        String telefprove = txt_telefono.getText();
 
-       
+        prove.setNombre(nomprove);
+        prove.setContacto(contaprove);
+        prove.setTelefono(telefprove);
 
-    }//GEN-LAST:event_jButton_GuardarActionPerformed
+        int respuesta = daoProveedor.agregarProveedor(prove);
+        if (respuesta == 1) {
+            javax.swing.JOptionPane.showMessageDialog(null, "Vendedor agregado con éxito");
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(null, "Error");
+        }
+    }
+    
+    private boolean validarDatos() {
+        if (txt_nombre.getText().isEmpty()) {
+            return false;
+        }
+        if (txt_contacto.getText().isEmpty()) {
+            return false;
+        }
+        if (txt_telefono.getText().isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+    private void ValidarCampo() {
+        // Validar campo de nombre
+        ((AbstractDocument) txt_nombre.getDocument()).setDocumentFilter(new DocumentFilter() {
+            public void insertString(DocumentFilter.FilterBypass fb, int offset, String text, AttributeSet attr)
+                    throws BadLocationException {
+                StringBuilder sb = new StringBuilder();
+                sb.append(fb.getDocument().getText(0, fb.getDocument().getLength()));
+                sb.insert(offset, text);
 
+                if (sb.toString().matches("[a-zA-Z ]{0,30}")) {
+                    super.insertString(fb, offset, text, attr);
+                }
+            }
+
+            @Override
+            public void replace(DocumentFilter.FilterBypass fb, int offset, int length, String text, AttributeSet attrs)
+                    throws BadLocationException {
+                StringBuilder sb = new StringBuilder();
+                sb.append(fb.getDocument().getText(0, fb.getDocument().getLength()));
+                sb.replace(offset, offset + length, text);
+
+                if (sb.toString().matches("[a-zA-Z ]{0,30}")) {
+                    super.replace(fb, offset, length, text, attrs);
+                }
+            }
+        });
+
+        // Validar campo de contacto
+        ((AbstractDocument) txt_contacto.getDocument()).setDocumentFilter(new DocumentFilter() {
+            public void insertString(DocumentFilter.FilterBypass fb, int offset, String text, AttributeSet attr)
+                    throws BadLocationException {
+                StringBuilder sb = new StringBuilder();
+                sb.append(fb.getDocument().getText(0, fb.getDocument().getLength()));
+                sb.insert(offset, text);
+
+                if (sb.toString().matches("[a-zA-Z ]{0,30}")) {
+                    super.insertString(fb, offset, text, attr);
+                }
+            }
+
+            @Override
+            public void replace(DocumentFilter.FilterBypass fb, int offset, int length, String text, AttributeSet attrs)
+                    throws BadLocationException {
+                StringBuilder sb = new StringBuilder();
+                sb.append(fb.getDocument().getText(0, fb.getDocument().getLength()));
+                sb.replace(offset, offset + length, text);
+
+                if (sb.toString().matches("[a-zA-Z ]{0,30}")) {
+                    super.replace(fb, offset, length, text, attrs);
+                }
+            }
+        });
+        
+        // Validar campo de telefono
+        ((AbstractDocument) txt_telefono.getDocument()).setDocumentFilter(new DocumentFilter() {
+            public void insertString(DocumentFilter.FilterBypass fb, int offset, String text, AttributeSet attr)
+                    throws BadLocationException {
+                StringBuilder sb = new StringBuilder();
+                sb.append(fb.getDocument().getText(0, fb.getDocument().getLength()));
+                sb.insert(offset, text);
+
+                if (sb.toString().matches("\\d{0,9}")) {
+                    super.insertString(fb, offset, text, attr);
+                }
+            }
+
+            @Override
+            public void replace(DocumentFilter.FilterBypass fb, int offset, int length, String text, AttributeSet attrs)
+                    throws BadLocationException {
+                StringBuilder sb = new StringBuilder();
+                sb.append(fb.getDocument().getText(0, fb.getDocument().getLength()));
+                sb.replace(offset, offset + length, text);
+
+                if (sb.toString().matches("\\d{0,9}")) {
+                    super.replace(fb, offset, length, text, attrs);
+                }
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton_Guardar;
+    private javax.swing.JButton btnGuardarProveedor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -125,9 +245,9 @@ public class InterRegistrarProveedor extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel_wallpaper;
-    private javax.swing.JTextField txt_apellido;
-    private javax.swing.JTextField txt_cedula;
+    private javax.swing.JTextField txt_contacto;
     private javax.swing.JTextField txt_nombre;
+    private javax.swing.JTextField txt_telefono;
     // End of variables declaration//GEN-END:variables
      /**
      *
@@ -135,8 +255,8 @@ public class InterRegistrarProveedor extends javax.swing.JInternalFrame {
      */
     private void Limpiar() {
         txt_nombre.setText("");
-        txt_apellido.setText("");
-        txt_cedula.setText("");
+        txt_contacto.setText("");
+        txt_telefono.setText("");
     }
 
 }
