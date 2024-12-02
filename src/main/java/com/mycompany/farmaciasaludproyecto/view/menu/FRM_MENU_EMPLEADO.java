@@ -303,9 +303,10 @@ public class FRM_MENU_EMPLEADO extends javax.swing.JFrame {
     }//GEN-LAST:event_MENU_CrearDevolucionActionPerformed
 
     private void MENU_historialDevolucionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_historialDevolucionesActionPerformed
-        // TODO add your handling code here:
 
-
+        InterHistorialDevolucion historialDevolucion = new InterHistorialDevolucion();
+        jDesktopPane_menu.add(historialDevolucion);
+        historialDevolucion.setVisible(true);
     }//GEN-LAST:event_MENU_historialDevolucionesActionPerformed
 
     private void MENU_GestionarProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_GestionarProveedoresActionPerformed
@@ -313,7 +314,7 @@ public class FRM_MENU_EMPLEADO extends javax.swing.JFrame {
         InterListaProveedor gestionarProveedores = new InterListaProveedor();
         jDesktopPane_menu.add(gestionarProveedores);
         gestionarProveedores.setVisible(true);
-        
+
     }//GEN-LAST:event_MENU_GestionarProveedoresActionPerformed
 
     private void gestionarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionarUsuariosActionPerformed
@@ -321,7 +322,7 @@ public class FRM_MENU_EMPLEADO extends javax.swing.JFrame {
         InterListaVendedor listaVendedor = new InterListaVendedor();
         jDesktopPane_menu.add(listaVendedor);
         listaVendedor.setVisible(true);
-        
+
     }//GEN-LAST:event_gestionarUsuariosActionPerformed
 
     private void MENU_GestionarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_GestionarClientesActionPerformed
@@ -350,7 +351,7 @@ public class FRM_MENU_EMPLEADO extends javax.swing.JFrame {
         InterGestionarVentas ventasGestion = new InterGestionarVentas();
         jDesktopPane_menu.add(ventasGestion);
         ventasGestion.setVisible(true);
-        
+
     }//GEN-LAST:event_MENU_GestionarVentasActionPerformed
 
     private void MENU_NuevoDescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_NuevoDescuentoActionPerformed
@@ -366,12 +367,12 @@ public class FRM_MENU_EMPLEADO extends javax.swing.JFrame {
         InterListaMedicamentos gestionarMedicamentos;
         try {
             gestionarMedicamentos = new InterListaMedicamentos();
-             jDesktopPane_menu.add(gestionarMedicamentos);
-        gestionarMedicamentos.setVisible(true);
+            jDesktopPane_menu.add(gestionarMedicamentos);
+            gestionarMedicamentos.setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(FRM_MENU_EMPLEADO.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
+
     }//GEN-LAST:event_MENU_GestionarMedicamentoActionPerformed
 
     private void nuevo_tipoMedicamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_tipoMedicamentoActionPerformed
@@ -379,7 +380,7 @@ public class FRM_MENU_EMPLEADO extends javax.swing.JFrame {
         InterListaTipoMedicamentos tipoMedicamento = new InterListaTipoMedicamentos();
         jDesktopPane_menu.add(tipoMedicamento);
         tipoMedicamento.setVisible(true);
-        
+
     }//GEN-LAST:event_nuevo_tipoMedicamentoActionPerformed
 
     /**

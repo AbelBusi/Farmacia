@@ -31,6 +31,11 @@ public class Devolucion implements Comparable<Devolucion>{
         this.fechaRechazo = fechaRechazo;
         this.vigente = vigente;
     }
+
+    public Devolucion() {
+    }
+    
+    
     
     
 

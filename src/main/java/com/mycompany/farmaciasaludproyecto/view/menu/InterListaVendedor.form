@@ -36,7 +36,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/operador.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Lista de Proveedores"/>
+        <Property name="text" type="java.lang.String" value="Lista de vendedores"/>
         <Property name="opaque" type="boolean" value="true"/>
       </Properties>
       <Constraints>

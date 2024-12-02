@@ -4,10 +4,13 @@
  */
 package com.mycompany.farmaciasaludproyecto.model.dao;
 
+import com.mycompany.farmaciasaludproyecto.model.entity.Devolucion;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
 
 /**
  *
@@ -26,6 +29,29 @@ public class DevolucionDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    
+     public LinkedList<Devolucion> obtenerDevoluciones() {
+        LinkedList<Devolucion> listaDevoluciones = new LinkedList<>();
+        String query = "SELECT id_devolucion, id_venta, motivo, vigente FROM Devolucion";
+
+        try (Connection conn = Conexion.conectar(); 
+             PreparedStatement ps = conn.prepareStatement(query); 
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                Devolucion devolucion = new Devolucion();
+                devolucion.setId_devolucion(rs.getInt("id_devolucion"));
+                devolucion.setId_venta(rs.getInt("id_venta"));
+                devolucion.setMotivo(rs.getString("motivo"));
+                devolucion.setVigente(rs.getBoolean("vigente"));
+                listaDevoluciones.add(devolucion);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listaDevoluciones;
     }
 
 }
