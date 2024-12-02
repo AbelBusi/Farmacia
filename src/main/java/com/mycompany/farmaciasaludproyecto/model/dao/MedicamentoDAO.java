@@ -1,5 +1,6 @@
 package com.mycompany.farmaciasaludproyecto.model.dao;
 
+import com.mycompany.farmaciasaludproyecto.model.entity.Descuento;
 import com.mycompany.farmaciasaludproyecto.model.entity.Medicamento;
 import java.math.BigDecimal;
 import java.sql.*;
@@ -112,6 +113,67 @@ public class MedicamentoDAO {
         }
 
         return listaMedicamentos;
+    }
+
+    public LinkedList<String> obtenerNombresMedicamentos() {
+        LinkedList<String> nombresMedicamentos = new LinkedList<>();
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            con = Conexion.conectar();
+            String sql = "SELECT nombre FROM Medicamento";
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                nombresMedicamentos.add(rs.getString("nombre"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return nombresMedicamentos;
+    }
+
+    public Medicamento obtenerMedicamentoPorNombre(String nombre) {
+        Medicamento medicamento = null;
+        try {
+            String sql = "SELECT id_medicamento, nombre, descripcion, precio, stock, fechaVencimiento, id_tipo "
+                    + "FROM Medicamento WHERE nombre = ?";
+            PreparedStatement ps = Conexion.conectar().prepareStatement(sql);
+            ps.setString(1, nombre);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                medicamento = new Medicamento();
+                medicamento.setId_medicamento(rs.getInt("id_medicamento"));
+                medicamento.setNombre(rs.getString("nombre"));
+                medicamento.setDescripcion(rs.getString("descripcion"));
+                medicamento.setPrecio(rs.getBigDecimal("precio"));
+                medicamento.setStock(rs.getInt("stock"));
+                medicamento.setFechaVencimiento(rs.getDate("fechaVencimiento"));
+                medicamento.setId_tipo(rs.getInt("id_tipo"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return medicamento;
     }
 
 }

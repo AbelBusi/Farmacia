@@ -4,7 +4,9 @@
  */
 package com.mycompany.farmaciasaludproyecto.model.entity;
 
+import java.math.BigDecimal;
 import java.util.Comparator;
+import java.util.Date;
 
 /**
  *
@@ -15,12 +17,19 @@ public class Venta implements Comparable<Venta>{
     private int id_cliente; 
     private int id_vendedor; 
     private int id_descuento; 
-    private double total;
-    private String fechaVenta;
+    private BigDecimal total;
+    private Date fechaVenta;
     private boolean vigente;
 
-    public Venta(int id_venta, int id_cliente, int id_vendedor, int id_descuento, double total, String fechaVenta, boolean vigente) {
-        this.id_venta = id_venta;
+    public Venta( int id_cliente, int id_vendedor, int id_descuento, BigDecimal total) {
+        this.id_cliente = id_cliente;
+        this.id_vendedor = id_vendedor;
+        this.id_descuento = id_descuento;
+        this.total = total;
+
+    }
+
+    public Venta(int id_cliente, int id_vendedor, int id_descuento, BigDecimal total, Date fechaVenta, boolean vigente) {
         this.id_cliente = id_cliente;
         this.id_vendedor = id_vendedor;
         this.id_descuento = id_descuento;
@@ -28,6 +37,8 @@ public class Venta implements Comparable<Venta>{
         this.fechaVenta = fechaVenta;
         this.vigente = vigente;
     }
+    
+    
 
     public int getId_venta() {
         return id_venta;
@@ -61,21 +72,25 @@ public class Venta implements Comparable<Venta>{
         this.id_descuento = id_descuento;
     }
 
-    public double getTotal() {
+    public BigDecimal getTotal() {
         return total;
     }
 
-    public void setTotal(double total) {
+    public void setTotal(BigDecimal total) {
         this.total = total;
     }
 
-    public String getFechaVenta() {
+    
+
+    public Date getFechaVenta() {
         return fechaVenta;
     }
 
-    public void setFechaVenta(String fechaVenta) {
+    public void setFechaVenta(Date fechaVenta) {
         this.fechaVenta = fechaVenta;
     }
+    
+    
 
     public boolean isVigente() {
         return vigente;

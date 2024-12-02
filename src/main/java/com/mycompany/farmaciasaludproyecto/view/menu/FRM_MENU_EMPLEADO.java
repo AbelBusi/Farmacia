@@ -76,7 +76,6 @@ public class FRM_MENU_EMPLEADO extends javax.swing.JFrame {
         MENU_GestionarVentas = new javax.swing.JMenuItem();
         menu_descuento = new javax.swing.JMenu();
         MENU_NuevoDescuento = new javax.swing.JMenuItem();
-        MENU_gestionarDescuentos = new javax.swing.JMenuItem();
         menu_devolucion = new javax.swing.JMenu();
         MENU_CrearDevolucion = new javax.swing.JMenuItem();
         MENU_historialDevoluciones = new javax.swing.JMenuItem();
@@ -215,7 +214,7 @@ public class FRM_MENU_EMPLEADO extends javax.swing.JFrame {
         menu_descuento.setPreferredSize(new java.awt.Dimension(170, 50));
 
         MENU_NuevoDescuento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/boleto.png"))); // NOI18N
-        MENU_NuevoDescuento.setText("Nuevo descuento");
+        MENU_NuevoDescuento.setText("Lista de descuentos");
         MENU_NuevoDescuento.setPreferredSize(new java.awt.Dimension(270, 50));
         MENU_NuevoDescuento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -223,16 +222,6 @@ public class FRM_MENU_EMPLEADO extends javax.swing.JFrame {
             }
         });
         menu_descuento.add(MENU_NuevoDescuento);
-
-        MENU_gestionarDescuentos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/beneficio.png"))); // NOI18N
-        MENU_gestionarDescuentos.setText("Gestionar descuento");
-        MENU_gestionarDescuentos.setPreferredSize(new java.awt.Dimension(270, 50));
-        MENU_gestionarDescuentos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MENU_gestionarDescuentosActionPerformed(evt);
-            }
-        });
-        menu_descuento.add(MENU_gestionarDescuentos);
 
         jMenuBar1.add(menu_descuento);
 
@@ -372,13 +361,6 @@ public class FRM_MENU_EMPLEADO extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_MENU_NuevoDescuentoActionPerformed
 
-    private void MENU_gestionarDescuentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_gestionarDescuentosActionPerformed
-        // TODO add your handling code here:
-        InterGestionarDescuentos gestionarDescuentos = new InterGestionarDescuentos();
-        jDesktopPane_menu.add(gestionarDescuentos);
-        gestionarDescuentos.setVisible(true);
-    }//GEN-LAST:event_MENU_gestionarDescuentosActionPerformed
-
     private void MENU_GestionarMedicamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_GestionarMedicamentoActionPerformed
         // TODO add your handling code here:
         InterListaMedicamentos gestionarMedicamentos;
@@ -444,7 +426,6 @@ public class FRM_MENU_EMPLEADO extends javax.swing.JFrame {
     private javax.swing.JMenuItem MENU_GestionarVentas;
     private javax.swing.JMenuItem MENU_NuevoDescuento;
     private javax.swing.JMenuItem MENU_cerrarSesion;
-    private javax.swing.JMenuItem MENU_gestionarDescuentos;
     private javax.swing.JMenuItem MENU_historialDevoluciones;
     private javax.swing.JMenuItem MENU_nuevaVenta;
     private javax.swing.JMenuItem MENU_nuevoCliente;

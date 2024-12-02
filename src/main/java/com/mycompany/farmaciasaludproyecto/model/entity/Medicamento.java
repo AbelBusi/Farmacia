@@ -31,6 +31,11 @@ public class Medicamento implements Comparable<Medicamento>{
         this.id_tipo = id_tipo;
     }
 
+    public Medicamento() {
+    }
+    
+    
+
     public int getId_medicamento() {
         return id_medicamento;
     }

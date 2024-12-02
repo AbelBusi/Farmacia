@@ -21,6 +21,13 @@ public class Descuento implements Comparable<Descuento>{
         this.total = total;
     }
 
+    public Descuento(String nombre, double total) {
+        this.nombre = nombre;
+        this.total = total;
+    }
+    
+    
+
     public int getId_descuento() {
         return id_descuento;
     }

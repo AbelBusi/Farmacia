@@ -1,18 +1,7 @@
 package com.mycompany.farmaciasaludproyecto.view.menu;
 
 import java.awt.Dimension;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
@@ -62,6 +51,7 @@ public class InterGestionarVentas extends javax.swing.JInternalFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos-humanos.png"))); // NOI18N
         jLabel1.setText("Administrar Ventas");
+        jLabel1.setOpaque(true);
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -179,6 +169,9 @@ public class InterGestionarVentas extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //ComboBoxCliente
+    
+    
     private void jButton_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_actualizarActionPerformed
 
     }//GEN-LAST:event_jButton_actualizarActionPerformed

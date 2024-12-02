@@ -101,13 +101,11 @@ public class ClienteDAO {
             return false;
         }
     }
-    
-        public LinkedList<Cliente> obtenerLosClientes() {
+
+    public LinkedList<Cliente> obtenerLosClientes() {
         LinkedList<Cliente> listaClientes = new LinkedList<>();
         String sql = "SELECT * FROM Cliente";
-        try (Connection con = Conexion.conectar();
-             PreparedStatement ps = con.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
+        try (Connection con = Conexion.conectar(); PreparedStatement ps = con.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
                 Cliente cliente = new Cliente();
@@ -123,5 +121,61 @@ public class ClienteDAO {
             System.err.println("Error al obtener clientes: " + e.getMessage());
         }
         return listaClientes;
+    }
+
+    public LinkedList<String> obtenerNombresClientes() {
+        LinkedList<String> nombresClientes = new LinkedList<>();
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            con = Conexion.conectar();
+            String sql = "SELECT nombres FROM Cliente";
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                nombresClientes.add(rs.getString("nombres"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return nombresClientes;
+    }
+
+    public int obtenerIdPorNombre(String nombre) {
+        int idCliente = -1; // Valor por defecto si no se encuentra el cliente
+        String query = "SELECT id_cliente FROM Cliente WHERE nombres = ?";
+
+        try (Connection conn = Conexion.conectar(); PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setString(1, nombre); // Reemplaza el placeholder con el nombre
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    idCliente = rs.getInt("id_cliente"); // Obtén el id_cliente
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return idCliente;
     }
 }

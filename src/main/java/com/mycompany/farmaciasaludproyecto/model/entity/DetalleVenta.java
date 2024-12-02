@@ -4,6 +4,7 @@
  */
 package com.mycompany.farmaciasaludproyecto.model.entity;
 
+import java.math.BigDecimal;
 import java.util.Comparator;
 
 /**
@@ -15,10 +16,10 @@ public class DetalleVenta implements Comparable<DetalleVenta>{
     private int id_venta; 
     private int id_medicamento; 
     private int cantidadVendida;
-    private double precioMedicamento;
-    private double totalVendido;
+    private BigDecimal precioMedicamento;
+    private BigDecimal totalVendido;
 
-    public DetalleVenta(int id_detalleVenta, int id_venta, int id_medicamento, int cantidadVendida, double precioMedicamento, double totalVendido) {
+    public DetalleVenta(int id_detalleVenta, int id_venta, int id_medicamento, int cantidadVendida, BigDecimal precioMedicamento, BigDecimal totalVendido) {
         this.id_detalleVenta = id_detalleVenta;
         this.id_venta = id_venta;
         this.id_medicamento = id_medicamento;
@@ -27,6 +28,13 @@ public class DetalleVenta implements Comparable<DetalleVenta>{
         this.totalVendido = totalVendido;
     }
 
+        public DetalleVenta( int id_venta, int id_medicamento, int cantidadVendida, BigDecimal precioMedicamento, BigDecimal totalVendido) {
+        this.id_venta = id_venta;
+        this.id_medicamento = id_medicamento;
+        this.cantidadVendida = cantidadVendida;
+        this.precioMedicamento = precioMedicamento;
+        this.totalVendido = totalVendido;
+    }
     public int getId_detalleVenta() {
         return id_detalleVenta;
     }
@@ -59,21 +67,24 @@ public class DetalleVenta implements Comparable<DetalleVenta>{
         this.cantidadVendida = cantidadVendida;
     }
 
-    public double getPrecioMedicamento() {
+    public BigDecimal getPrecioMedicamento() {
         return precioMedicamento;
     }
 
-    public void setPrecioMedicamento(double precioMedicamento) {
+    public void setPrecioMedicamento(BigDecimal precioMedicamento) {
         this.precioMedicamento = precioMedicamento;
     }
 
-    public double getTotalVendido() {
+    public BigDecimal getTotalVendido() {
         return totalVendido;
     }
 
-    public void setTotalVendido(double totalVendido) {
+    public void setTotalVendido(BigDecimal totalVendido) {
         this.totalVendido = totalVendido;
     }
+
+
+    
 
     @Override
     public int compareTo(DetalleVenta o) {
