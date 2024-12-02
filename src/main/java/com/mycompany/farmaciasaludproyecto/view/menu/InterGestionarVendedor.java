@@ -4,6 +4,7 @@ import com.mycompany.farmaciasaludproyecto.model.dao.VendedorDao;
 import com.mycompany.farmaciasaludproyecto.model.entity.Vendedor;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.util.Collections;
 import java.util.LinkedList;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
@@ -143,7 +144,7 @@ public class InterGestionarVendedor extends javax.swing.JInternalFrame {
 
         jButton_ordenarAZ1.setBackground(new java.awt.Color(204, 255, 153));
         jButton_ordenarAZ1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton_ordenarAZ1.setText("Precio Asc");
+        jButton_ordenarAZ1.setText("Dni asc");
         jButton_ordenarAZ1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_ordenarAZ1ActionPerformed(evt);
@@ -153,17 +154,17 @@ public class InterGestionarVendedor extends javax.swing.JInternalFrame {
 
         jButton_ordenarAZ2.setBackground(new java.awt.Color(204, 255, 153));
         jButton_ordenarAZ2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton_ordenarAZ2.setText("Fecha Desc");
+        jButton_ordenarAZ2.setText("Apellido Desc");
         jButton_ordenarAZ2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_ordenarAZ2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton_ordenarAZ2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 280, 90, -1));
+        jPanel1.add(jButton_ordenarAZ2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 280, 100, -1));
 
         jButton_ordenarAZ3.setBackground(new java.awt.Color(204, 255, 153));
         jButton_ordenarAZ3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton_ordenarAZ3.setText("Fecha Asc");
+        jButton_ordenarAZ3.setText("Apellido ASC");
         jButton_ordenarAZ3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_ordenarAZ3ActionPerformed(evt);
@@ -290,7 +291,65 @@ public class InterGestionarVendedor extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void ordenarPorNombre(boolean ascendente) {
+        LinkedList<Vendedor> listaVendedores = daoVendedor.listarVendedor();
+
+        // Ordenar la lista de vendedores por nombre
+        Collections.sort(listaVendedores, (v1, v2) -> {
+            int comparison = v1.getNombres().compareToIgnoreCase(v2.getNombres());
+            return ascendente ? comparison : -comparison; // Invertir el orden si es descendente
+        });
+
+        // Actualizar la tabla
+        limpiarTabla();
+        mostrarVendedoresEnTabla(listaVendedores);
+    }
+
+    public void ordenarPorApellido(boolean ascendente) {
+        LinkedList<Vendedor> listaVendedores = daoVendedor.listarVendedor();
+
+        // Ordenar la lista de vendedores por apellido
+        Collections.sort(listaVendedores, (v1, v2) -> {
+            int comparison = v1.getApellidos().compareToIgnoreCase(v2.getApellidos());
+            return ascendente ? comparison : -comparison; // Invertir el orden si es descendente
+        });
+
+        // Actualizar la tabla
+        limpiarTabla();
+        mostrarVendedoresEnTabla(listaVendedores);
+    }
+
+    public void ordenarPorDni() {
+        LinkedList<Vendedor> listaVendedores = daoVendedor.listarVendedor();
+
+        // Ordenar la lista de vendedores por DNI ascendente
+        Collections.sort(listaVendedores, (v1, v2) -> v1.getDni().compareTo(v2.getDni()));
+
+        // Actualizar la tabla
+        limpiarTabla();
+        mostrarVendedoresEnTabla(listaVendedores);
+    }
+
+    public void mostrarVendedoresEnTabla(LinkedList<Vendedor> listaVendedores) {
+        DefaultTableModel modeloVendedor = (DefaultTableModel) TablaVendedor.getModel();
+        Object[] object = new Object[7];
+
+        for (Vendedor vend : listaVendedores) {
+            object[0] = vend.getId_vendedor();
+            object[1] = vend.getNombres();
+            object[2] = vend.getApellidos();
+            object[3] = vend.getDni();
+            object[4] = vend.getTelefono();
+            object[5] = vend.getCorreo();
+            object[6] = vend.isEstado() ? "Activo" : "Inactivo";
+            modeloVendedor.addRow(object);
+        }
+        TablaVendedor.setModel(modeloVendedor);
+    }
+
     private void jButton_ordenarAZActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ordenarAZActionPerformed
+
+        ordenarPorNombre(true); // Ordenar de A a Z por nombre
 
     }//GEN-LAST:event_jButton_ordenarAZActionPerformed
 
@@ -318,22 +377,83 @@ public class InterGestionarVendedor extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txt_buscarActionPerformed
 
     private void jButton_buscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_buscar1ActionPerformed
+
+        String nombreBusqueda = txt_buscar.getText().toLowerCase(); // Obtener el texto de búsqueda y convertir a minúsculas
+        if (nombreBusqueda.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(null, "Ingrese un nombre para buscar.");
+        } else {
+            buscarVendedorPorNombre(nombreBusqueda);
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton_buscar1ActionPerformed
 
+    public void buscarVendedorPorNombre(String nombreBusqueda) {
+        // Obtener la lista de vendedores y ordenarla por nombre
+        LinkedList<Vendedor> listaVendedores = daoVendedor.listarVendedor();
+        Collections.sort(listaVendedores, (v1, v2) -> v1.getNombres().compareToIgnoreCase(v2.getNombres()));
+
+        // Buscar usando búsqueda binaria
+        int inicio = 0;
+        int fin = listaVendedores.size() - 1;
+        int resultado = -1; // Índice de vendedor encontrado o -1 si no se encuentra
+
+        while (inicio <= fin) {
+            int medio = (inicio + fin) / 2;
+            Vendedor vendedor = listaVendedores.get(medio);
+            String nombreVendedor = vendedor.getNombres().toLowerCase(); // Convertir nombre del vendedor a minúsculas
+
+            if (nombreVendedor.startsWith(nombreBusqueda)) {
+                resultado = medio;
+                break; // Si encontramos el primer vendedor que coincide con el inicio del nombre, terminamos
+            } else if (nombreVendedor.compareTo(nombreBusqueda) < 0) {
+                inicio = medio + 1;
+            } else {
+                fin = medio - 1;
+            }
+        }
+
+        if (resultado != -1) {
+            // Mostrar solo el vendedor encontrado (o los primeros resultados)
+            limpiarTabla(); // Limpiar la tabla antes de mostrar los resultados
+            Vendedor vendedor = listaVendedores.get(resultado);
+            Object[] object = new Object[7];
+            object[0] = vendedor.getId_vendedor();
+            object[1] = vendedor.getNombres();
+            object[2] = vendedor.getApellidos();
+            object[3] = vendedor.getDni();
+            object[4] = vendedor.getTelefono();
+            object[5] = vendedor.getCorreo();
+            object[6] = vendedor.isEstado() ? "Activo" : "Inactivo";
+            modeloVendedor.addRow(object);
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(null, "No se encontraron vendedores que coincidan con la búsqueda.");
+        }
+    }
+
     private void jButton_ordenarAZ1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ordenarAZ1ActionPerformed
         // TODO add your handling code here:
+
+        ordenarPorDni(); // Ordenar por DNI ascendente
+
     }//GEN-LAST:event_jButton_ordenarAZ1ActionPerformed
 
     private void jButton_ordenarAZ2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ordenarAZ2ActionPerformed
+
+        ordenarPorApellido(false); // Ordenar de A a Z por apellido
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton_ordenarAZ2ActionPerformed
 
     private void jButton_ordenarAZ3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ordenarAZ3ActionPerformed
         // TODO add your handling code here:
+
+        ordenarPorApellido(true); // Ordenar de A a Z por apellido
+
     }//GEN-LAST:event_jButton_ordenarAZ3ActionPerformed
 
     private void jButton_ordenarAZ4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ordenarAZ4ActionPerformed
+
+        ordenarPorNombre(false); // Ordenar de Z a A por nombre
+
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton_ordenarAZ4ActionPerformed
 

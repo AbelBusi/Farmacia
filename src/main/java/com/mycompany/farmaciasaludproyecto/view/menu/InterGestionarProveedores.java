@@ -14,16 +14,17 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
 public class InterGestionarProveedores extends javax.swing.JInternalFrame {
+
     ProveedorDAO daoProveedor = new ProveedorDAO();
     DefaultTableModel modeloProveedor = new DefaultTableModel();
-    
-    public InterGestionarProveedores(){
+
+    public InterGestionarProveedores() {
         initComponents();
-        listarProveedor(TablaProveedor);
         this.setSize(new Dimension(788, 533));
         listarProveedor(TablaProveedor);
         TablaProveedor.setModel(modeloProveedor);
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -158,7 +159,7 @@ public class InterGestionarProveedores extends javax.swing.JInternalFrame {
         btnEditarProveedor1.setBackground(new java.awt.Color(51, 204, 0));
         btnEditarProveedor1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnEditarProveedor1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medico.png"))); // NOI18N
-        btnEditarProveedor1.setText("Actualizar");
+        btnEditarProveedor1.setText("Seleccionar");
         btnEditarProveedor1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarProveedor1ActionPerformed(evt);
@@ -227,6 +228,8 @@ public class InterGestionarProveedores extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_ordenarAZActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ordenarAZActionPerformed
+        ordenarProveedor(true); // Orden ascendente
+
 
     }//GEN-LAST:event_jButton_ordenarAZActionPerformed
 
@@ -236,43 +239,116 @@ public class InterGestionarProveedores extends javax.swing.JInternalFrame {
         listarProveedor(TablaProveedor);
     }//GEN-LAST:event_btnEliminarProveedorActionPerformed
 
+    // Método para realizar búsqueda binaria
+    public Proveedor busquedaBinaria(String nombreBuscar) {
+        int inicio = 0;
+        int fin = modeloProveedor.getRowCount() - 1;
+
+        while (inicio <= fin) {
+            int medio = (inicio + fin) / 2;
+            String nombreProveedor = (String) modeloProveedor.getValueAt(medio, 1); // Columna "NOMBRE"
+
+            int comparacion = nombreProveedor.compareToIgnoreCase(nombreBuscar);
+
+            if (comparacion == 0) {
+                // Si encontramos el proveedor
+                int idProveedor = (int) modeloProveedor.getValueAt(medio, 0); // Columna "ID"
+                return daoProveedor.leerProveedor(idProveedor);  // Retorna el proveedor encontrado
+            } else if (comparacion < 0) {
+                inicio = medio + 1;
+            } else {
+                fin = medio - 1;
+            }
+        }
+
+        return null;  // No encontrado
+    }
+
+
     private void btnguardarProveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarProveActionPerformed
-        actualizarProveedor();
-        Limpiar();
-        listarProveedor(TablaProveedor);
+        int filaSeleccionada = TablaProveedor.getSelectedRow();
+
+        if (filaSeleccionada == -1) {
+            // Si no se selecciona ninguna fila, mostrar un mensaje
+            javax.swing.JOptionPane.showMessageDialog(null, "Debe seleccionar una fila para guardar");
+        } else {
+            // Si se seleccionó una fila, proceder a actualizar
+            actualizarProveedor();
+            Limpiar();
+            listarProveedor(TablaProveedor);
+        }
     }//GEN-LAST:event_btnguardarProveActionPerformed
 
     private void txt_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_buscarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_buscarActionPerformed
 
+    private void ordenarProveedor(boolean ascendente) {
+        List<Proveedor> proveedores = daoProveedor.listarProveedor();  // Obtén la lista completa de proveedores
+        proveedores.sort((p1, p2) -> {
+            if (ascendente) {
+                return p1.getNombre().compareToIgnoreCase(p2.getNombre()); // Orden ascendente
+            } else {
+                return p2.getNombre().compareToIgnoreCase(p1.getNombre()); // Orden descendente
+            }
+        });
+
+        // Limpiar la tabla y agregar los proveedores ordenados
+        limpiarTabla();
+        for (Proveedor p : proveedores) {
+            modeloProveedor.addRow(new Object[]{
+                p.getId_proveedor(),
+                p.getNombre(),
+                p.getContacto(),
+                p.getTelefono()
+            });
+        }
+    }
+
     private void jButton_buscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_buscar1ActionPerformed
         // TODO add your handling code here:
+
+        String nombreBuscar = txt_buscar.getText().trim();
+        Proveedor proveedor = busquedaBinaria(nombreBuscar);
+
+        if (proveedor != null) {
+            // Si el proveedor es encontrado, lo seleccionamos en la tabla
+            for (int i = 0; i < modeloProveedor.getRowCount(); i++) {
+                if (modeloProveedor.getValueAt(i, 0).equals(proveedor.getId_proveedor())) {
+                    TablaProveedor.setRowSelectionInterval(i, i); // Selecciona la fila
+                    break;
+                }
+            }
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(null, "Proveedor no encontrado");
+        }
     }//GEN-LAST:event_jButton_buscar1ActionPerformed
 
     private void jButton_ordenarAZ4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ordenarAZ4ActionPerformed
+
+        ordenarProveedor(false); // Orden ascendente
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton_ordenarAZ4ActionPerformed
 
     private void btnEditarProveedor1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProveedor1ActionPerformed
         int filaSeleccionada = TablaProveedor.getSelectedRow();
         if (filaSeleccionada == -1) {
-        javax.swing.JOptionPane.showMessageDialog(null, "Debe seleccionar una fila");
+            javax.swing.JOptionPane.showMessageDialog(null, "Debe seleccionar una fila");
         } else {
-        int id_proveedor = Integer.parseInt(TablaProveedor.getValueAt(filaSeleccionada, 0).toString());
+            int id_proveedor = Integer.parseInt(TablaProveedor.getValueAt(filaSeleccionada, 0).toString());
 
-        Proveedor prove = daoProveedor.leerProveedor(id_proveedor);
-        if (prove != null) {
-            
-            txt_id.setText(Integer.toString(prove.getId_proveedor()));
-            txt_nombre.setText(prove.getNombre());
-            txt_contacto.setText(prove.getContacto());
-            txt_telefono.setText(prove.getTelefono());
-            
+            Proveedor prove = daoProveedor.leerProveedor(id_proveedor);
+            if (prove != null) {
+
+                txt_id.setText(Integer.toString(prove.getId_proveedor()));
+                txt_nombre.setText(prove.getNombre());
+                txt_contacto.setText(prove.getContacto());
+                txt_telefono.setText(prove.getTelefono());
+
+            }
         }
-    }
     }//GEN-LAST:event_btnEditarProveedor1ActionPerformed
-    
+
     public void actualizarProveedor() {
         Proveedor prove = new Proveedor();
         String nomprove = txt_nombre.getText();
@@ -290,32 +366,32 @@ public class InterGestionarProveedores extends javax.swing.JInternalFrame {
             javax.swing.JOptionPane.showMessageDialog(null, "Error al actualizar Proveedor");
         }
     }
-    
-    private void limpiarTabla() {
-    while (modeloProveedor.getRowCount() > 0) {
-        modeloProveedor.removeRow(0);
-    }
-}
 
-    public void eliminarProveedor() {
-    int filaUsuario = TablaProveedor.getSelectedRow();
-    
-    if (filaUsuario == -1) {
-        javax.swing.JOptionPane.showMessageDialog(null, "Debe seleccionar una fila");
-    } else {
-        int id = Integer.parseInt(TablaProveedor.getValueAt(filaUsuario, 0).toString());
-        int confirmacion = javax.swing.JOptionPane.showConfirmDialog(
-                null, 
-                "¿Está seguro que quiere eliminar al Proveedor?", 
-                "Confirmación de eliminación", 
-                javax.swing.JOptionPane.YES_NO_OPTION
-        );
-        if (confirmacion == javax.swing.JOptionPane.YES_OPTION) {
-            daoProveedor.eliminarProveedor(id);
-            javax.swing.JOptionPane.showMessageDialog(null, "Proveedor Eliminado con Éxito");
+    private void limpiarTabla() {
+        while (modeloProveedor.getRowCount() > 0) {
+            modeloProveedor.removeRow(0);
         }
     }
-}
+
+    public void eliminarProveedor() {
+        int filaUsuario = TablaProveedor.getSelectedRow();
+
+        if (filaUsuario == -1) {
+            javax.swing.JOptionPane.showMessageDialog(null, "Debe seleccionar una fila");
+        } else {
+            int id = Integer.parseInt(TablaProveedor.getValueAt(filaUsuario, 0).toString());
+            int confirmacion = javax.swing.JOptionPane.showConfirmDialog(
+                    null,
+                    "¿Está seguro que quiere eliminar al Proveedor?",
+                    "Confirmación de eliminación",
+                    javax.swing.JOptionPane.YES_NO_OPTION
+            );
+            if (confirmacion == javax.swing.JOptionPane.YES_OPTION) {
+                daoProveedor.eliminarProveedor(id);
+                javax.swing.JOptionPane.showMessageDialog(null, "Proveedor Eliminado con Éxito");
+            }
+        }
+    }
 
     public void listarProveedor(JTable tabla) {
         modeloProveedor.setRowCount(0);
@@ -339,13 +415,13 @@ public class InterGestionarProveedores extends javax.swing.JInternalFrame {
         }
         TablaProveedor.setModel(modeloProveedor);
         TableColumnModel columnModel = tabla.getColumnModel();
-        
+
         int anchoNombre = calcularAnchoMaximoContenido(tabla, 1);
         columnModel.getColumn(1).setPreferredWidth(anchoNombre);
-        
-        int anchoContacto = calcularAnchoMaximoContenido(tabla, 2); 
+
+        int anchoContacto = calcularAnchoMaximoContenido(tabla, 2);
         columnModel.getColumn(2).setPreferredWidth(anchoContacto);
-        
+
     }
 
     private int calcularAnchoMaximoContenido(JTable tabla, int indiceColumna) {
@@ -366,6 +442,7 @@ public class InterGestionarProveedores extends javax.swing.JInternalFrame {
 
         return anchoMaximo;
     }
+
     private void Limpiar() {
         txt_id.setText("");
         txt_nombre.setText("");

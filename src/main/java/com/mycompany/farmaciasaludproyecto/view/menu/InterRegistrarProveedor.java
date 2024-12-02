@@ -12,14 +12,15 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
 
 public class InterRegistrarProveedor extends javax.swing.JInternalFrame {
+
     Proveedor prove = new Proveedor();
     ProveedorDAO daoProveedor = new ProveedorDAO();
 
     public InterRegistrarProveedor() {
         initComponents();
-        ValidarCampo();
         this.setSize(new Dimension(506, 346));
         this.setTitle("Nuevo Cliente");
+        ValidarCampo();
 
     }
 
@@ -113,7 +114,7 @@ public class InterRegistrarProveedor extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarProveedorActionPerformed
-      if (validarDatos() == false) {
+        if (validarDatos() == false) {
             javax.swing.JOptionPane.showMessageDialog(null, "Falta ingresar datos");
             return;
         }
@@ -123,9 +124,9 @@ public class InterRegistrarProveedor extends javax.swing.JInternalFrame {
             Dialog dialog = (Dialog) window;
             dialog.dispose();
         }
-        Limpiar(); 
+        Limpiar();
     }//GEN-LAST:event_btnGuardarProveedorActionPerformed
-    
+
     public void agregarProveedor() {
         String nomprove = txt_nombre.getText();
         String contaprove = txt_contacto.getText();
@@ -142,7 +143,7 @@ public class InterRegistrarProveedor extends javax.swing.JInternalFrame {
             javax.swing.JOptionPane.showMessageDialog(null, "Error");
         }
     }
-    
+
     private boolean validarDatos() {
         if (txt_nombre.getText().isEmpty()) {
             return false;
@@ -155,6 +156,7 @@ public class InterRegistrarProveedor extends javax.swing.JInternalFrame {
         }
         return true;
     }
+
     private void ValidarCampo() {
         // Validar campo de nombre
         ((AbstractDocument) txt_nombre.getDocument()).setDocumentFilter(new DocumentFilter() {
@@ -207,7 +209,7 @@ public class InterRegistrarProveedor extends javax.swing.JInternalFrame {
                 }
             }
         });
-        
+
         // Validar campo de telefono
         ((AbstractDocument) txt_telefono.getDocument()).setDocumentFilter(new DocumentFilter() {
             public void insertString(DocumentFilter.FilterBypass fb, int offset, String text, AttributeSet attr)
