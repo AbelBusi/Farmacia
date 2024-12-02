@@ -11,6 +11,7 @@ import static com.mycompany.farmaciasaludproyecto.view.menu.InterGestionarVentas
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
@@ -153,6 +154,11 @@ public class InternalCrearDevolucion extends javax.swing.JInternalFrame {
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devolucion-de-dinero (1).png"))); // NOI18N
         jButton2.setText("Procesar devolucion");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 30, 310, 60));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 490, 1040, 210));
@@ -235,26 +241,33 @@ public class InternalCrearDevolucion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton_busca_clienteActionPerformed
 
     private void jTable_productos1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_productos1MouseClicked
-        // TODO add your handling code here:
-        // Obtener la fila seleccionada
+
         int filaSeleccionada = jTable_productos1.getSelectedRow();
 
         // Verificar que se haya seleccionado una fila
         if (filaSeleccionada != -1) {
             // Obtener los valores de la fila seleccionada
-            int idVenta = (int) dtm.getValueAt(filaSeleccionada, 0); // Asumiendo que el ID de venta está en la primera columna
-            int idCliente = (int) dtm.getValueAt(filaSeleccionada, 1);
-            int idVendedor = (int) dtm.getValueAt(filaSeleccionada, 2);
-            int idDescuento = (int) dtm.getValueAt(filaSeleccionada, 3);
-            double total = (double) dtm.getValueAt(filaSeleccionada, 4);
-            Date fechaVenta = (Date) dtm.getValueAt(filaSeleccionada, 5); // O puede ser String, dependiendo del formato
+            int idVenta = (int) dtm.getValueAt(filaSeleccionada, 0); // ID Venta
+            int idCliente = (int) dtm.getValueAt(filaSeleccionada, 1); // ID Cliente
+            int idVendedor = (int) dtm.getValueAt(filaSeleccionada, 2); // ID Vendedor
+            int idDescuento = (int) dtm.getValueAt(filaSeleccionada, 3); // ID Descuento
 
-            // Usar estos datos para la devolución
-            // Puedes guardar estos valores en variables de instancia si los necesitas después
+            // Convertir BigDecimal a Double para la columna Total
+            BigDecimal totalBigDecimal = (BigDecimal) dtm.getValueAt(filaSeleccionada, 4);
+            double total = totalBigDecimal.doubleValue();
+
+            // Convertir a Date si es necesario (asegúrate de que sea compatible)
+            Date fechaVenta = (Date) dtm.getValueAt(filaSeleccionada, 5);
+
         }
 
 
     }//GEN-LAST:event_jTable_productos1MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        mostrarVentasEnJTable();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

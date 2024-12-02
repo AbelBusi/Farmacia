@@ -34,7 +34,7 @@ public class InterListaVendedor extends javax.swing.JInternalFrame {
     public InterListaVendedor() {
         initComponents();
         this.setSize(new Dimension(943, 533));
-        LI_vendedor = vendedorDao.listarVendedor();
+        LI_vendedor = vendedorDao.obtenerTodosLosVendedores();
         MostrarJTable();
     }
     

@@ -24,7 +24,7 @@ public class DevolucionDAO {
         try (Connection conn = Conexion.conectar(); PreparedStatement ps = conn.prepareStatement(query)) {
             ps.setInt(1, idVenta);
             ps.setString(2, motivo);
-            ps.setBoolean(4, true);  // La devolución está vigente al crearla
+            ps.setBoolean(3, true);  // La devolución está vigente al crearla
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -33,7 +33,7 @@ public class DevolucionDAO {
     
      public LinkedList<Devolucion> obtenerDevoluciones() {
         LinkedList<Devolucion> listaDevoluciones = new LinkedList<>();
-        String query = "SELECT id_devolucion, id_venta, motivo, vigente FROM Devolucion";
+        String query = "SELECT id_devolucion, id_venta, motivo,fechaReclamo, vigente FROM Devolucion";
 
         try (Connection conn = Conexion.conectar(); 
              PreparedStatement ps = conn.prepareStatement(query); 
@@ -44,6 +44,7 @@ public class DevolucionDAO {
                 devolucion.setId_devolucion(rs.getInt("id_devolucion"));
                 devolucion.setId_venta(rs.getInt("id_venta"));
                 devolucion.setMotivo(rs.getString("motivo"));
+                devolucion.setFechaRechazo(rs.getDate("fechaReclamo"));
                 devolucion.setVigente(rs.getBoolean("vigente"));
                 listaDevoluciones.add(devolucion);
             }

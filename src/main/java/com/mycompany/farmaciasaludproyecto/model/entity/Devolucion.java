@@ -5,6 +5,7 @@
 package com.mycompany.farmaciasaludproyecto.model.entity;
 
 import java.util.Comparator;
+import java.util.Date;
 
 /**
  *
@@ -14,10 +15,10 @@ public class Devolucion implements Comparable<Devolucion>{
      private int id_devolucion;
     private int id_venta; 
     private String motivo;
-    private String fechaRechazo;
+    private Date fechaRechazo;
     private boolean vigente;
 
-    public Devolucion(int id_devolucion, int id_venta, String motivo, String fechaRechazo, boolean vigente) {
+    public Devolucion(int id_devolucion, int id_venta, String motivo, Date fechaRechazo, boolean vigente) {
         this.id_devolucion = id_devolucion;
         this.id_venta = id_venta;
         this.motivo = motivo;
@@ -25,7 +26,7 @@ public class Devolucion implements Comparable<Devolucion>{
         this.vigente = vigente;
     }
 
-    public Devolucion(int id_venta, String motivo, String fechaRechazo, boolean vigente) {
+    public Devolucion(int id_venta, String motivo, Date fechaRechazo, boolean vigente) {
         this.id_venta = id_venta;
         this.motivo = motivo;
         this.fechaRechazo = fechaRechazo;
@@ -63,13 +64,14 @@ public class Devolucion implements Comparable<Devolucion>{
         this.motivo = motivo;
     }
 
-    public String getFechaRechazo() {
+    public Date getFechaRechazo() {
         return fechaRechazo;
     }
 
-    public void setFechaRechazo(String fechaRechazo) {
+    public void setFechaRechazo(Date fechaRechazo) {
         this.fechaRechazo = fechaRechazo;
     }
+
 
     public boolean isVigente() {
         return vigente;
