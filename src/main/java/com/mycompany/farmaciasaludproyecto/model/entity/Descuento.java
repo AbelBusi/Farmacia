@@ -59,7 +59,7 @@ public class Descuento implements Comparable<Descuento>{
     }
     
     public Object[] convertir (){
-        Object[] fila = {nombre,total};
+        Object[] fila = {id_descuento,nombre,total};
         return fila;
         
     }

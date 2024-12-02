@@ -29,7 +29,6 @@ public class InternalCrearDevolucion extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -41,21 +40,10 @@ public class InternalCrearDevolucion extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable_productos1 = new javax.swing.JTable();
         txt_cliente_buscar = new javax.swing.JTextField();
-        jPanel3 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable_productos = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jLabel_wallpaper = new javax.swing.JLabel();
 
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guardar-datos.png"))); // NOI18N
-        jLabel1.setText("Detalle de la venta");
-        jLabel1.setOpaque(true);
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 60, -1, -1));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -94,7 +82,7 @@ public class InternalCrearDevolucion extends javax.swing.JInternalFrame {
                 jButton_busca_clienteActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton_busca_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, 170, -1));
+        getContentPane().add(jButton_busca_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 50, 170, -1));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -117,39 +105,14 @@ public class InternalCrearDevolucion extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(jTable_productos1);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 440, 190));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1020, 270));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 460, 340));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 1050, 340));
 
         txt_cliente_buscar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txt_cliente_buscar.setForeground(new java.awt.Color(0, 0, 0));
         txt_cliente_buscar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(txt_cliente_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, 200, 40));
-
-        jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jTable_productos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jTable_productos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable_productosMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(jTable_productos);
-
-        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 510, 190));
-
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 100, 540, 340));
+        getContentPane().add(txt_cliente_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 50, 200, 40));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -172,10 +135,6 @@ public class InternalCrearDevolucion extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jButton_busca_clienteActionPerformed
 
-    private void jTable_productosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_productosMouseClicked
-
-    }//GEN-LAST:event_jTable_productosMouseClicked
-
     private void jTable_productos1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_productos1MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jTable_productos1MouseClicked
@@ -185,17 +144,13 @@ public class InternalCrearDevolucion extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton_busca_cliente;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel_wallpaper;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    public static javax.swing.JScrollPane jScrollPane1;
     public static javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    public static javax.swing.JTable jTable_productos;
     public static javax.swing.JTable jTable_productos1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField txt_cliente_buscar;

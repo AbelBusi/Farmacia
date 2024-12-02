@@ -141,4 +141,27 @@ public class DescuentoDAO {
 
         return idDescuento;
     }
+    
+    public LinkedList<Descuento> obtenerDescuentos() {
+    LinkedList<Descuento> listaDescuentos = new LinkedList<>();
+    String sql = "SELECT * FROM Descuento";
+
+    try (Connection con = Conexion.conectar();
+         PreparedStatement ps = con.prepareStatement(sql);
+         ResultSet rs = ps.executeQuery()) {
+
+        while (rs.next()) {
+            int id = rs.getInt("id_descuento");
+            String nombre = rs.getString("nombre");
+            double total = rs.getDouble("total");
+
+            listaDescuentos.add(new Descuento(id, nombre, total));
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return listaDescuentos;
+}
+
 }

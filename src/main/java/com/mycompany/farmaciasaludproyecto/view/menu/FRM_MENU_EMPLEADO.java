@@ -355,7 +355,7 @@ public class FRM_MENU_EMPLEADO extends javax.swing.JFrame {
 
     private void MENU_NuevoDescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_NuevoDescuentoActionPerformed
 
-        InterCrearDescuento descuento = new InterCrearDescuento();
+        InterListaDescuentos descuento = new InterListaDescuentos();
         jDesktopPane_menu.add(descuento);
         descuento.setVisible(true);
         // TODO add your handling code here:
