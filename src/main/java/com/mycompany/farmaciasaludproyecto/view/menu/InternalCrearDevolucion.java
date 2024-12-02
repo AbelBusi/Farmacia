@@ -4,7 +4,17 @@
  */
 package com.mycompany.farmaciasaludproyecto.view.menu;
 
+import com.mycompany.farmaciasaludproyecto.model.dao.DevolucionDAO;
+import com.mycompany.farmaciasaludproyecto.model.dao.VentaDAO;
+import com.mycompany.farmaciasaludproyecto.model.entity.Venta;
+import static com.mycompany.farmaciasaludproyecto.view.menu.InterGestionarVentas.jTable_ventas;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Date;
+import java.util.LinkedList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -12,12 +22,85 @@ import java.awt.Dimension;
  */
 public class InternalCrearDevolucion extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form InternalCrearDevolucion
-     */
+    private DefaultTableModel dtm;
+    private String[] cabeceras = {"ID Venta", "ID Cliente", "ID Vendedor", "ID Descuento", "Total", "Fecha Venta", "Vigente"};
+    private VentaDAO ventaDao;
+    private LinkedList<Venta> listaVentas;
+
+    public void mostrarVentasEnJTable() {
+        // Inicializar el modelo de la tabla con las cabeceras definidas
+        dtm = new DefaultTableModel(null, cabeceras);
+
+        // Llenar la lista de ventas
+        ventaDao = new VentaDAO();
+        listaVentas = ventaDao.obtenerVentas(); // Este método debería retornar la lista de ventas desde la base de datos
+
+        // Recorrer la lista de ventas y agregar cada una al modelo de la tabla
+        for (Venta venta : listaVentas) {
+            // Aquí asumo que tienes un método en la clase Venta que convierte la venta en un arreglo de objetos
+            dtm.addRow(venta.convertir());
+        }
+
+        // Establecer el modelo de la tabla
+        jTable_productos1.setModel(dtm);
+
+    }
+
+    private void buscarVentaPorID(int idVenta) {
+        // Limpiar la tabla antes de mostrar resultados
+        dtm = new DefaultTableModel(null, cabeceras);
+        jTable_productos1.setModel(dtm);
+
+        // Buscar en la lista de ventas
+        boolean encontrado = false; // Para manejar casos en los que no se encuentre nada
+        for (Venta venta : listaVentas) {
+            if (venta.getId_venta() == idVenta) { // Asumiendo que tienes un getter para `idVenta`
+                // Agregar la venta encontrada a la tabla
+                dtm.addRow(venta.convertir());
+                encontrado = true;
+                break;
+            }
+        }
+
+        // Mostrar mensaje si no se encuentra ninguna venta
+        if (!encontrado) {
+            JOptionPane.showMessageDialog(this, "No se encontró ninguna venta con el ID: " + idVenta,
+                    "Búsqueda", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+
     public InternalCrearDevolucion() {
         initComponents();
         this.setSize(new Dimension(1150, 752));
+        mostrarVentasEnJTable();
+        jButton2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                // Obtener los datos de la fila seleccionada
+                int filaSeleccionada = jTable_productos1.getSelectedRow();
+
+                if (filaSeleccionada != -1) {
+                    int idVenta = (int) dtm.getValueAt(filaSeleccionada, 0); // Obtener el ID de venta
+                    String motivo = jTextArea1.getText();  // Obtener el motivo de la devolución
+
+                    if (!motivo.trim().isEmpty()) {
+                        // Llamar al DAO para crear la devolución
+                        DevolucionDAO devolucionDAO = new DevolucionDAO();
+                        devolucionDAO.crearDevolucion(idVenta, motivo);
+
+                        JOptionPane.showMessageDialog(null, "Devolución procesada con éxito.");
+
+                        // Opcional: Limpiar los campos o actualizar la tabla
+                        jTextArea1.setText("");  // Limpiar el campo de texto
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Por favor, ingrese un motivo para la devolución.");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Por favor, seleccione una venta de la tabla.");
+                }
+            }
+        });
+
     }
 
     /**
@@ -132,11 +215,45 @@ public class InternalCrearDevolucion extends javax.swing.JInternalFrame {
 
     private void jButton_busca_clienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_busca_clienteActionPerformed
 
+        String textoID = txt_cliente_buscar.getText().trim();
+
+        if (!textoID.isEmpty()) {
+            try {
+                // Intentar convertir el texto a un número
+                int idVenta = Integer.parseInt(textoID);
+                buscarVentaPorID(idVenta);
+            } catch (NumberFormatException e) {
+                // Mostrar un error si el ID no es un número válido
+                JOptionPane.showMessageDialog(this, "Por favor, ingrese un ID de venta válido.",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            // Mostrar todas las ventas si no se ingresó un ID
+            mostrarVentasEnJTable();
+        }
 
     }//GEN-LAST:event_jButton_busca_clienteActionPerformed
 
     private void jTable_productos1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_productos1MouseClicked
         // TODO add your handling code here:
+        // Obtener la fila seleccionada
+        int filaSeleccionada = jTable_productos1.getSelectedRow();
+
+        // Verificar que se haya seleccionado una fila
+        if (filaSeleccionada != -1) {
+            // Obtener los valores de la fila seleccionada
+            int idVenta = (int) dtm.getValueAt(filaSeleccionada, 0); // Asumiendo que el ID de venta está en la primera columna
+            int idCliente = (int) dtm.getValueAt(filaSeleccionada, 1);
+            int idVendedor = (int) dtm.getValueAt(filaSeleccionada, 2);
+            int idDescuento = (int) dtm.getValueAt(filaSeleccionada, 3);
+            double total = (double) dtm.getValueAt(filaSeleccionada, 4);
+            Date fechaVenta = (Date) dtm.getValueAt(filaSeleccionada, 5); // O puede ser String, dependiendo del formato
+
+            // Usar estos datos para la devolución
+            // Puedes guardar estos valores en variables de instancia si los necesitas después
+        }
+
+
     }//GEN-LAST:event_jTable_productos1MouseClicked
 
 

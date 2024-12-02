@@ -25,6 +25,15 @@ public class Devolucion implements Comparable<Devolucion>{
         this.vigente = vigente;
     }
 
+    public Devolucion(int id_venta, String motivo, String fechaRechazo, boolean vigente) {
+        this.id_venta = id_venta;
+        this.motivo = motivo;
+        this.fechaRechazo = fechaRechazo;
+        this.vigente = vigente;
+    }
+    
+    
+
     public int getId_devolucion() {
         return id_devolucion;
     }

@@ -296,9 +296,9 @@ public class FRM_MENU_EMPLEADO extends javax.swing.JFrame {
 
     private void MENU_CrearDevolucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_CrearDevolucionActionPerformed
         // TODO add your handling code here:
-        InternalTipoMedicamento categoria = new InternalTipoMedicamento();
-        jDesktopPane_menu.add(categoria);
-        categoria.setVisible(true);
+        InternalCrearDevolucion devolucion = new InternalCrearDevolucion();
+        jDesktopPane_menu.add(devolucion);
+        devolucion.setVisible(true);
 
     }//GEN-LAST:event_MENU_CrearDevolucionActionPerformed
 
