@@ -297,12 +297,6 @@ public class InterGestionarCliente extends javax.swing.JInternalFrame {
         listaClientes.sort((c1, c2) -> c2.getNombres().compareTo(c1.getNombres()));
     actualizarTabla();
     }                                                 
-    private void actualizarTabla() {
-    modeloTabla.setRowCount(0);
-    for (Cliente cliente : listaClientes) {
-        modeloTabla.addRow(cliente.convertir());
-    }}
-
     // Variables declaration - do not modify                     
     private javax.swing.JButton jButton_actualizar;
     private javax.swing.JButton jButton_buscar;
@@ -329,5 +323,22 @@ public class InterGestionarCliente extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txt_dni;
     private javax.swing.JTextField txt_nombre;
     // End of variables declaration                   
-
+public void actualizarTabla() {
+        try {
+            listaClientes = clienteDAO.obtenerTodosLosClientes();
+            modeloTabla.setRowCount(0); // Limpia la tabla
+            for (Cliente cliente : listaClientes) {
+                modeloTabla.addRow(new Object[]{
+                    cliente.getId_cliente(),
+                    cliente.getNombres(),
+                    cliente.getApellidos(),
+                    cliente.getDni(),
+                    cliente.getDireccion(),
+                    cliente.getTelefono()
+                });
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error al actualizar la tabla: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }   
+}
 }
