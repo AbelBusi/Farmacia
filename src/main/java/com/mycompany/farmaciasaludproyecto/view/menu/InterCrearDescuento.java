@@ -15,12 +15,12 @@ public class InterCrearDescuento extends javax.swing.JInternalFrame {
     int idProducto = 0;
     int cantidad = 0;
     DescuentoDAO descuentoDAO;
+   
     public InterCrearDescuento() {
         initComponents();
         setTitle("Crear descuento");
         setSize(new Dimension(400, 300));
         descuentoDAO = new DescuentoDAO();
-        this.CargarComboProductos();
     }
 
     /**
@@ -137,4 +137,5 @@ public class InterCrearDescuento extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txt_cantidad_actual;
     private javax.swing.JTextField txt_cantidad_nueva;
     // End of variables declaration                   
+
 }
