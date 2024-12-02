@@ -14,16 +14,19 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
 public class InterGestionarVendedor extends javax.swing.JInternalFrame {
+
     VendedorDao daoVendedor = new VendedorDao();
     DefaultTableModel modeloVendedor = new DefaultTableModel();
 
-    public InterGestionarVendedor(){
+    public InterGestionarVendedor() {
         initComponents();
-        listarVendedor(TablaVendedor);
         this.setSize(new Dimension(943, 533));
+
+        listarVendedor(TablaVendedor);
         listarVendedor(TablaVendedor);
         TablaVendedor.setModel(modeloVendedor);
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -42,7 +45,7 @@ public class InterGestionarVendedor extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btnEliminarVendedor = new javax.swing.JButton();
-        btnEditarVendedor = new javax.swing.JButton();
+        btnguardarV = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         txt_nombre = new javax.swing.JTextField();
@@ -58,7 +61,6 @@ public class InterGestionarVendedor extends javax.swing.JInternalFrame {
         txt_id = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         chkActivoEmpleado = new javax.swing.JCheckBox();
-        btnguardarV = new javax.swing.JButton();
         jLabel_wallpaper = new javax.swing.JLabel();
 
         setClosable(true);
@@ -93,6 +95,11 @@ public class InterGestionarVendedor extends javax.swing.JInternalFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        TablaVendedor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaVendedorMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(TablaVendedor);
@@ -196,16 +203,16 @@ public class InterGestionarVendedor extends javax.swing.JInternalFrame {
         });
         jPanel2.add(btnEliminarVendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 130, -1));
 
-        btnEditarVendedor.setBackground(new java.awt.Color(51, 204, 0));
-        btnEditarVendedor.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnEditarVendedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medico.png"))); // NOI18N
-        btnEditarVendedor.setText("Actulizar");
-        btnEditarVendedor.addActionListener(new java.awt.event.ActionListener() {
+        btnguardarV.setBackground(new java.awt.Color(51, 204, 0));
+        btnguardarV.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnguardarV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cajero (1).png"))); // NOI18N
+        btnguardarV.setText("Guardar");
+        btnguardarV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarVendedorActionPerformed(evt);
+                btnguardarVActionPerformed(evt);
             }
         });
-        jPanel2.add(btnEditarVendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 130, -1));
+        jPanel2.add(btnguardarV, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 130, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 40, 170, 330));
 
@@ -275,16 +282,6 @@ public class InterGestionarVendedor extends javax.swing.JInternalFrame {
         chkActivoEmpleado.setText("Activo");
         jPanel3.add(chkActivoEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 40, 0, 10));
 
-        btnguardarV.setBackground(new java.awt.Color(51, 204, 0));
-        btnguardarV.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnguardarV.setText("Guardar");
-        btnguardarV.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnguardarVActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnguardarV, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 50, 130, -1));
-
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 910, 100));
 
         jLabel_wallpaper.setIcon(new javax.swing.ImageIcon(getClass().getResource("/female-research-scientist-with-bioengineer-working-on-a-personal-picture-id1309776504-1 (1).jpg"))); // NOI18N
@@ -305,9 +302,15 @@ public class InterGestionarVendedor extends javax.swing.JInternalFrame {
 
     private void btnguardarVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarVActionPerformed
         // TODO add your handling code here:
-        actualizarVendedor();
-        Limpiar();
-        listarVendedor(TablaVendedor);
+        int filaSeleccionada = TablaVendedor.getSelectedRow();
+        if (filaSeleccionada == -1) {
+            javax.swing.JOptionPane.showMessageDialog(null, "Debe seleccionar un vendedor de la tabla para actualizar.");
+        } else {
+            // Si se seleccionó una fila, se actualiza el vendedor
+            actualizarVendedor();
+            Limpiar();
+            listarVendedor(TablaVendedor);
+        }
     }//GEN-LAST:event_btnguardarVActionPerformed
 
     private void txt_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_buscarActionPerformed
@@ -334,30 +337,37 @@ public class InterGestionarVendedor extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton_ordenarAZ4ActionPerformed
 
-    private void btnEditarVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarVendedorActionPerformed
-        // TODO add your handling code here:
+    public void presionarMostrarJtable() {
         int filaSeleccionada = TablaVendedor.getSelectedRow();
         if (filaSeleccionada == -1) {
-        javax.swing.JOptionPane.showMessageDialog(null, "Debe seleccionar una fila");
+            javax.swing.JOptionPane.showMessageDialog(null, "Debe seleccionar una fila");
         } else {
-        int id_vendedor = Integer.parseInt(TablaVendedor.getValueAt(filaSeleccionada, 0).toString());
+            int id_vendedor = Integer.parseInt(TablaVendedor.getValueAt(filaSeleccionada, 0).toString());
 
-        Vendedor vend = daoVendedor.leerVendedor(id_vendedor);
-        if (vend != null) {
-            
-            txt_id.setText(Integer.toString(vend.getId_vendedor()));
-            txt_nombre.setText(vend.getNombres());
-            txt_apellido.setText(vend.getApellidos());
-            txt_dni.setText(vend.getDni());
-            txt_telefono.setText(vend.getTelefono());
-            txt_correo.setText(vend.getCorreo());
-            chkActivoEmpleado.setSelected(vend.isEstado());
+            Vendedor vend = daoVendedor.leerVendedor(id_vendedor);
+            if (vend != null) {
+
+                txt_id.setText(Integer.toString(vend.getId_vendedor()));
+                txt_nombre.setText(vend.getNombres());
+                txt_apellido.setText(vend.getApellidos());
+                txt_dni.setText(vend.getDni());
+                txt_telefono.setText(vend.getTelefono());
+                txt_correo.setText(vend.getCorreo());
+                chkActivoEmpleado.setSelected(vend.isEstado());
+            }
         }
+
     }
-    }//GEN-LAST:event_btnEditarVendedorActionPerformed
-    
+
+    private void TablaVendedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaVendedorMouseClicked
+        // TODO add your handling code here:
+        presionarMostrarJtable();
+    }//GEN-LAST:event_TablaVendedorMouseClicked
+
     public void actualizarVendedor() {
         Vendedor vend = new Vendedor();
+
+        // Obtención de datos de los campos del formulario
         String nomvend = txt_nombre.getText();
         String apevend = txt_apellido.getText();
         String dniven = txt_dni.getText();
@@ -365,46 +375,57 @@ public class InterGestionarVendedor extends javax.swing.JInternalFrame {
         String correoven = txt_correo.getText();
         boolean estdven = chkActivoEmpleado.isSelected();
         int idVend = Integer.parseInt(txt_id.getText());
-        vend.setNombres(nomvend);
-        vend.setApellidos(apevend);
-        vend.setDni(dniven);
-        vend.setTelefono(telefven);
-        vend.setCorreo(correoven);
-        vend.setEstado(estdven);
-        vend.setId_vendedor(idVend);
-        int r = daoVendedor.actualizarVendedor(vend);
-        if (r == 1) {
-            javax.swing.JOptionPane.showMessageDialog(null, "Vendedor Actualizado con éxito");
+
+        // Verificamos que los campos no estén vacíos
+        if (nomvend.isEmpty() || apevend.isEmpty() || dniven.isEmpty() || telefven.isEmpty() || correoven.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(null, "Debe completar todos los campos para continuar.");
         } else {
-            javax.swing.JOptionPane.showMessageDialog(null, "Error al actualizar Vendedor");
+            // Asignación de valores al objeto Vendedor
+            vend.setNombres(nomvend);
+            vend.setApellidos(apevend);
+            vend.setDni(dniven);
+            vend.setTelefono(telefven);
+            vend.setCorreo(correoven);
+            vend.setEstado(estdven);
+            vend.setId_vendedor(idVend);
+
+            // Actualizamos el vendedor en la base de datos
+            int resultado = daoVendedor.actualizarVendedor(vend);
+
+            // Mostramos el resultado de la operación
+            if (resultado == 1) {
+                javax.swing.JOptionPane.showMessageDialog(null, "Vendedor actualizado con éxito.");
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(null, "Error al actualizar vendedor.");
+            }
         }
     }
-    
+
     private void limpiarTabla() {
-    while (modeloVendedor.getRowCount() > 0) {
-        modeloVendedor.removeRow(0);
+        while (modeloVendedor.getRowCount() > 0) {
+            modeloVendedor.removeRow(0);
+        }
     }
-}
 
     public void deleteVendedor() {
-    int filaUsuario = TablaVendedor.getSelectedRow();
-    
-    if (filaUsuario == -1) {
-        javax.swing.JOptionPane.showMessageDialog(null, "Debe seleccionar una fila");
-    } else {
-        int id = Integer.parseInt(TablaVendedor.getValueAt(filaUsuario, 0).toString());
-        int confirmacion = javax.swing.JOptionPane.showConfirmDialog(
-                null, 
-                "¿Está seguro que quiere eliminar al Vendedor?", 
-                "Confirmación de eliminación", 
-                javax.swing.JOptionPane.YES_NO_OPTION
-        );
-        if (confirmacion == javax.swing.JOptionPane.YES_OPTION) {
-            daoVendedor.deleteVendedor(id);
-            javax.swing.JOptionPane.showMessageDialog(null, "Usuario Eliminado con Éxito");
+        int filaUsuario = TablaVendedor.getSelectedRow();
+
+        if (filaUsuario == -1) {
+            javax.swing.JOptionPane.showMessageDialog(null, "Debe seleccionar una fila");
+        } else {
+            int id = Integer.parseInt(TablaVendedor.getValueAt(filaUsuario, 0).toString());
+            int confirmacion = javax.swing.JOptionPane.showConfirmDialog(
+                    null,
+                    "¿Está seguro que quiere eliminar al Vendedor?",
+                    "Confirmación de eliminación",
+                    javax.swing.JOptionPane.YES_NO_OPTION
+            );
+            if (confirmacion == javax.swing.JOptionPane.YES_OPTION) {
+                daoVendedor.deleteVendedor(id);
+                javax.swing.JOptionPane.showMessageDialog(null, "Usuario Eliminado con Éxito");
+            }
         }
     }
-}
 
     public void listarVendedor(JTable tabla) {
         modeloVendedor.setRowCount(0);
@@ -432,18 +453,18 @@ public class InterGestionarVendedor extends javax.swing.JInternalFrame {
             } else {
                 object[6] = "Inactivo";
             }
-            
+
             modeloVendedor.addRow(object);
         }
         TablaVendedor.setModel(modeloVendedor);
         TableColumnModel columnModel = tabla.getColumnModel();
-        
+
         int anchoApellido = calcularAnchoMaximoContenido(tabla, 2);
         columnModel.getColumn(2).setPreferredWidth(anchoApellido);
-        
-        int anchoCorreo = calcularAnchoMaximoContenido(tabla, 5); 
+
+        int anchoCorreo = calcularAnchoMaximoContenido(tabla, 5);
         columnModel.getColumn(5).setPreferredWidth(anchoCorreo);
-        
+
         int anchoEstado = calcularAnchoMaximoContenido(tabla, 6);
         columnModel.getColumn(6).setPreferredWidth(anchoEstado);
     }
@@ -466,6 +487,7 @@ public class InterGestionarVendedor extends javax.swing.JInternalFrame {
 
         return anchoMaximo;
     }
+
     private void Limpiar() {
         txt_id.setText("");
         txt_nombre.setText("");
@@ -477,7 +499,6 @@ public class InterGestionarVendedor extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JTable TablaVendedor;
-    private javax.swing.JButton btnEditarVendedor;
     private javax.swing.JButton btnEliminarVendedor;
     private javax.swing.JButton btnguardarV;
     private javax.swing.JCheckBox chkActivoEmpleado;

@@ -2,18 +2,14 @@ package com.mycompany.farmaciasaludproyecto.view.menu;
 
 import com.mycompany.farmaciasaludproyecto.model.dao.VendedorDao;
 import com.mycompany.farmaciasaludproyecto.model.entity.Vendedor;
-import java.awt.Dialog;
 import java.awt.Dimension;
-import java.awt.Window;
-import javax.swing.SwingUtilities;
-import javax.swing.text.AbstractDocument;
-import javax.swing.text.AttributeSet;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.DocumentFilter;
+
 
 public class InterRegistrarVendedor extends javax.swing.JInternalFrame {
+
     Vendedor vend = new Vendedor();
     VendedorDao daoVendedor = new VendedorDao();
+
     public InterRegistrarVendedor() {
         initComponents();
         this.setSize(new Dimension(513, 450));
@@ -155,18 +151,22 @@ public class InterRegistrarVendedor extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_GuardarActionPerformed
-        if (validarDatos() == false) {
+
+        if (validarDatos()) {
+            agregarVendedor();
+            javax.swing.JOptionPane.showMessageDialog(null, "Vendedor agregado con éxito");
+            Limpiar();
+        } else {
             javax.swing.JOptionPane.showMessageDialog(null, "Falta ingresar datos");
-            return;
         }
-        agregarVendedor();
-        Window window = SwingUtilities.getWindowAncestor(this);
-        if (window instanceof Dialog) {
-            Dialog dialog = (Dialog) window;
-            dialog.dispose();
-        }
-        Limpiar();
     }//GEN-LAST:event_jButton_GuardarActionPerformed
+
+    private boolean validarDatos() {
+        return !txt_nombre.getText().isEmpty() && !txt_apellido.getText().isEmpty()
+                && !txt_dni.getText().isEmpty() && !txt_telefono.getText().isEmpty()
+                && !txt_correo.getText().isEmpty();
+    }
+
     public void agregarVendedor() {
         String nomvend = txt_nombre.getText();
         String apevend = txt_apellido.getText();
@@ -179,136 +179,7 @@ public class InterRegistrarVendedor extends javax.swing.JInternalFrame {
         vend.setTelefono(telefven);
         vend.setCorreo(correoven);
 
-        int respuesta = daoVendedor.agregarVend(vend);
-        if (respuesta == 1) {
-            javax.swing.JOptionPane.showMessageDialog(null, "Vendedor agregado con éxito");
-        } else {
-            javax.swing.JOptionPane.showMessageDialog(null, "Error");
-        }
-    }
-    
-    private boolean validarDatos() {
-        if (txt_nombre.getText().isEmpty()) {
-            return false;
-        }
-        if (txt_apellido.getText().isEmpty()) {
-            return false;
-        }
-        if (txt_dni.getText().isEmpty()) {
-            return false;
-        }
-        if (txt_telefono.getText().isEmpty()) {
-            return false;
-        }
-        if (txt_correo.getText().isEmpty()) {
-            return false;
-        }
-        return true;
-    }
-    private void ValidarCampo() {
-        // Validar campo de DNI
-        ((AbstractDocument) txt_dni.getDocument()).setDocumentFilter(new DocumentFilter() {
-            public void insertString(DocumentFilter.FilterBypass fb, int offset, String text, AttributeSet attr)
-                    throws BadLocationException {
-                StringBuilder sb = new StringBuilder();
-                sb.append(fb.getDocument().getText(0, fb.getDocument().getLength()));
-                sb.insert(offset, text);
-
-                if (sb.toString().matches("\\d{0,8}")) {
-                    super.insertString(fb, offset, text, attr);
-                }
-            }
-
-            @Override
-            public void replace(DocumentFilter.FilterBypass fb, int offset, int length, String text, AttributeSet attrs)
-                    throws BadLocationException {
-                StringBuilder sb = new StringBuilder();
-                sb.append(fb.getDocument().getText(0, fb.getDocument().getLength()));
-                sb.replace(offset, offset + length, text);
-
-                if (sb.toString().matches("\\d{0,8}")) {
-                    super.replace(fb, offset, length, text, attrs);
-                }
-            }
-        });
-
-        // Validar campo de nombre
-        ((AbstractDocument) txt_nombre.getDocument()).setDocumentFilter(new DocumentFilter() {
-            public void insertString(DocumentFilter.FilterBypass fb, int offset, String text, AttributeSet attr)
-                    throws BadLocationException {
-                StringBuilder sb = new StringBuilder();
-                sb.append(fb.getDocument().getText(0, fb.getDocument().getLength()));
-                sb.insert(offset, text);
-
-                if (sb.toString().matches("[a-zA-Z ]{0,20}")) {
-                    super.insertString(fb, offset, text, attr);
-                }
-            }
-
-            @Override
-            public void replace(DocumentFilter.FilterBypass fb, int offset, int length, String text, AttributeSet attrs)
-                    throws BadLocationException {
-                StringBuilder sb = new StringBuilder();
-                sb.append(fb.getDocument().getText(0, fb.getDocument().getLength()));
-                sb.replace(offset, offset + length, text);
-
-                if (sb.toString().matches("[a-zA-Z ]{0,20}")) {
-                    super.replace(fb, offset, length, text, attrs);
-                }
-            }
-        });
-
-        // Validar campo de apellido
-        ((AbstractDocument) txt_apellido.getDocument()).setDocumentFilter(new DocumentFilter() {
-            public void insertString(DocumentFilter.FilterBypass fb, int offset, String text, AttributeSet attr)
-                    throws BadLocationException {
-                StringBuilder sb = new StringBuilder();
-                sb.append(fb.getDocument().getText(0, fb.getDocument().getLength()));
-                sb.insert(offset, text);
-
-                if (sb.toString().matches("[a-zA-Z ]{0,20}")) {
-                    super.insertString(fb, offset, text, attr);
-                }
-            }
-
-            @Override
-            public void replace(DocumentFilter.FilterBypass fb, int offset, int length, String text, AttributeSet attrs)
-                    throws BadLocationException {
-                StringBuilder sb = new StringBuilder();
-                sb.append(fb.getDocument().getText(0, fb.getDocument().getLength()));
-                sb.replace(offset, offset + length, text);
-
-                if (sb.toString().matches("[a-zA-Z ]{0,20}")) {
-                    super.replace(fb, offset, length, text, attrs);
-                }
-            }
-        });
-        
-        // Validar campo de telefono
-        ((AbstractDocument) txt_telefono.getDocument()).setDocumentFilter(new DocumentFilter() {
-            public void insertString(DocumentFilter.FilterBypass fb, int offset, String text, AttributeSet attr)
-                    throws BadLocationException {
-                StringBuilder sb = new StringBuilder();
-                sb.append(fb.getDocument().getText(0, fb.getDocument().getLength()));
-                sb.insert(offset, text);
-
-                if (sb.toString().matches("\\d{0,9}")) {
-                    super.insertString(fb, offset, text, attr);
-                }
-            }
-
-            @Override
-            public void replace(DocumentFilter.FilterBypass fb, int offset, int length, String text, AttributeSet attrs)
-                    throws BadLocationException {
-                StringBuilder sb = new StringBuilder();
-                sb.append(fb.getDocument().getText(0, fb.getDocument().getLength()));
-                sb.replace(offset, offset + length, text);
-
-                if (sb.toString().matches("\\d{0,9}")) {
-                    super.replace(fb, offset, length, text, attrs);
-                }
-            }
-        });
+        daoVendedor.agregarVend(vend);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
