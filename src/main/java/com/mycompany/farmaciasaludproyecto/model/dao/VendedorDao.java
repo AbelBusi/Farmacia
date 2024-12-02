@@ -10,34 +10,130 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.LinkedList;
 
-/**
- *
- * @author cesar
- */
 public class VendedorDao {
     
-public LinkedList<Vendedor> obtenerTodosLosVendedores() {
-    LinkedList<Vendedor> vendedores = new LinkedList<>();
-    String sql = "SELECT nombres, apellidos, telefono, estado FROM Usuario WHERE rol = 'vendedor'";
+public LinkedList<Vendedor> listarVendedor() {
+    LinkedList<Vendedor> datosVendedor = new LinkedList<>();
+    String sql = "SELECT * FROM vendedor WHERE estado = TRUE";
+    
+        try (Connection conn = Conexion.conectar();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                Vendedor vend = new Vendedor();
+                vend.setId_vendedor(rs.getInt("id_vendedor"));
+                vend.setNombres(rs.getString("nombres"));
+                vend.setApellidos(rs.getString("apellidos"));
+                vend.setDni(rs.getString("dni"));
+                vend.setTelefono(rs.getString("telefono"));  
+                vend.setCorreo(rs.getString("correo")); 
+                vend.setEstado(rs.getBoolean("estado")); 
+
+                datosVendedor.add(vend);
+            }
+        } catch (Exception e) {
+            e.printStackTrace(); 
+        }
+        return datosVendedor;
+    }
+   
+    public int agregarVend(Vendedor  vend) {
+        String sql = "INSERT INTO vendedor (nombres, apellidos, dni, telefono, correo) VALUES (?, ?, ?, ?, ?)";
+    
+        try (Connection conn = Conexion.conectar();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, vend.getNombres());
+            stmt.setString(2, vend.getApellidos());
+            stmt.setString(3, vend.getDni());
+            stmt.setString(4, vend.getTelefono());
+            stmt.setString(5, vend.getCorreo());
+            stmt.executeUpdate();
+            return 1;  
+
+        } catch (Exception e) {
+            e.printStackTrace();  
+            return 0;  
+        }
+    }
+    
+    public Vendedor leerVendedor(int id_vendedor) {
+    Vendedor vend = null;
+    String sql = "SELECT * FROM vendedor WHERE id_vendedor = ?";
 
     try (Connection conn = Conexion.conectar();
-         PreparedStatement stmt = conn.prepareStatement(sql);
-         ResultSet rs = stmt.executeQuery()) {
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-        while (rs.next()) {
-            Vendedor vendedor = new Vendedor();
-            vendedor.setNombres(rs.getString("nombres"));
-            vendedor.setApellidos(rs.getString("apellidos"));
-            vendedor.setTelefono(rs.getString("telefono"));
-            vendedor.setVigente(rs.getBoolean("estado")); // Ahora es boolean
-            vendedores.add(vendedor);
+        stmt.setInt(1, id_vendedor);  
+        try (ResultSet rs = stmt.executeQuery()) {
+            if (rs.next()) {
+                vend = new Vendedor();
+                vend.setId_vendedor(rs.getInt("id_vendedor"));
+                vend.setNombres(rs.getString("nombres"));
+                vend.setApellidos(rs.getString("apellidos"));
+                vend.setDni(rs.getString("dni"));
+                vend.setTelefono(rs.getString("telefono"));
+                vend.setCorreo(rs.getString("correo"));
+                vend.setEstado(rs.getBoolean("estado"));  
+            }
         }
     } catch (Exception e) {
-        e.printStackTrace();
+        e.printStackTrace();  
     }
+    return vend;  
+   } 
+    
+    public int actualizarVendedor(Vendedor vend) {
+    int resultado = 0;
+    String sql = "UPDATE vendedor SET nombres = ?, apellidos = ?, dni = ?, telefono = ?, correo = ?, estado = ? "
+               + "WHERE id_vendedor = ?";
+    
+    try (
+         Connection conn = Conexion.conectar();
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+       
+        stmt.setString(1, vend.getNombres());
+        stmt.setString(2, vend.getApellidos());
+        stmt.setString(3, vend.getDni());
+        stmt.setString(4, vend.getTelefono());
+        stmt.setString(5, vend.getCorreo());
+        stmt.setBoolean(6, vend.isEstado()); 
+        stmt.setInt(7, vend.getId_vendedor());
 
-    return vendedores;
+        resultado = stmt.executeUpdate();
+        if(resultado == 1){
+                return 1;
+            }else{
+                return 0;
+            }
+    } catch (Exception e) {
+        e.printStackTrace();  
+    }
+    
+    return resultado;  
 }
+    
+
+    
+    public void deleteVendedor(int id_vend) {
+    String sql = "UPDATE Vendedor SET estado = FALSE WHERE id_vendedor = ?";
+    
+    try (Connection conn = Conexion.conectar();
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+        stmt.setInt(1, id_vend);
+        
+        int filasAfectadas = stmt.executeUpdate();
+        
+        if (filasAfectadas > 0) {
+            System.out.println("Vendedor eliminado correctamente.");
+        } else {
+            System.out.println("No se encontró el vendedor.");
+        }
+    } catch (Exception e) {
+        e.printStackTrace();  // Muestra el error completo en caso de excepción
+    }
+    
+    }
     
     
     public boolean dniExiste(String dni) {
@@ -80,5 +176,5 @@ public LinkedList<Vendedor> obtenerTodosLosVendedores() {
 
         return -1; // Si no se encuentra el vendedor
     }
-    
+
 }

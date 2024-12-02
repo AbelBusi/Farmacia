@@ -34,7 +34,7 @@ public class InterListaVendedor extends javax.swing.JInternalFrame {
     public InterListaVendedor() {
         initComponents();
         this.setSize(new Dimension(943, 533));
-        LI_vendedor = vendedorDao.obtenerTodosLosVendedores();
+        LI_vendedor = vendedorDao.listarVendedor();
         MostrarJTable();
     }
     
@@ -221,7 +221,7 @@ public class InterListaVendedor extends javax.swing.JInternalFrame {
     private void jButton_inactivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_inactivoActionPerformed
     
         Collections.sort(LI_vendedor,
-                Comparator.comparing(Vendedor::isVigente).reversed()
+                Comparator.comparing(Vendedor::isEstado).reversed()
                         .thenComparing(Vendedor::getNombres));
 
         MostrarJTable();
@@ -229,7 +229,7 @@ public class InterListaVendedor extends javax.swing.JInternalFrame {
 
     private void jButton_activoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_activoActionPerformed
         // TODO add your handling code here:
-        Collections.sort(LI_vendedor, Comparator.comparing(Vendedor::isVigente).reversed());
+        Collections.sort(LI_vendedor, Comparator.comparing(Vendedor::isEstado).reversed());
 
         MostrarJTable();
     }//GEN-LAST:event_jButton_activoActionPerformed

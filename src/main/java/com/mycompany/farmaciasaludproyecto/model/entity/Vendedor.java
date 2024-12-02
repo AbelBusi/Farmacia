@@ -17,16 +17,18 @@ public class Vendedor implements Comparable<Vendedor>{
     private String dni;
     private String telefono;
     private String correo;
-    private boolean vigente;
+    private boolean estado;
+    private int id_usuario;
 
-    public Vendedor(int id_vendedor, String nombres, String apellidos, String dni, String telefono, String correo, boolean vigente) {
+    public Vendedor(int id_vendedor, String nombres, String apellidos, String dni, String telefono, String correo, boolean estado, int id_usuario) {
         this.id_vendedor = id_vendedor;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.dni = dni;
         this.telefono = telefono;
         this.correo = correo;
-        this.vigente = vigente;
+        this.estado = estado;
+        this.id_usuario = id_usuario;
     }
 
     public Vendedor() {
@@ -82,12 +84,20 @@ public class Vendedor implements Comparable<Vendedor>{
         this.correo = correo;
     }
 
-    public boolean isVigente() {
-        return vigente;
+    public boolean isEstado() {
+        return estado;
     }
 
-    public void setVigente(boolean vigente) {
-        this.vigente = vigente;
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+    public int getId_usuario() {
+        return id_usuario;
+    }
+
+    public void setId_usuario(int id_usuario) {
+        this.id_usuario = id_usuario;
     }
 
 
@@ -103,7 +113,7 @@ public class Vendedor implements Comparable<Vendedor>{
             nombres,
             apellidos,
             telefono,
-            (vigente? "Activo" : "Inactivo")
+            (estado? "Activo" : "Inactivo")
         };
         
     }
