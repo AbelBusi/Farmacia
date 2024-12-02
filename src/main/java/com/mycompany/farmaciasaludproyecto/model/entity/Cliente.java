@@ -88,7 +88,7 @@ public class Cliente implements Comparable<Cliente>{
     
     public Object[] convertir (){
         
-        Object[] fila = {nombres,apellidos,dni,direccion,telefono};
+        Object[] fila = {id_cliente,nombres,apellidos,dni,direccion,telefono};
         return fila;
     
     } 

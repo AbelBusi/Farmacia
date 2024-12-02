@@ -8,6 +8,7 @@ import java.awt.Dimension;
  */
 public class InterGestionarDescuentos extends javax.swing.JInternalFrame {
 
+    
 
 
     public InterGestionarDescuentos(){
