@@ -258,8 +258,9 @@ public class FRM_MENU_EMPLEADO extends javax.swing.JFrame {
         menu_cerrarSesion.setText("Cerrar Sesion");
         menu_cerrarSesion.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
 
+        MENU_cerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/delete.png"))); // NOI18N
         MENU_cerrarSesion.setText("Cerrar Sesion");
-        MENU_cerrarSesion.setPreferredSize(new java.awt.Dimension(150, 50));
+        MENU_cerrarSesion.setPreferredSize(new java.awt.Dimension(250, 50));
         MENU_cerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MENU_cerrarSesionActionPerformed(evt);
@@ -342,7 +343,9 @@ public class FRM_MENU_EMPLEADO extends javax.swing.JFrame {
 
     private void MENU_cerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_cerrarSesionActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
+        FRM_Login login = new FRM_Login();
+        login.setVisible(true);
+        this.setVisible(false);
 
     }//GEN-LAST:event_MENU_cerrarSesionActionPerformed
 
