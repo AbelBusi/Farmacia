@@ -2,11 +2,13 @@ package com.mycompany.farmaciasaludproyecto.model.dao;
 
 import com.mycompany.farmaciasaludproyecto.model.entity.Descuento;
 import com.mycompany.farmaciasaludproyecto.model.entity.Medicamento;
+import com.mycompany.farmaciasaludproyecto.model.entity.TipoMedicamento;
 import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -175,5 +177,111 @@ public class MedicamentoDAO {
         }
         return medicamento;
     }
+
+    public LinkedList<Medicamento> obtenerMedicamentosP() {
+        LinkedList<Medicamento> lista = new LinkedList<>();
+        try (Connection conexion = Conexion.conectar(); PreparedStatement stmt = conexion.prepareStatement("SELECT * FROM Medicamento")) {
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Medicamento medicamento = new Medicamento();
+                medicamento.setId_medicamento(rs.getInt("id_medicamento"));
+                medicamento.setNombre(rs.getString("nombre"));
+                medicamento.setDescripcion(rs.getString("descripcion"));
+                medicamento.setPrecio(rs.getBigDecimal("precio"));
+                medicamento.setStock(rs.getInt("stock"));
+                medicamento.setFechaVencimiento(rs.getDate("fechaVencimiento"));
+                medicamento.setId_tipo(rs.getInt("id_tipo")); // Puedes usar un JOIN para obtener el nombre del tipo
+                lista.add(medicamento);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return lista;
+
+    }
+
+    public LinkedList<Medicamento> obtenerMedicamentosActivos() {
+        LinkedList<Medicamento> lista = new LinkedList<>();
+        Conexion con = new Conexion();
+
+        try (Connection connection = con.conectar()) {
+            String query = "SELECT * FROM Medicamento WHERE estado = 1";
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                Medicamento medicamento = new Medicamento(
+                        resultSet.getInt("id_medicamento"),
+                        resultSet.getString("nombre"),
+                        resultSet.getString("descripcion"),
+                        resultSet.getBigDecimal("precio"),
+                        resultSet.getInt("stock"),
+                        resultSet.getDate("fechaVencimiento"),
+                        resultSet.getInt("id_tipo"),
+                        resultSet.getBoolean("estado") // Asegúrate de tener este campo en tu clase
+                );
+                lista.add(medicamento);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al obtener medicamentos: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        return lista;
+    }
+
+    public boolean desactivarMedicamento(int idMedicamento) {
+        String sql = "UPDATE Medicamento SET estado = 0 WHERE id_medicamento = ?";
+        try (Connection conn = Conexion.conectar(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, idMedicamento); // Asignar el ID al parámetro
+            int rowsAffected = stmt.executeUpdate();
+
+            // Depuración: Mostrar filas afectadas
+            System.out.println("Filas afectadas: " + rowsAffected);
+
+            return rowsAffected > 0; // Retorna true si se actualizó alguna fila
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public void cambiarEstado(int idMedicamento, int nuevoEstado) {
+        Conexion con = new Conexion();
+        String query = "UPDATE Medicamentos SET estado = ? WHERE id_medicamento = ?";
+
+        try (
+                Connection connection = con.conectar()) {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, nuevoEstado);
+            statement.setInt(2, idMedicamento);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al cambiar el estado del medicamento: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public void actualizarEnBaseDeDatos(int id, String nombre, String precio, String cantidad, String descripcion) {
+        String sql = "UPDATE medicamento SET nombre = ?, precio = ?, stock = ?, descripcion = ? WHERE id_medicamento = ?";
+
+        try (Connection conn = Conexion.conectar(); PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, nombre);
+            ps.setString(2, precio);
+            ps.setString(3, cantidad);
+            ps.setString(4, descripcion);
+            ps.setInt(5, id);
+
+            int filasActualizadas = ps.executeUpdate();
+
+            if (filasActualizadas > 0) {
+                JOptionPane.showMessageDialog(null, "Registro actualizado exitosamente.");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo actualizar el registro.");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al actualizar: " + e.getMessage());
+        }
+    }
+
 
 }

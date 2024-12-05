@@ -17,19 +17,20 @@ public class Cliente implements Comparable<Cliente>{
     private String dni;
     private String direccion;
     private String telefono;
+    private boolean estado;
 
-    public Cliente(int id_cliente, String nombres, String apellidos, String dni, String direccion, String telefono) {
+    public Cliente(int id_cliente, String nombres, String apellidos, String dni, String direccion, String telefono,boolean  estado) {
         this.id_cliente = id_cliente;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.dni = dni;
         this.direccion = direccion;
         this.telefono = telefono;
-    }
-
-    public Cliente() {
+        this.estado=estado;
     }
     
+    public Cliente() {
+    }
     
 
     public int getId_cliente() {
@@ -80,6 +81,15 @@ public class Cliente implements Comparable<Cliente>{
         this.telefono = telefono;
     }
 
+    public boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+    
+
     @Override
     public int compareTo(Cliente o) {
         return Comparator.comparing(Cliente::getNombres).
@@ -88,7 +98,8 @@ public class Cliente implements Comparable<Cliente>{
     
     public Object[] convertir (){
         
-        Object[] fila = {id_cliente,nombres,apellidos,dni,direccion,telefono};
+        Object[] fila = {id_cliente,nombres,apellidos,dni,direccion,telefono,
+        (estado? "Activo" : "Inactivo")};
         return fila;
     
     } 

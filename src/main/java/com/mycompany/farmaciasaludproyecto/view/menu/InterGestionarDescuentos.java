@@ -1,6 +1,14 @@
 package com.mycompany.farmaciasaludproyecto.view.menu;
 
+import com.mycompany.farmaciasaludproyecto.model.dao.Conexion;
+import com.mycompany.farmaciasaludproyecto.model.dao.DescuentoDAO;
+import com.mycompany.farmaciasaludproyecto.model.entity.Descuento;
 import java.awt.Dimension;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -8,13 +16,32 @@ import java.awt.Dimension;
  */
 public class InterGestionarDescuentos extends javax.swing.JInternalFrame {
 
-    
+    String[] Cabeceras = {"ID Descuento", "Nombre", "Total", "estado"};
+    DefaultTableModel DTM;
+    DescuentoDAO descuentoDao = new DescuentoDAO();
+    LinkedList<Descuento> LI_descuento = new LinkedList<>();
 
+    public void MostrarJTable() {
+        DTM = new DefaultTableModel(null, Cabeceras);
+        int n = 0;
 
-    public InterGestionarDescuentos(){
-    initComponents();
-    this.setSize(new Dimension(788, 533));
+        for (Descuento D : LI_descuento) {
+            if (D.getEstado() == false) {
+                n++;
+                DTM.addRow(D.convertirObj(n));  // Asegúrate de que el método convertir devuelva los valores correctos
+
+            }
+        }
+        jTable_productos.setModel(DTM);  // Asegúrate de que jTable_productos está bien declarado
     }
+
+    public InterGestionarDescuentos() {
+        initComponents();
+        this.setSize(new Dimension(788, 533));
+        LI_descuento = descuentoDao.obtenerDescuentos();  // Esto debería devolver una lista de descuentos
+        MostrarJTable();
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -66,6 +93,11 @@ public class InterGestionarDescuentos extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable_productos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable_productosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable_productos);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 510, 220));
@@ -188,17 +220,78 @@ public class InterGestionarDescuentos extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_ordenarAZActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ordenarAZActionPerformed
-
-
+        Collections.sort(LI_descuento, Comparator.comparing(Descuento::getNombre));
+        MostrarJTable();
 
     }//GEN-LAST:event_jButton_ordenarAZActionPerformed
 
     private void jButton_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_eliminarActionPerformed
+        int filaSeleccionada = jTable_productos.getSelectedRow();
+        DescuentoDAO dao = new DescuentoDAO();
 
+        if (filaSeleccionada != -1) {
+            // Obtener el ID del descuento seleccionado desde la primera columna (índice 0)
+            Object valorID = jTable_productos.getValueAt(filaSeleccionada, 0);
+
+            // Verifica si el valor es un Integer
+            if (valorID instanceof Integer) {
+                int idDescuento = (int) valorID;  // Convertir el valor a entero
+
+                // Llamar al método eliminarDescuentoP
+                if (dao.eliminarDescuentoP(idDescuento)) {
+                    JOptionPane.showMessageDialog(null, "Descuento eliminado correctamente");
+                    MostrarJTable();  // Recargar la lista de descuentos
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error al eliminar el descuento");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "El ID del descuento no es válido");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Por favor, seleccione un descuento para eliminar");
+        }
     }//GEN-LAST:event_jButton_eliminarActionPerformed
 
     private void jButton_actualizar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_actualizar1ActionPerformed
-        // TODO add your handling code here:
+
+        // Obtener los valores de los JTextField
+        String nombre = txt_nombre.getText().trim();
+        String precioStr = txt_precio.getText().trim();
+
+        // Validar que los campos no estén vacíos
+        if (nombre.isEmpty() || precioStr.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos.");
+            return;  // Salir del método si hay campos vacíos
+        }
+
+        // Intentar convertir el precio a un número
+        Double total = null;
+        try {
+            total = Double.parseDouble(precioStr);  // Convertir el precio a Double
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El precio debe ser un número válido.");
+            return;  // Salir del método si el precio no es válido
+        }
+
+        // Obtener el ID del descuento (esto asumiendo que tienes el ID de algún modo)
+        int filaSeleccionada = jTable_productos.getSelectedRow();
+        if (filaSeleccionada != -1) {
+            int idDescuento = (int) jTable_productos.getValueAt(filaSeleccionada, 0);  // Columna del ID
+
+            // Crear el objeto Descuento con los nuevos datos
+            Descuento descuento = new Descuento(idDescuento, nombre, total);
+
+            // Llamar al método de actualización en el DAO
+            DescuentoDAO dao = new DescuentoDAO();
+            if (dao.actualizarDescuentoP(descuento)) {
+                MostrarJTable();
+                JOptionPane.showMessageDialog(null, "Descuento actualizado correctamente");
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al actualizar el descuento");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Por favor, seleccione un descuento para actualizar");
+        }
     }//GEN-LAST:event_jButton_actualizar1ActionPerformed
 
     private void txt_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_buscarActionPerformed
@@ -206,16 +299,91 @@ public class InterGestionarDescuentos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txt_buscarActionPerformed
 
     private void jButton_buscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_buscar1ActionPerformed
-        // TODO add your handling code here:
+
+        String criterio = txt_buscar.getText().trim();
+        if (criterio.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, ingresa un nombre para buscar.");
+        } else {
+            buscarDescuentoBinario(criterio);
+        }        // TODO add your handling code here:
     }//GEN-LAST:event_jButton_buscar1ActionPerformed
 
     private void jButton_ordenarAZ1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ordenarAZ1ActionPerformed
         // TODO add your handling code here:
+        Collections.sort(LI_descuento, Comparator.comparing(Descuento::getTotal));
+        MostrarJTable();
     }//GEN-LAST:event_jButton_ordenarAZ1ActionPerformed
+
+    private void buscarDescuentoBinario(String criterio) {
+        // Aseguramos que la lista esté ordenada antes de realizar la búsqueda binaria.
+        Collections.sort(LI_descuento, Comparator.comparing(Descuento::getNombre));
+
+        int indice = busquedaBinaria(LI_descuento, criterio);
+
+        if (indice == -1) {
+            JOptionPane.showMessageDialog(null, "Descuento no encontrado.");
+        } else {
+            // Si el índice es válido, mostramos el descuento encontrado.
+            Descuento descuentoEncontrado = LI_descuento.get(indice);
+            JOptionPane.showMessageDialog(null, "Descuento encontrado: " + descuentoEncontrado.getNombre()
+                    + " - Total: " + descuentoEncontrado.getTotal());
+        }
+    }
+
+    private int busquedaBinaria(LinkedList<Descuento> lista, String criterio) {
+        int inicio = 0;
+        int fin = lista.size() - 1;
+
+        while (inicio <= fin) {
+            int medio = (inicio + fin) / 2;
+            Descuento descuentoMedio = lista.get(medio);
+
+            int comparacion = descuentoMedio.getNombre().compareToIgnoreCase(criterio);
+
+            if (comparacion == 0) {
+                // Si encontramos el descuento, retornamos el índice.
+                return medio;
+            } else if (comparacion < 0) {
+                // Si el criterio es mayor que el nombre en el medio, buscamos en la mitad derecha.
+                inicio = medio + 1;
+            } else {
+                // Si el criterio es menor que el nombre en el medio, buscamos en la mitad izquierda.
+                fin = medio - 1;
+            }
+        }
+        // Si no encontramos el descuento, retornamos -1.
+        return -1;
+    }
+
 
     private void jButton_ordenarAZ4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ordenarAZ4ActionPerformed
         // TODO add your handling code here:
+        Collections.sort(LI_descuento, Comparator.comparing(Descuento::getNombre).reversed());
+        MostrarJTable();
     }//GEN-LAST:event_jButton_ordenarAZ4ActionPerformed
+
+    private void jTable_productosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_productosMouseClicked
+        // Obtener la fila seleccionada
+        int filaSeleccionada = jTable_productos.getSelectedRow();
+
+        // Verificar si no se ha seleccionado una fila válida (es decir, fila no nula y no vacía)
+        if (filaSeleccionada != -1) {  // La fila seleccionada debe ser válida
+            // Obtener los valores de la fila seleccionada
+            String nombre = (String) jTable_productos.getValueAt(filaSeleccionada, 1);  // Columna del nombre
+            Double total = (Double) jTable_productos.getValueAt(filaSeleccionada, 2);  // Columna del total
+
+            // Verificar si los datos obtenidos son válidos
+            if (nombre != null && !nombre.isEmpty() && total != null) {
+                // Mostrar los valores en los JTextField
+                txt_nombre.setText(nombre);
+                txt_precio.setText(total.toString());
+            } else {
+                JOptionPane.showMessageDialog(null, "La fila seleccionada está vacía o tiene datos inválidos.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Por favor, seleccione una fila válida.");
+        }
+    }//GEN-LAST:event_jTable_productosMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

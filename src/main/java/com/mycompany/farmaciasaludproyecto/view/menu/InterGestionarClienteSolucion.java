@@ -5,13 +5,20 @@
 package com.mycompany.farmaciasaludproyecto.view.menu;
 
 import com.mycompany.farmaciasaludproyecto.model.dao.ClienteDAO;
+import com.mycompany.farmaciasaludproyecto.model.dao.Conexion;
 import com.mycompany.farmaciasaludproyecto.model.entity.Cliente;
 import static com.mycompany.farmaciasaludproyecto.view.menu.InterGestionarCliente.jTable_productos;
 import java.awt.Dimension;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,7 +27,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class InterGestionarClienteSolucion extends javax.swing.JInternalFrame {
 
-    String[] Cabeceras = {"#", "Nombre", "Apellidos", "DNI", "Dirección", "Teléfono"};
+    String[] Cabeceras = {"#", "Nombre", "Apellidos", "DNI", "Dirección", "Teléfono", "estado"};
     DefaultTableModel modeloTabla;
     List<Cliente> listaClientes;
     ClienteDAO clienteDAO;
@@ -32,7 +39,27 @@ public class InterGestionarClienteSolucion extends javax.swing.JInternalFrame {
         listaClientes = new ArrayList<>();
         modeloTabla = new DefaultTableModel(null, Cabeceras);
         jTable_productos.setModel(modeloTabla);
+        configurarSeleccionTabla();
         actualizarTabla();
+
+    }
+
+    private void configurarSeleccionTabla() {
+        jTable_productos.getSelectionModel().addListSelectionListener(event -> {
+            // Verifica si hay una fila seleccionada
+            int selectedRow = jTable_productos.getSelectedRow();
+            if (selectedRow != -1) {
+                // Obtén el índice real del modelo (en caso de que la tabla esté ordenada)
+                int modelRow = jTable_productos.convertRowIndexToModel(selectedRow);
+
+                // Obtén los valores de la fila seleccionada
+                txt_nombre.setText((String) modeloTabla.getValueAt(modelRow, 1)); // Columna "Nombre"
+                txt_apellido.setText((String) modeloTabla.getValueAt(modelRow, 2)); // Columna "Apellidos"
+                txt_dni.setText((String) modeloTabla.getValueAt(modelRow, 3)); // Columna "DNI"
+                txt_direccion.setText((String) modeloTabla.getValueAt(modelRow, 4)); // Columna "Dirección"
+                txt_telefono.setText((String) modeloTabla.getValueAt(modelRow, 5)); // Columna "Teléfono"
+            }
+        });
     }
 
     /**
@@ -51,7 +78,6 @@ public class InterGestionarClienteSolucion extends javax.swing.JInternalFrame {
         txt_buscar = new javax.swing.JTextField();
         jButton_ordenarAZ = new javax.swing.JButton();
         jButton_buscar1 = new javax.swing.JButton();
-        jButton_ordenarAZ1 = new javax.swing.JButton();
         jButton_ordenarAZ2 = new javax.swing.JButton();
         jButton_ordenarAZ3 = new javax.swing.JButton();
         jButton_ordenarAZ4 = new javax.swing.JButton();
@@ -128,16 +154,6 @@ public class InterGestionarClienteSolucion extends javax.swing.JInternalFrame {
         });
         jPanel1.add(jButton_buscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, 120, 30));
 
-        jButton_ordenarAZ1.setBackground(new java.awt.Color(204, 255, 153));
-        jButton_ordenarAZ1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton_ordenarAZ1.setText("Precio Asc");
-        jButton_ordenarAZ1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_ordenarAZ1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton_ordenarAZ1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 280, 100, -1));
-
         jButton_ordenarAZ2.setBackground(new java.awt.Color(204, 255, 153));
         jButton_ordenarAZ2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton_ordenarAZ2.setText("Fecha Desc");
@@ -156,7 +172,7 @@ public class InterGestionarClienteSolucion extends javax.swing.JInternalFrame {
                 jButton_ordenarAZ3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton_ordenarAZ3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 280, 100, -1));
+        jPanel1.add(jButton_ordenarAZ3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 283, 100, 20));
 
         jButton_ordenarAZ4.setBackground(new java.awt.Color(204, 255, 153));
         jButton_ordenarAZ4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -273,12 +289,14 @@ public class InterGestionarClienteSolucion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txt_buscarActionPerformed
 
     private void jButton_ordenarAZActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ordenarAZActionPerformed
-        // TODO add your handling code here:
+
+        ordenarClientesAsc();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton_ordenarAZActionPerformed
 
     private void jButton_buscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_buscar1ActionPerformed
 
         buscarCliente();
+        actualizarTabla();
     }
 
     private void buscarCliente() {
@@ -298,10 +316,6 @@ public class InterGestionarClienteSolucion extends javax.swing.JInternalFrame {
         }        // TODO add your handling code here:
     }//GEN-LAST:event_jButton_buscar1ActionPerformed
 
-    private void jButton_ordenarAZ1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ordenarAZ1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_ordenarAZ1ActionPerformed
-
     private void jButton_ordenarAZ2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ordenarAZ2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton_ordenarAZ2ActionPerformed
@@ -311,6 +325,8 @@ public class InterGestionarClienteSolucion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton_ordenarAZ3ActionPerformed
 
     private void jButton_ordenarAZ4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ordenarAZ4ActionPerformed
+        ordenarClientesDesc();
+        actualizarTabla();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton_ordenarAZ4ActionPerformed
 
@@ -318,20 +334,85 @@ public class InterGestionarClienteSolucion extends javax.swing.JInternalFrame {
 
         int selectedRow = jTable_productos.getSelectedRow();
         if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(this, "Seleccione un cliente para eliminar.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Seleccione un cliente para actualizar su estado.", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
             try {
-                Cliente cliente = listaClientes.get(selectedRow);
-                clienteDAO.eliminarCliente(cliente.getId_cliente());
-                listaClientes.remove(selectedRow);
-                actualizarTabla();
-                JOptionPane.showMessageDialog(this, "Cliente eliminado correctamente.", "Información", JOptionPane.INFORMATION_MESSAGE);
+                // Obtén el índice real del modelo en caso de que la tabla esté ordenada
+                int modelRow = jTable_productos.convertRowIndexToModel(selectedRow);
+
+                // Obtén el valor de la primera columna (id_cliente) de la fila seleccionada
+                int idCliente = (int) modeloTabla.getValueAt(modelRow, 0);
+
+                // Cambia el estado del cliente a inactivo (estado = false)
+                boolean actualizado = clienteDAO.actualizarEstadoCliente(idCliente, false);
+                if (actualizado) {
+                    // Actualiza la lista local y la tabla
+                    listaClientes.stream()
+                            .filter(cliente -> cliente.getId_cliente() == idCliente)
+                            .forEach(cliente -> cliente.setEstado(false)); // Actualiza localmente el estado
+                    actualizarTabla();
+                    JOptionPane.showMessageDialog(this, "El cliente fue actualizado a inactivo correctamente.", "Información", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, "No se pudo actualizar el estado del cliente.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             } catch (SQLException e) {
-                JOptionPane.showMessageDialog(this, "Error al eliminar el cliente: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Error al actualizar el estado del cliente: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
+
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton_eliminarActionPerformed
+
+    public boolean eliminarCliente(int idCliente) throws SQLException {
+        String sql = "DELETE FROM cliente WHERE id_cliente = ?";
+        try (Connection conexion = Conexion.conectar(); PreparedStatement ps = conexion.prepareStatement(sql)) {
+            ps.setInt(1, idCliente);
+            int filasAfectadas = ps.executeUpdate();
+            return filasAfectadas > 0; // Retorna true si se eliminó
+        }
+    }
+
+    public void actualizarTabla() {
+
+        try {
+            // Obtén los datos actualizados desde la base de datos
+            listaClientes = clienteDAO.obtenerTodosLosClientes();
+
+            // Verifica el contenido de la lista (para depuración)
+            System.out.println("Lista actualizada de clientes: " + listaClientes);
+
+            // Limpia la tabla antes de llenarla
+            modeloTabla.setRowCount(0);
+
+            // Agrega solo los clientes activos a la tabla
+            for (Cliente cliente : listaClientes) {
+                if (cliente.getEstado()) { // Solo agregar clientes con estado true (activo)
+                    modeloTabla.addRow(new Object[]{
+                        cliente.getId_cliente(),
+                        cliente.getNombres(),
+                        cliente.getApellidos(),
+                        cliente.getDni(),
+                        cliente.getDireccion(),
+                        cliente.getTelefono(),
+                        cliente.getEstado()
+
+                    });
+                }
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error al actualizar la tabla: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }
+
+    private void ordenarClientesAsc() {
+        Collections.sort(listaClientes, Comparator.comparing(Cliente::getNombres));
+    }
+
+    private void ordenarClientesDesc() {
+        Collections.sort(listaClientes, Comparator.comparing(Cliente::getNombres).reversed());
+    }
+
 
     private void jButton_actualizar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_actualizar1ActionPerformed
 
@@ -357,33 +438,12 @@ public class InterGestionarClienteSolucion extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton_actualizar1ActionPerformed
 
-    public void actualizarTabla() {
-        try {
-            listaClientes = clienteDAO.obtenerTodosLosClientes();
-            modeloTabla.setRowCount(0); // Limpia la tabla
-            for (Cliente cliente : listaClientes) {
-                modeloTabla.addRow(new Object[]{
-                    cliente.getId_cliente(),
-                    cliente.getNombres(),
-                    cliente.getApellidos(),
-                    cliente.getDni(),
-                    cliente.getDireccion(),
-                    cliente.getTelefono()
-                });
-            }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "Error al actualizar la tabla: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-    
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_actualizar1;
     private javax.swing.JButton jButton_buscar1;
     private javax.swing.JButton jButton_eliminar;
     private javax.swing.JButton jButton_ordenarAZ;
-    private javax.swing.JButton jButton_ordenarAZ1;
     private javax.swing.JButton jButton_ordenarAZ2;
     private javax.swing.JButton jButton_ordenarAZ3;
     private javax.swing.JButton jButton_ordenarAZ4;

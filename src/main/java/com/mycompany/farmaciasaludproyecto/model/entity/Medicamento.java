@@ -20,6 +20,7 @@ public class Medicamento implements Comparable<Medicamento>{
     private int stock;
     private Date fechaVencimiento;
     private int id_tipo;
+    private boolean estado;
 
     public Medicamento(int id_medicamento, String nombre, String descripcion, BigDecimal precio, int stock, Date fechaVencimiento, int id_tipo) {
         this.id_medicamento = id_medicamento;
@@ -31,6 +32,16 @@ public class Medicamento implements Comparable<Medicamento>{
         this.id_tipo = id_tipo;
     }
 
+        public Medicamento(int id_medicamento, String nombre, String descripcion, BigDecimal precio, int stock, Date fechaVencimiento, int id_tipo,boolean  estado) {
+        this.id_medicamento = id_medicamento;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.stock = stock;
+        this.fechaVencimiento = fechaVencimiento;
+        this.id_tipo = id_tipo;
+        this.estado = estado;
+    }
     public Medicamento() {
     }
     
@@ -48,6 +59,15 @@ public class Medicamento implements Comparable<Medicamento>{
         return nombre;
     }
 
+    public boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+    
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }

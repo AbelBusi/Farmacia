@@ -15,6 +15,7 @@ public class TipoMedicamento implements Comparable<TipoMedicamento> {
     private int id_tipo;
     private String nombre;
     private String descripcion;
+    private boolean estado;
     
     public TipoMedicamento(int id_tipo, String nombre, String descripcion) {
         this.id_tipo = id_tipo;
@@ -22,9 +23,39 @@ public class TipoMedicamento implements Comparable<TipoMedicamento> {
         this.descripcion = descripcion;
     }
     
+        public TipoMedicamento(int id_tipo, String nombre, String descripcion,boolean estado) {
+        this.id_tipo = id_tipo;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.estado=estado;
+        
+        
+    }
+
+    public TipoMedicamento() {
+    }
+        
+        
+
+    public TipoMedicamento(int id_tipo, String nombre, boolean estado) {
+        this.id_tipo = id_tipo;
+        this.nombre = nombre;
+        this.estado = estado;
+    }
+    
     public int getId_tipo() {
         return id_tipo;
     }
+
+    public boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+    
+    
     
     public void setId_tipo(int id_tipo) {
         this.id_tipo = id_tipo;

@@ -39,7 +39,8 @@ public class ClienteDAO {
                         rs.getString("apellidos"),
                         rs.getString("dni"),
                         rs.getString("direccion"),
-                        rs.getString("telefono")
+                        rs.getString("telefono"),
+                        rs.getBoolean("estado")
                 );
             }
         }
@@ -57,7 +58,8 @@ public class ClienteDAO {
                         rs.getString("apellidos"),
                         rs.getString("dni"),
                         rs.getString("direccion"),
-                        rs.getString("telefono")
+                        rs.getString("telefono"),
+                        rs.getBoolean("estado")
                 ));
             }
         }
@@ -115,6 +117,7 @@ public class ClienteDAO {
                 cliente.setDni(rs.getString("dni"));
                 cliente.setDireccion(rs.getString("direccion"));
                 cliente.setTelefono(rs.getString("telefono"));
+                cliente.setEstado(rs.getBoolean("estado"));
                 listaClientes.add(cliente);
             }
         } catch (SQLException e) {
@@ -178,4 +181,15 @@ public class ClienteDAO {
 
         return idCliente;
     }
+
+    public boolean actualizarEstadoCliente(int idCliente, boolean estado) throws SQLException {
+        String sql = "UPDATE Cliente SET estado = ? WHERE id_cliente = ?";
+        try (Connection conexion = Conexion.conectar();
+                PreparedStatement ps = conexion.prepareStatement(sql)) {
+            ps.setBoolean(1, estado); // 1 para activo, 0 para inactivo
+            ps.setInt(2, idCliente);
+            return ps.executeUpdate() > 0; // Retorna true si se actualizó alguna fila
+        }
+    }
+
 }
